@@ -1,0 +1,1385 @@
+/* screen - stories-desktop-all-breakpoints */
+
+.stories-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .header-1 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--romance);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  margin-left: -201px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .tertiary-button-1 {
+  cursor: pointer;
+}
+
+.stories-desktop-all-breakpoints .default-20 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-21 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-22 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-23 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .secondary-button-9 {
+  border-color: var(--salem);
+  cursor: pointer;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -1.00px;
+  margin-top: -1.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-24 {
+  color: var(--salem);
+}
+
+.stories-desktop-all-breakpoints .primary-button {
+  align-items: center;
+  background-color: var(--salem);
+  border-radius: 16px;
+  box-shadow: 0px 6px 12px #19192329;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 7px 18px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .default-25 {
+  color: var(--romance);
+}
+
+.stories-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .hero-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .title-1 {
+  align-self: stretch;
+  color: var(--black);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxxl);
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: 72px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .catagories-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .secondary-button-10 {
+  border-color: var(--mirage);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-26 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .secondary-button-8 {
+  border-color: var(--mirage);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-27 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-28 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-29 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .secondary-button-11 {
+  border-color: var(--mirage);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-right: -1.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-30 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .secondary-button-12 {
+  border-color: var(--mirage);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-right: -120.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-31 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .secondary-button-13 {
+  border-color: var(--mirage);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-right: -239.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-32 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .latest-story {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 30px 30px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-211-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 16px;
+  min-width: 400px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .frame-210-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .feb-16-2025-1 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .some-sort-of-story-t-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 48px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .ransome-lorem-ipsum-1 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .secondary-button-14 {
+  border-color: var(--salem);
+  gap: 6px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  padding: 7px 18px;
+}
+
+.stories-desktop-all-breakpoints .default-33 {
+  color: var(--salem);
+  text-align: right;
+}
+
+.stories-desktop-all-breakpoints .story-cards-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 132px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-17 {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 30px;
+  max-width: 1110px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .story-card-3 {
+  cursor: pointer;
+}
+
+.stories-desktop-all-breakpoints .rectangle-18-1 {
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+  width: 350px;
+}
+
+.stories-desktop-all-breakpoints .quote-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 928px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .the-best-time-to-pla-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .african-proverb-1 {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .frame-215 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1110px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .default-34 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .footer-1 {
+  background-color: transparent;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1440px;
+  padding: 48px 165px 32px;
+}
+
+.stories-desktop-all-breakpoints .line {
+  align-self: stretch;
+  height: 2px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-145 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-143 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .input-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 220px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .content-wrapper-2 {
+  border: 2px solid;
+  border-color: var(--mirage);
+  border-radius: 16px;
+  box-shadow: 0px 1px 2px #0000000d;
+  height: 42px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+  padding: 4px 6px;
+}
+
+.stories-desktop-all-breakpoints .wrapper-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 0px 6px 2px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .content-wrapper-3 {
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.stories-desktop-all-breakpoints .content-1 {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  padding: 0;
+  position: relative;
+  width: 276px;
+}
+
+.stories-desktop-all-breakpoints .secondary-button-15 {
+  border-color: var(--fuchsia-blue);
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-desktop-all-breakpoints .default-35 {
+  color: var(--fuchsia-blue);
+}
+
+.stories-desktop-all-breakpoints .frame-141 {
+  align-items: flex-end;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 260px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .footer-links {
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 48px 84px;
+  justify-content: space-between;
+}
+
+.stories-desktop-all-breakpoints .frame-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0px 16px;
+}
+
+.stories-desktop-all-breakpoints .frame-149-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .address-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 186px;
+}
+
+.stories-desktop-all-breakpoints .frame-149-item-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .non-profit-information-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .default-36 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-37 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .get-involved-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .default-38 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-39 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-40 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-41 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .resources-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .default-42 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-43 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-44 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .default-45 {
+  color: var(--mirage);
+}
+
+.stories-desktop-all-breakpoints .frame-47 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 71px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-46-1 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .privacy-policy-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .cookies-preferences-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .cookies-policy-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .forest-planet-2024-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-left: -458px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .content-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .default {
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-desktop-all-breakpoints .footer {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .secondary-button {
+  align-items: center;
+  border: 2px solid;
+  border-radius: 16px;
+  display: inline-flex;
+  height: 42px;
+  justify-content: center;
+  max-height: 38px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .story-card {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 350px;
+}
+
+.stories-desktop-all-breakpoints .tertiary-button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+/* screen - stories-mobile */
+
+.stories-mobile {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  min-width: 393px;
+  position: relative;
+}
+
+.stories-mobile .header {
+  align-self: stretch;
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .hero {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 56px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .frame-301 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .title {
+  align-self: stretch;
+  color: var(--black);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxl);
+  font-weight: 400;
+  letter-spacing: -0.96px;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .catagories {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .secondary-button-1 {
+  border-color: var(--mirage);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-left: -2.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-mobile .default {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .secondary-button {
+  align-items: center;
+  border: 2px solid;
+  border-color: var(--mirage);
+  border-radius: 16px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  height: 42px;
+  justify-content: center;
+  margin-bottom: -2.00px;
+  margin-top: -2.00px;
+  max-height: 38px;
+  padding: 7px 16px;
+  position: relative;
+}
+
+.stories-mobile .default-1 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-2 {
+  color: var(--mirage);
+}
+
+.stories-mobile .secondary-button-2 {
+  border-color: var(--mirage);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -97.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-mobile .default-3 {
+  color: var(--mirage);
+}
+
+.stories-mobile .secondary-button-3 {
+  border-color: var(--mirage);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -208.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-mobile .default-4 {
+  color: var(--mirage);
+}
+
+.stories-mobile .secondary-button-4 {
+  border-color: var(--mirage);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -319.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-mobile .default-5 {
+  color: var(--mirage);
+}
+
+.stories-mobile .secondary-button-5 {
+  border-color: var(--mirage);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-right: -430.00px;
+  margin-top: -2.00px;
+  padding: 7px 16px;
+}
+
+.stories-mobile .default-6 {
+  color: var(--mirage);
+}
+
+.stories-mobile .lastest-story {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .frame-210 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .feb-16-2025 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .some-sort-of-story-t {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 48px;
+  position: relative;
+}
+
+.stories-mobile .ransome-lorem-ipsum {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.stories-mobile .secondary-button-6 {
+  border-color: var(--salem);
+  display: inline-flex;
+  gap: 6px;
+  margin-left: -2.00px;
+  padding: 7px 18px;
+}
+
+.stories-mobile .default-7 {
+  color: var(--salem);
+  text-align: right;
+}
+
+.stories-mobile .story-cards {
+  align-self: stretch;
+  flex: 0 0 auto;
+  gap: 64px;
+  padding: 0px 30px;
+  width: 100%;
+}
+
+.stories-mobile .frame {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .story-card-1 {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 333px;
+}
+
+.stories-mobile .rectangle-18 {
+  align-self: stretch;
+  height: 174px;
+}
+
+.stories-mobile .story-card {
+  background-color: var(--romance);
+  border-radius: 30px;
+  overflow: hidden;
+  width: 333px;
+}
+
+.stories-mobile .quote {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .the-best-time-to-pla {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .african-proverb {
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .frame-304 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .tertiary-button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.stories-mobile .default-8 {
+  color: var(--mirage);
+}
+
+.stories-mobile .footer {
+  align-items: center;
+  align-self: stretch;
+  background-color: transparent;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 48px;
+  padding: 48px 30px 32px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .line-5 {
+  align-self: stretch;
+  height: 2px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .input {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  min-width: 116px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .content-wrapper {
+  align-items: center;
+  align-self: stretch;
+  border: 2px solid;
+  border-color: var(--mirage);
+  border-radius: 16px;
+  box-shadow: 0px 1px 2px #0000000d;
+  display: flex;
+  height: 42px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+  padding: 4px 6px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 0px 6px 2px;
+  position: relative;
+}
+
+.stories-mobile .content-wrapper-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .content {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  padding: 0;
+  position: relative;
+  width: 276px;
+}
+
+.stories-mobile .content::placeholder {
+  color: #1919235c;
+}
+
+.stories-mobile .secondary-button-7 {
+  align-self: stretch;
+  border-color: var(--fuchsia-blue);
+  display: flex;
+  gap: 10px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  padding: 7px 16px;
+  width: 100%;
+}
+
+.stories-mobile .default-9 {
+  color: var(--fuchsia-blue);
+}
+
+.stories-mobile .footer-menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.stories-mobile .frame-149 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .address {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  width: 186px;
+}
+
+.stories-mobile .frame-149-item {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .non-profit-information {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .frame-99 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 21px;
+  position: relative;
+}
+
+.stories-mobile .frame-236 {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 74px;
+}
+
+.stories-mobile .frame-235 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  position: relative;
+}
+
+.stories-mobile .default-10 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-11 {
+  color: var(--mirage);
+}
+
+.stories-mobile .frame-44 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.stories-mobile .get-involved {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .default-12 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-13 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-14 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-15 {
+  color: var(--mirage);
+}
+
+.stories-mobile .frame-60 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.stories-mobile .resources {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .default-16 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-17 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-18 {
+  color: var(--mirage);
+}
+
+.stories-mobile .default-19 {
+  color: var(--mirage);
+}
+
+.stories-mobile .forest-planet-2024 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+}
+
+.stories-mobile .frame-46 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .privacy-policy {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .cookies {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .default-20 {
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .rectangle {
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .secondary-button-8 {
+  align-items: center;
+  border: 2px solid;
+  border-radius: 16px;
+  height: 42px;
+  justify-content: center;
+  margin-bottom: -2.00px;
+  max-height: 38px;
+  position: relative;
+}
+
+.stories-mobile .story {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+@media screen and (max-width: 901px) {
+  .screen.stories-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.stories-mobile { 
+    display: none;
+   }
+}

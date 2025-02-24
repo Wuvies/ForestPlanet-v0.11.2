@@ -1,0 +1,1104 @@
+/* screen - story-desktop-all-breakpoints */
+
+.story-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  min-width: 902px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .header-1 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--romance);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  margin-left: -201px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .tertiary-button-1 {
+  cursor: pointer;
+}
+
+.story-desktop-all-breakpoints .default-11 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-12 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-13 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-14 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .secondary-button-1 {
+  border-color: var(--salem);
+  cursor: pointer;
+  margin-bottom: -1.00px;
+  margin-top: -1.00px;
+}
+
+.story-desktop-all-breakpoints .default-15 {
+  color: var(--salem);
+}
+
+.story-desktop-all-breakpoints .primary-button {
+  align-items: center;
+  background-color: var(--salem);
+  border-radius: 16px;
+  box-shadow: 0px 6px 12px #19192329;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 7px 18px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .default-16 {
+  color: var(--romance);
+}
+
+.story-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .hero-1 {
+  align-items: center;
+  align-self: stretch;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 72.17%);
+  background-image: url(../img/hero-3.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 574px;
+  justify-content: flex-end;
+  padding: 24px 325px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-344 {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: -144.00px;
+  margin-right: -144.00px;
+  max-width: 790px;
+  min-width: 540px;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .never-let-a-crisis-g-1 {
+  align-self: stretch;
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.story-desktop-all-breakpoints .this-article-explore-1 {
+  align-self: stretch;
+  color: var(--romance);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+}
+
+.story-desktop-all-breakpoints .story-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-221 {
+  align-items: center;
+  flex-direction: column;
+  gap: 54px;
+  margin-left: -111.50px;
+  margin-right: -111.50px;
+  max-width: 1110px;
+  min-width: 795px;
+  padding: 0px 160px;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .everywhere-we-travel-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 40px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .frame-2 {
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: -32.50px;
+  margin-right: -32.50px;
+  width: 540px;
+}
+
+.story-desktop-all-breakpoints .planting-fig-trees-in-morocco-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .frame-221-item {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 400;
+  line-height: 40px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .span-3 {
+  font-weight: 500;
+}
+
+.story-desktop-all-breakpoints .span-4 {
+  font-weight: 700;
+}
+
+.story-desktop-all-breakpoints .this-nursery-in-khen-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .span-5 {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.story-desktop-all-breakpoints .caretaker-ahmed-getting-it-done-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .frame-221-item-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .ahmeds-hands-deliver-hope-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .peacocks-guarding-the-well-fed-chickens-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .much-has-been-done-much-more-to-do-1 {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 476px;
+}
+
+.story-desktop-all-breakpoints .footer-1 {
+  background-color: transparent;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1440px;
+  padding: 48px 165px 32px;
+}
+
+.story-desktop-all-breakpoints .line {
+  align-self: stretch;
+  height: 2px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-14 {
+  align-items: flex-start;
+  align-self: stretch;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-145 {
+  align-items: flex-start;
+  align-self: stretch;
+  flex-direction: column;
+  gap: 56px;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-143 {
+  align-items: center;
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .input-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 220px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .content-wrapper-2 {
+  border: 2px solid;
+  border-color: var(--mirage);
+  border-radius: 16px;
+  box-shadow: 0px 1px 2px #0000000d;
+  height: 42px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+  padding: 4px 6px;
+}
+
+.story-desktop-all-breakpoints .wrapper-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 0px 6px 2px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .content-wrapper-3 {
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.story-desktop-all-breakpoints .content-1 {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  padding: 0;
+  position: relative;
+  width: 276px;
+}
+
+.story-desktop-all-breakpoints .secondary-button-2 {
+  border-color: var(--fuchsia-blue);
+  margin-bottom: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+}
+
+.story-desktop-all-breakpoints .default-17 {
+  color: var(--fuchsia-blue);
+}
+
+.story-desktop-all-breakpoints .frame-141 {
+  align-items: flex-end;
+  align-self: stretch;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 260px;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .footer-links {
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 48px 84px;
+  justify-content: space-between;
+}
+
+.story-desktop-all-breakpoints .frame {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0px 16px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .frame-149-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .address-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 186px;
+}
+
+.story-desktop-all-breakpoints .frame-149-item-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .non-profit-information-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .default-18 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-19 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .get-involved-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .default-20 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-21 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-22 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-23 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .resources-1 {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .default-24 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-25 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-26 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .default-27 {
+  color: var(--mirage);
+}
+
+.story-desktop-all-breakpoints .frame-47 {
+  align-items: center;
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 32px 71px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-46-1 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .privacy-policy-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .cookies-preferences-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .cookies-policy-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .forest-planet-2024-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-left: -458px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .content-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .default {
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-desktop-all-breakpoints .footer {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.story-desktop-all-breakpoints .frame-1 {
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .secondary-button {
+  align-items: center;
+  border: 2px solid;
+  border-radius: 16px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  height: 42px;
+  justify-content: center;
+  max-height: 38px;
+  padding: 7px 16px;
+  position: relative;
+}
+
+.story-desktop-all-breakpoints .tertiary-button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+/* screen - story-mobile */
+
+.story-mobile {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  min-width: 393px;
+  position: relative;
+}
+
+.story-mobile .header {
+  align-self: stretch;
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .hero {
+  align-items: center;
+  align-self: stretch;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 72.17%);
+  background-image: url(../img/hero-2.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 140px 30px 24px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .never-let-a-crisis-g {
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.story-mobile .this-article-explore {
+  color: var(--romance);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+}
+
+.story-mobile .story {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 540px;
+  min-width: 393px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .everywhere-we-travel {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.story-mobile .frame-3 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .rectangle-31 {
+  height: 255px;
+  object-fit: cover;
+  position: relative;
+  width: 333px;
+}
+
+.story-mobile .story-item {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 400;
+  line-height: 26px;
+  position: relative;
+}
+
+.story-mobile .span {
+  font-weight: 500;
+}
+
+.story-mobile .span-1 {
+  letter-spacing: 0;
+}
+
+.story-mobile .this-nursery-in-khen {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 282px;
+}
+
+.story-mobile .span1 {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.story-mobile .caretaker-ahmed-getting-it-done {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 282px;
+}
+
+.story-mobile .story-item-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.story-mobile .ahmeds-hands-deliver-hope {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 282px;
+}
+
+.story-mobile .peacocks-guarding-the-well-fed-chickens {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 282px;
+}
+
+.story-mobile .much-has-been-done-much-more-to-do {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  width: 282px;
+}
+
+.story-mobile .the-big-picture-ther {
+  align-self: stretch;
+  letter-spacing: 0;
+  line-height: 26px;
+  position: relative;
+}
+
+.story-mobile .span-2 {
+  color: var(--mirage);
+  font-weight: 500;
+}
+
+.story-mobile .span2 {
+  color: var(--mirage);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.story-mobile .footer {
+  align-items: center;
+  align-self: stretch;
+  background-color: transparent;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 48px;
+  padding: 48px 30px 32px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .line-5 {
+  align-self: stretch;
+  height: 2px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+  margin-top: -1.00px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .input {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  min-width: 116px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .content-wrapper {
+  align-items: center;
+  align-self: stretch;
+  border: 2px solid;
+  border-color: var(--mirage);
+  border-radius: 16px;
+  box-shadow: 0px 1px 2px #0000000d;
+  display: flex;
+  height: 42px;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  margin-top: -2.00px;
+  padding: 4px 6px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 0px 6px 2px;
+  position: relative;
+}
+
+.story-mobile .content-wrapper-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .content {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  padding: 0;
+  position: relative;
+  width: 276px;
+}
+
+.story-mobile .content::placeholder {
+  color: #1919235c;
+}
+
+.story-mobile .secondary-button {
+  align-items: center;
+  align-self: stretch;
+  border: 2px solid;
+  border-color: var(--fuchsia-blue);
+  border-radius: 16px;
+  display: flex;
+  gap: 10px;
+  height: 42px;
+  justify-content: center;
+  margin-bottom: -2.00px;
+  margin-left: -2.00px;
+  margin-right: -2.00px;
+  max-height: 38px;
+  padding: 7px 16px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .default {
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .footer-menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.story-mobile .frame-149 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .address {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  width: 186px;
+}
+
+.story-mobile .frame-149-item {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .non-profit-information {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .frame-99 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 21px;
+  position: relative;
+}
+
+.story-mobile .frame-236 {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 74px;
+}
+
+.story-mobile .frame-235 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  position: relative;
+}
+
+.story-mobile .tertiary-button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.story-mobile .frame-44 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.story-mobile .get-involved {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .frame-60 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.story-mobile .resources {
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .forest-planet-2024 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+}
+
+.story-mobile .frame-46 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.story-mobile .privacy-policy {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .cookies {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.story-mobile .default-11 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+@media screen and (max-width: 901px) {
+  .screen.story-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.story-mobile { 
+    display: none;
+   }
+}
