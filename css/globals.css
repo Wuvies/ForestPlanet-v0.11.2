@@ -148,12 +148,21 @@ input:focus {
   padding: 7px 16px;
 }
 
-.secondary-button-1 {
-  border-color: var(--romance);
-  padding: 7px 18px;
-  width: 134px;
+.secondary-button-mirage {
+  border: 2px solid;
+  border-color: var(--mirage);
+  cursor: pointer;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -1.00px;
+  margin-top: -1.00px;
+  padding: 7px 16px;
 }
 
+.secondary-button-mirage-text {
+  color: var(--mirage);
+  margin-top: -1.00px;
+}
 
 /* ------------ Primary Button ------------ */
 

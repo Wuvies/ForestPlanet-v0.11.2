@@ -99,13 +99,15 @@
 
 .stories-desktop-all-breakpoints .hero-1 {
   align-items: center;
-  align-self: stretch;
+  align-self: center;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  max-width: 1110px;
   gap: 100px;
   position: relative;
   width: 100%;
+  padding-top: 200px;
 }
 
 .stories-desktop-all-breakpoints .frame-1 {
@@ -130,7 +132,7 @@
 }
 
 .stories-desktop-all-breakpoints .catagories-1 {
-  align-items: center;
+  align-items: flex-start;
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
