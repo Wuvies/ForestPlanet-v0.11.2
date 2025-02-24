@@ -581,20 +581,6 @@
   position: relative;
 }
 
-.story-desktop-all-breakpoints .secondary-button {
-  align-items: center;
-  border: 2px solid;
-  border-radius: 16px;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  height: 42px;
-  justify-content: center;
-  max-height: 38px;
-  padding: 7px 16px;
-  position: relative;
-}
-
 .story-desktop-all-breakpoints .tertiary-button {
   align-items: center;
   display: inline-flex;

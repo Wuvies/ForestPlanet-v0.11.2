@@ -1317,24 +1317,6 @@ input:focus {
   width: 24px;
 }
 
-.rectangle-30 {
-  height: 234px;
-  max-width: 540px;
-  min-width: 333px;
-}
-
-.frame-211 {
-  align-items: flex-start;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 540px;
-  min-width: 333px;
-  position: relative;
-  width: 100%;
-}
-
 .frame-289 {
   align-items: flex-start;
   align-self: stretch;
@@ -1460,6 +1442,8 @@ input:focus {
   min-width: 400px;
   object-fit: cover;
   position: relative;
+  border-radius: var(--border-radius-40);
+  box-shadow: var(--box-shadow-large);
 }
 
 .chevron-right-1 {

@@ -676,17 +676,6 @@
   position: relative;
 }
 
-.stories-desktop-all-breakpoints .secondary-button {
-  align-items: center;
-  border: 2px solid;
-  border-radius: 16px;
-  display: inline-flex;
-  height: 42px;
-  justify-content: center;
-  max-height: 38px;
-  position: relative;
-}
-
 .stories-desktop-all-breakpoints .story-card {
   align-items: center;
   background-color: var(--romance);
@@ -736,16 +725,37 @@
   width: 100%;
 }
 
+.stories-mobile .heading {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  padding: 0px 30px;
+  min-width: 393px;
+  width: 100%;
+}
+
 .stories-mobile .hero {
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   gap: 56px;
-  padding: 0px 30px;
   position: relative;
   width: 100%;
+  margin-top: 150px;
+}
+
+.stories-mobile .rectangle-30 {
+  height: 234px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  border-radius: var(--border-radius-20);
+  box-shadow: var(--box-shadow-large);
 }
 
 .stories-mobile .frame-301 {
@@ -778,6 +788,23 @@
   display: flex;
   flex: 0 0 auto;
   gap: 16px;
+  padding: 2px 30px;
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.stories-mobile .frame-211 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+  min-width: 333px;
   position: relative;
   width: 100%;
 }
@@ -802,21 +829,17 @@
   width: fit-content;
 }
 
-.stories-mobile .secondary-button {
-  align-items: center;
-  border: 2px solid;
-  border-color: var(--mirage);
-  border-radius: 16px;
-  display: inline-flex;
+.stories-mobile .latest-story-1 {
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
   flex: 0 0 auto;
-  gap: 10px;
-  height: 42px;
+  flex-wrap: wrap;
+  padding: 30px 30px;
+  gap: 30px 30px;
   justify-content: center;
-  margin-bottom: -2.00px;
-  margin-top: -2.00px;
-  max-height: 38px;
-  padding: 7px 16px;
   position: relative;
+  width: 100%;
 }
 
 .stories-mobile .default-1 {
