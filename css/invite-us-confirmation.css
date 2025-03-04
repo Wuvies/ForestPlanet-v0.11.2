@@ -1,0 +1,82 @@
+/* screen - invite-us-confirmation-desktop-all-breakpoints */
+
+.invite-us-confirmation-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--fuchsia-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+  min-width: 902px;
+  position: relative;
+}
+
+.invite-us-confirmation-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.invite-us-confirmation-desktop-all-breakpoints .thank-you-well-get-1 {
+  align-self: stretch;
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+/* screen - invite-us-confirmation-mobile */
+
+.invite-us-confirmation-mobile {
+  align-items: center;
+  background-color: var(--fuchsia-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 256px;
+  min-width: 393px;
+  position: relative;
+}
+
+.invite-us-confirmation-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.invite-us-confirmation-mobile .thank-you-well-get {
+  align-self: stretch;
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+@media screen and (max-width: 901px) {
+  .screen.invite-us-confirmation-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.invite-us-confirmation-mobile { 
+    display: none;
+   }
+}

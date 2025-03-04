@@ -1,14 +1,5 @@
 /* screen - contact-us */
 
-.contact-us {
-  align-items: center;
-  background-color: var(--black-2);
-  display: inline-flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 32px;
-  position: relative;
-}
 
 #overlay-contact-us {
   align-items: center;
@@ -18,7 +9,7 @@
 
 .contact-us .contact-us-1 {
   align-items: center;
-  background-color: var(--romance);
+  background-color: var(--mirage);
   border-radius: 40px;
   display: inline-flex;
   flex-direction: column;
@@ -46,142 +37,6 @@
 .contact-us .frame-196 {
   align-items: flex-start;
   gap: 16px;
-}
-
-.contact-us .input {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  min-width: 116px;
-  position: relative;
-  width: 100%;
-}
-
-.contact-us .content-wrapper {
-  align-items: center;
-  align-self: stretch;
-  border: 2px solid;
-  border-color: var(--mirage);
-  border-radius: 16px;
-  box-shadow: 0px 1px 2px #0000000d;
-  display: flex;
-  height: 42px;
-  margin-bottom: -2.00px;
-  margin-left: -2.00px;
-  margin-right: -2.00px;
-  padding: 4px 6px;
-  position: relative;
-  width: 100%;
-}
-
-.contact-us .wrapper {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
-  padding: 0px 6px 2px;
-  position: relative;
-}
-
-.contact-us .content-wrapper-1 {
-  flex: 0 0 auto;
-  gap: 10px;
-}
-
-.contact-us .content {
-  letter-spacing: 0;
-  line-height: 20px;
-  margin-top: -1.00px;
-  position: relative;
-  width: 276px;
-}
-
-.contact-us .message {
-  letter-spacing: 0;
-  line-height: 16px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.contact-us .content-wrapper-2 {
-  border: 2px solid;
-  border-color: var(--mirage);
-  border-radius: 16px;
-  box-shadow: 0px 1px 2px #0000000d;
-  height: 165px;
-  margin-bottom: -2.00px;
-  margin-left: -2.00px;
-  margin-right: -2.00px;
-  padding: 4px 6px;
-}
-
-.contact-us .wrapper-1 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 4px 6px 2px;
-  position: relative;
-}
-
-.contact-us .primary-button {
-  align-items: center;
-  align-self: stretch;
-  background-color: var(--salem);
-  border-radius: 16px;
-  display: flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 7px 18px;
-  position: relative;
-  width: 100%;
-}
-
-.contact-us .default {
-  color: var(--romance);
-  font-weight: 500;
-  line-height: 26px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.contact-us .tertiary-button {
-  align-items: center;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  position: relative;
-}
-
-.contact-us .default-1 {
-  color: var(--mirage);
-  font-weight: 500;
-  line-height: 26px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.contact-us .content-wrapper-3 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  position: relative;
   width: 100%;
 }
 
@@ -192,4 +47,19 @@
   flex-direction: column;
   position: relative;
   width: 100%;
+}
+
+.contact-us .input-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.contact-us textarea.content {
+  min-height: 120px;
+}
+
+.contact-us .button {
+  width: 400px;
 }

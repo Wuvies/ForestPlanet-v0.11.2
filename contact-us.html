@@ -14,56 +14,69 @@
   </head>
   <body style="margin: 0">
     <input type="hidden" id="anPageName" name="page" value="contact-us" />
-    <div class="contact-us screen">
+    <div class="contact-us">
       <div class="contact-us-1">
         <h1 class="title heading-2">Contact Us</h1>
-        <div class="frame-197 frame">
+        <form class="frame-197 frame" name="contactForm" action="contact-confirmation.html" method="post">
           <div class="frame-196 frame">
-            <div class="input">
-              <div class="label-wrapper">
-                <div class="label inter-normal-salem-16px">Email</div>
-                <div class="required-wrapper"><div class="text text-small">*</div></div>
+            <div class="input-field">
+              <div class="label-wrapper-1">
+                <div class="label inter-normal-mirage-16px">Email</div>
+                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
               </div>
-              <div class="content-wrapper">
-                <div class="wrapper">
-                  <div class="content-wrapper-1 content-wrapper-3">
-                    <div class="content inter-normal-mirage-18px">Enter your email</div>
+              <div class="input">
+                <div class="content-wrapper">
+                  <div class="wrapper">
+                    <div class="content-wrapper-1">
+                      <input class="content" name="email" placeholder="Enter your email" type="email" required />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="input">
-              <div class="label-wrapper">
-                <div class="label-1 inter-normal-salem-16px">Subject</div>
-                <div class="required-wrapper"><div class="text text-small">*</div></div>
+            <div class="input-field">
+              <div class="label-wrapper-1">
+                <div class="label inter-normal-mirage-16px">Subject</div>
+                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
               </div>
-              <div class="content-wrapper">
-                <div class="wrapper">
-                  <div class="content-wrapper-1 content-wrapper-3">
-                    <div class="content inter-normal-mirage-18px">Enter subject</div>
+              <div class="input">
+                <div class="content-wrapper">
+                  <div class="wrapper">
+                    <div class="content-wrapper-1">
+                      <input class="content" name="subject" placeholder="Enter subject" type="text" required />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="input">
-              <div class="label-wrapper">
-                <div class="message inter-normal-salem-16px">Message</div>
-                <div class="required-wrapper"><div class="text text-small">*</div></div>
+            <div class="input-field">
+              <div class="label-wrapper-1">
+                <div class="label inter-normal-mirage-16px">Message</div>
+                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
               </div>
-              <div class="content-wrapper-2 content-wrapper-3">
-                <div class="wrapper-1">
-                  <div class="content-wrapper-1 content-wrapper-3">
-                    <div class="content inter-normal-mirage-18px">Type your message</div>
+              <div class="input">
+                <div class="content-wrapper textarea-wrapper">
+                  <div class="wrapper">
+                    <div class="content-wrapper-1">
+                      <textarea 
+                        class="content" 
+                        name="message" 
+                        placeholder="Type your message" 
+                        required
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="primary-button"><div class="default body-2-regular">Submit</div></div>
+          <button type="submit" class="primary-button-salem button">
+            <div class="primary-button-romance-text body-2-regular">Submit</div>
+          </button>
           <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-            <div class="tertiary-button"><div class="default-1 body-2-regular">Cancel</div></div></a
-          >
-        </div>
+            <div class="tertiary-button"><div class="tertiary-mirage-text body-2-regular">Cancel</div></div>
+          </a>
+        </form>
       </div>
     </div>
   </body>

@@ -913,6 +913,16 @@ input::placeholder {
   position: relative;
 }
 
+.menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  position: relative;
+}
+
+
 /* ------------ Romance Header Desktop ------------ */
 
 .header-romance {
@@ -1857,7 +1867,7 @@ input::placeholder {
 .full-footer-frame {
   align-items: flex-start;
   flex: 0 0 auto;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 64px;
   padding: 0px 165px;
   width: 100%;
@@ -2042,6 +2052,17 @@ input::placeholder {
   width: 100%;
 }
 
+.newsletter-input-frame form {
+  align-items: center;
+  flex: 1 1 auto;
+  flex-grow: 1;
+  display: flex;
+  gap: 16px;
+  max-width: 540px;
+  min-width: 355px;
+  width: 100%;
+}
+
 .forest-planet-2025 {
   align-self: stretch;
   color: var(--mirage-2);
@@ -2094,8 +2115,15 @@ input::placeholder {
   .join-our-newsletter {
     width: 100%;
   }
-  
+
   .newsletter-input-frame {
+    margin-left: 0;
+    max-width: 100%;
+    min-width: 100%;
+    flex-direction: column;
+  } 
+
+  .newsletter-input-frame form {
     margin-left: 0;
     max-width: 100%;
     min-width: 100%;

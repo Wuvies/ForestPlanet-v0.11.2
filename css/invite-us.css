@@ -22,16 +22,6 @@
   width: 100%;
 }
 
-.invite-us-desktop-all-breakpoints .menu {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: 24px 24px;
-  margin-left: -201px;
-  position: relative;
-}
-
 .invite-us-desktop-all-breakpoints .tertiary-button-1 {
   cursor: pointer;
 }
