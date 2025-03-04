@@ -2228,15 +2228,16 @@ textarea.content-mirage {
   width: 100%;
   height: 150px;
   resize: none;
-  border: none;
+  border: 2px solid #000;
   outline: none;
-  background: transparent;
+  background: #fff;
   color: var(--mirage);
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: normal;
   padding: 6px 10px 6px 10px;
   vertical-align: top;
+  border-radius: 4px;
 }
 
 textarea.content-mirage::placeholder {
