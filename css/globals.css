@@ -105,6 +105,24 @@ input:focus {
   margin-top: -1.00px;
   position: relative;
 }
+
+.tertiary-romance {
+  color: var(--romance);
+  margin-top: -1.00px;
+}
+
+.tertiary-romance-2 {
+  color: var(--romance-2);
+  margin-top: -1.00px;
+}
+
+.tertiary-romance-2-text {
+  color: var(--romance-2);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+}
 /* ------------ Secondary Button ------------ */
 
 .secondary-button {
@@ -256,11 +274,34 @@ input:focus {
   position: relative;
 }
 
+input::placeholder {
+  color: var(--mirage);
+  opacity: 0.7;
+}
+
+.content-romance::placeholder {
+  color: var(--romance-2);
+  opacity: 0.7;
+}
+
 .content-wrapper {
   align-items: center;
   align-self: stretch;
   border: 2px solid;
   border-color: var(--mirage);
+  border-radius: 16px;
+  display: flex;
+  height: 38px;
+  padding: 4px 6px;
+  position: relative;
+  width: 100%;
+}
+
+.content-wrapper-romance {
+  align-items: center;
+  align-self: stretch;
+  border: 2px solid;
+  border-color: var(--romance);
   border-radius: 16px;
   display: flex;
   height: 38px;
@@ -305,6 +346,24 @@ input:focus {
   position: relative;
   width: 100%;
 }
+
+.content-romance {
+  background-color: transparent;
+  color: var(--romance);
+  border: 0;
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  padding-left: 10px;
+  position: relative;
+  width: 100%;
+}
+
+
 
 .frame-113 {
   align-items: center;
@@ -843,7 +902,19 @@ input:focus {
  |               Header Styles               |
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+.nav-bar {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  position: relative;
+}
+
 /* ------------ Romance Header Desktop ------------ */
+
 .header-romance {
   align-items: center;
   align-self: stretch;
@@ -863,16 +934,48 @@ input:focus {
   width: 100%;
 }
 
-.nav-bar {
+/* ------------ Mirage Header Desktop ------------ */
+
+.header-mirage {
   align-items: center;
+  align-self: stretch;
+  background-color: rgba(25, 25, 35, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
-  flex: 1;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: space-between;
-  position: relative;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
 }
+
+/* ------------ Fuchsia Blue Header Desktop ------------ */
+
+.header-fuchsia-blue {
+  align-items: center;
+  align-self: stretch;
+  background-color: rgba(127, 85, 211, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
 
 /* ------------ Romance Header Mobile ------------ */
 
@@ -971,7 +1074,6 @@ input:focus {
 .property-mobile-mirage .menu-button {
   background: none;
   border: none;
-  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
   padding: 0;
   cursor: pointer;
 }
@@ -979,9 +1081,62 @@ input:focus {
 .property-mobile-mirage .menu {
   width: 1.5rem;
   height: 1.5rem;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
 }
 
+/* ------------ Fuchsia Blue Header Mobile ------------ */
 
+.property-mobile-fuchsia-blue {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.875rem;
+  background-color: var(--fuchsia-blue);
+  background-color: rgba(127, 85, 211, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+ 
+  /* Make header fixed and add transition */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* This class will slide the header out of view */
+.property-mobile-fuchsia-blue .hidden {
+  transform: translateY(-100%);
+}
+
+.property-mobile-fuchsia-blue .frame {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.property-mobile-fuchsia-blue .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.property-mobile-fuchsia-blue .menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.property-mobile-fuchsia-blue .menu {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+}
 
 .logo {
   height: 27.45px;
@@ -1743,6 +1898,16 @@ input:focus {
   text-align: left;
 }
 
+.address-romance {
+  color: var(--romance-2);
+  flex: 1;
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: left;
+}
+
 .social-media-icons {
   align-items: center;
   display: inline-flex;
@@ -1751,10 +1916,13 @@ input:focus {
   position: relative;
 }
 
-.social-media-icons-item {
-  height: 24px;
+.social-media-icons-romance {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  gap: 22px;
   position: relative;
-  width: 24px;
 }
 
 .footer-links {
@@ -1783,6 +1951,15 @@ input:focus {
 .t-in {
   align-self: stretch;
   color: var(--mirage);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.t-in-romance {
+  align-self: stretch;
+  color: var(--romance);
   font-weight: 700;
   line-height: 28px;
   margin-top: -1.00px;
@@ -1873,7 +2050,13 @@ input:focus {
   position: relative;
 }
 
-
+.forest-planet-2025-romance {
+  align-self: stretch;
+  color: var(--romance-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
 
 .footer-display {
   display: flex;
@@ -1885,6 +2068,11 @@ input:focus {
 @media screen and (max-width: 901px) {
 
   .footer {
+    padding: 32px 30px;
+    padding-top: 100px;
+  }
+
+  .footer-romance {
     padding: 32px 30px;
     padding-top: 100px;
   }
@@ -1933,6 +2121,25 @@ input:focus {
     text-align: center;
   }
   
+  .footer-romance .input {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .footer-romance .content-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .footer-romance .secondary-button-fuchsia-blue {
+    width: 100%;
+  }
+  
+  .footer-romance .secondary-button-fuchsia-blue-text {
+    width: auto;
+    text-align: center;
+  }
+
   /* Other mobile-specific adjustments */
   .footer-links {
     gap: 30px;
@@ -1941,4 +2148,104 @@ input:focus {
   .frame {
     min-width: 100%;
   }
+}
+
+/* Custom select styling */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+select.content-romance {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  width: 100%;
+  padding-right: 30px; /* Make space for the arrow */
+  border: none;
+  outline: none;
+  color: var(--romance);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.custom-select-wrapper .arrow-1 {
+  position: absolute;
+  right: 10px;
+  pointer-events: none; /* Ensures clicks pass through to select */
+}
+
+/* Style the dropdown options */
+select.content-romance option {
+  background-color: var(--romance);
+  color: var(--mirage);
+  padding: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* Textarea styling */
+.textarea-wrapper {
+  height: 165px !important;
+}
+
+textarea.content-romance {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--romance);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 6px 10px 6px 10px;
+  vertical-align: top;
+}
+
+textarea.content-romance::placeholder {
+  color: var(--romance-2);
+  opacity: 0.7;
+}
+
+/* Custom Radio Button Styling */
+.radio-label {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-icon {
+  margin-right: 12px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Show checked icon when input is checked */
+.radio-input:checked ~ .radio-false {
+  display: none;
+}
+
+.radio-input:checked ~ .radio-true {
+  display: block;
 }

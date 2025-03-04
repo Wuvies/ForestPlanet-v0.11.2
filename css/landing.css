@@ -803,7 +803,7 @@ to{opacity: 1;
 .landing-desktop-all-breakpoints .support-drives-impact-1 {
   align-items: center;
   align-self: stretch;
-  background: var(--harp) url("../img/FP-Logomark-RGB-White.svg") no-repeat center center;
+  background: var(--harp) url("../img/logos/FP-Logomark-RGB-White.svg") no-repeat center center;
   background-size: cover;
   display: flex;
   flex: 0 0 auto;
@@ -2595,7 +2595,7 @@ to{opacity: 1;
 .landing-mobile .support-drives-impact {
   align-items: center;
   align-self: stretch;
-  background: var(--harp) url("../img/FP-Logomark-RGB-White.svg") no-repeat center center;
+  background: var(--harp) url("../img/logos/FP-Logomark-RGB-White.svg") no-repeat center center;
   background-size: cover;
   display: flex;
   flex: 0 0 auto;
