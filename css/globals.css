@@ -272,6 +272,7 @@ input:focus {
   flex-grow: 1;
   min-width: 220px;
   position: relative;
+  width: 100%;
 }
 
 input::placeholder {
@@ -2222,6 +2223,28 @@ select.content-romance option {
 .textarea-wrapper {
   height: 165px !important;
 }
+
+textarea.content-mirage {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--mirage);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 6px 10px 6px 10px;
+  vertical-align: top;
+}
+
+textarea.content-mirage::placeholder {
+  color: var(--mirage-2);
+  opacity: 0.7;
+}
+
+
 
 textarea.content-romance {
   width: 100%;

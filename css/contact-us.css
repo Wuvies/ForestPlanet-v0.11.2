@@ -9,12 +9,13 @@
 
 .contact-us .contact-us-1 {
   align-items: center;
-  background-color: var(--mirage);
+  background-color: var(--romance);
   border-radius: 40px;
   display: inline-flex;
   flex-direction: column;
   gap: 32px;
   padding: 32px;
+  box-shadow: var(--box-shadow-large);
 }
 
 .contact-us .title {
@@ -52,12 +53,8 @@
 .contact-us .input-field {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100% !important;
   gap: 8px;
-}
-
-.contact-us textarea.content {
-  min-height: 120px;
 }
 
 .contact-us .button {
