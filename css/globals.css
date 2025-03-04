@@ -232,6 +232,16 @@ input:focus {
   width: fit-content;
 }
 
+.primary-button-mirage-text {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  |               Input Styles               |
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -829,6 +839,11 @@ input:focus {
   width: 100%;
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ |               Header Styles               |
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* ------------ Romance Header Desktop ------------ */
 .header-romance {
   align-items: center;
   align-self: stretch;
@@ -859,6 +874,8 @@ input:focus {
   position: relative;
 }
 
+/* ------------ Romance Header Mobile ------------ */
+
 .property-mobile {
   display: flex;
   width: 100%;
@@ -867,7 +884,7 @@ input:focus {
   justify-content: space-between;
   padding: 0 1.875rem;
   background-color: var(--romance);
-    background-color: rgba(255, 255, 252, 0.95);
+  background-color: rgba(255, 255, 252, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
  
@@ -909,6 +926,61 @@ input:focus {
   width: 1.5rem;
   height: 1.5rem;
 }
+
+/* ------------ Mirage Header Mobile ------------ */
+
+.property-mobile-mirage {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.875rem;
+  background-color: var(--mirage);
+  background-color: rgba(25, 25, 35, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+ 
+  /* Make header fixed and add transition */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* This class will slide the header out of view */
+.property-mobile-mirage .hidden {
+  transform: translateY(-100%);
+}
+
+.property-mobile-mirage .frame {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.property-mobile-mirage .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.property-mobile-mirage .menu-button {
+  background: none;
+  border: none;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  padding: 0;
+  cursor: pointer;
+}
+
+.property-mobile-mirage .menu {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 
 
 .logo {

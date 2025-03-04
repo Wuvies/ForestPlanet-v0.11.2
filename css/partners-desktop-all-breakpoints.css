@@ -70,20 +70,6 @@
   position: relative;
 }
 
-.partners-desktop-all-breakpoints .primary-button {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 16px;
-  box-shadow: 0px 6px 12px #19192329;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 7px 18px;
-  position: relative;
-}
-
 .partners-desktop-all-breakpoints .default {
   color: var(--mirage);
   font-weight: 500;
@@ -176,19 +162,6 @@
   max-width: 1110px;
   position: relative;
   width: 100%;
-}
-
-.partners-desktop-all-breakpoints .primary-button-1 {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 7px 18px;
-  position: relative;
 }
 
 .partners-desktop-all-breakpoints .footer {
@@ -441,6 +414,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  padding-top: 100px;
   gap: 80px;
   position: relative;
   width: 100%;
@@ -494,19 +468,6 @@
   flex-grow: 1;
   height: 110px;
   min-width: 333px;
-  position: relative;
-}
-
-.partners-mobile .primary-button-2 {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 7px 18px;
   position: relative;
 }
 
@@ -784,4 +745,153 @@
 .partner-card:focus-within {
   outline: 0.125rem solid var(--fuchsia-blue);
   outline-offset: 0.125rem;
+}
+
+/* Palmer Foundation Section - Desktop */
+.palmer-foundation {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.foundation-title {
+  align-self: stretch;
+  color: var(--white);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxl);
+  font-weight: 400;
+  letter-spacing: 0.40px;
+  line-height: 60px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.foundation-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  justify-content: space-between;
+  max-width: 1110px;
+  width: 100%;
+}
+
+.foundation-image {
+  flex: 0 0 300px;
+  overflow: hidden;
+  object-fit: cover;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+}
+
+.foundation-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.foundation-text {
+  flex: 1;
+  min-width: 300px;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.foundation-text p {
+  color: var(--white);
+  line-height: 1.7;
+}
+
+.foundation-quote {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--fuchsia-blue) !important;
+  font-size: 1.1em;
+  border-left: 3px solid var(--salem);
+  padding-left: 16px;
+}
+
+/* Palmer Foundation Section - Mobile */
+.palmer-foundation-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 901px) {
+  .palmer-foundation {
+    display: none;
+  }
+  
+  .palmer-foundation-mobile {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    width: 100%;
+    padding: 32px 30px;
+  }
+  
+  .foundation-title-mobile {
+    align-self: stretch;
+    color: var(--white);
+    font-family: var(--font-family-libre_baskerville);
+    font-size: var(--font-size-xl);
+    font-weight: 400;
+    letter-spacing: 0.36px;
+    line-height: 48px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .foundation-content-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .foundation-image-mobile {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    object-fit: cover;
+    filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  }
+  
+  .foundation-image-mobile img {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .foundation-text-mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .foundation-text-mobile p {
+    color: var(--white);
+    line-height: 1.6;
+  }
+  
+  .foundation-quote-mobile {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--fuchsia-blue) !important;
+    font-size: 1.05em;
+    border-left: 3px solid var(--salem);
+    padding-left: 12px;
+  }
 }
