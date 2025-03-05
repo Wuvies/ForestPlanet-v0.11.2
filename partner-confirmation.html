@@ -8,32 +8,33 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="css/invite-us-confirmation.css" />
+    <link rel="stylesheet" type="text/css" href="css/partner-confirmation.css" />
     <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
     <style></style>
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
   </head>
-  <body style="margin: 0; background: #7d53d3">
-    <input type="hidden" id="anPageName" name="page" value="invite-us-confirmation-desktop-all-breakpoints" />
-    <div class="invite-us-confirmation-mobile screen">
-      <!-- New Mobile Header -->
-      <header class="property-mobile-fuchsia-blue">
+  <body style="margin: 0; background: #191923">
+    <input type="hidden" id="anPageName" name="page" value="partner-confirmation-desktop-all-breakpoints" />
+    <div class="partner-confirmation-mobile screen">
+      <header class="property-mobile-mirage">
         <div class="mobile-nav">
           <a href="index.html" aria-label="Home">
-            <img src="img/logos/FP-Logomark-RGB-White.svg" class="rgb-logo" alt="RGB Logo">
+            <img src="img/logos/FP-Logomark-RGB-Inverse.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a href="menu-mobile.html" class="menu-button" aria-label="Open menu" id="menuButton">
+          <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
             <img src="img/menu.svg" class="menu" alt="Menu Icon">
           </a>
         </div>
       </header>
       
       <div class="main-content">
-        <h1 class="thank-you-well-get heading-2-mobile">Thank You! We'll Get Back to You Shortly</h1>
+        <h1 class="thank-you-well-get heading-2-mobile">
+          <span class="span0 heading-2-mobile">Thank You!</span
+          ><span class="span1 heading-2-mobile"> We'll Get Back to You Shortly</span>
+        </h1>
       </div>
       
-      <!-- New Mobile Footer -->
       <footer class="footer-romance">
         <div class="full-footer-frame footer-display">
           <div class="top-footer-frame footer-display">
@@ -135,9 +136,8 @@
         </div>
       </footer>
     </div>
-    <div class="invite-us-confirmation-desktop-all-breakpoints screen">
-      <!-- New Desktop Header -->
-      <header class="header-fuchsia-blue">
+    <div class="partner-confirmation-desktop-all-breakpoints screen">
+      <header class="header-mirage">
         <div class="nav-bar">
           <a href="index.html">
             <img src="img/logos/FP-Wordmark-RGB-Inverse.svg" class="rgb-wordmark" alt="ForestPlanet Logo">
@@ -170,7 +170,7 @@
             </a>
             <a href="donate-desktop-all-breakpoints.html">
               <div class="primary-button-romance">
-                <div class="primary-button-fuchsia-blue-text body-2-regular">Donate</div>
+                <div class="primary-button-mirage-text body-2-regular">Donate</div>
               </div>
             </a>
           </div>
@@ -178,10 +178,12 @@
       </header>
       
       <div class="main-content-1">
-        <h1 class="thank-you-well-get-1 heading-2">Thank You! We'll Get Back to You Shortly</h1>
+        <h1 class="thank-you-well-get-1 heading-2">
+          <span class="span0-1 heading-2">Thank You!</span
+          ><span class="span1-1 heading-2"> We'll Get Back to You Shortly</span>
+        </h1>
       </div>
       
-      <!-- New Desktop Footer -->
       <footer class="footer">
         <div class="full-footer-frame footer-display">
           <div class="top-footer-frame footer-display">

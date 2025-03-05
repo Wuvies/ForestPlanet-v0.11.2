@@ -285,6 +285,12 @@ input::placeholder {
   opacity: 0.7;
 }
 
+.input-field {
+  flex: 1;
+  flex-grow: 1;
+  width: 100%;
+}
+
 .content-wrapper {
   align-items: center;
   align-self: stretch;
@@ -358,7 +364,6 @@ input::placeholder {
   font-weight: 400;
   letter-spacing: 0;
   line-height: 20px;
-  margin-top: -1.00px;
   padding-left: 10px;
   position: relative;
   width: 100%;
@@ -2235,7 +2240,7 @@ textarea.content-mirage {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: normal;
-  padding: 4px 8px 4px 8px;
+  padding: 6px 8px 6px 8px;
   vertical-align: top;
 }
 
@@ -2257,7 +2262,7 @@ textarea.content-romance {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: normal;
-  padding: 4px 8px 4px 8px;
+  padding: 6px 8px 6px 8px;
   vertical-align: top;
 }
 
