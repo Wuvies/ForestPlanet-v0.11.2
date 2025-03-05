@@ -11,18 +11,20 @@
     <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
     <link rel="stylesheet" type="text/css" href="css/invite-us.css" />
     <style></style>
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu-mobile.css" />
   </head>
   <body style="margin: 0; background: #7d53d3">
     <input type="hidden" id="anPageName" name="page" value="invite-us-desktop-all-breakpoints" />
     <form class="invite-us-mobile screen" name="form7" action="invite-us-confirmation.html" method="post">
       <header class="property-mobile-fuchsia-blue">
-        <div class="frame">
+        <div class="mobile-nav">
           <a href="index.html" aria-label="Home">
             <img src="img/logos/FP-Logomark-RGB-White.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a href="menu-mobile.html" class="menu-button" aria-label="Open menu" id="menuButton">
+          <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
             <img src="img/menu.svg" class="menu" alt="Menu Icon">
           </a>
         </div>
@@ -907,157 +909,9 @@
         </div>
       </footer>
     </form>
-    <div id="overlay-contact-us" class="overlay-base">
-      <div class="contact-us screen">
-        <div class="contact-us-1">
-          <h1 class="title heading-2">Contact Us</h1>
-          <form class="frame-197 frame" name="contactOverlayForm" action="contact-confirmation.html" method="post">
-            <div class="frame-196 frame">
-              <div class="input-field">
-                <div class="label-wrapper-1">
-                  <div class="label inter-normal-mirage-16px">Email</div>
-                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-                </div>
-                <div class="input">
-                  <div class="content-wrapper-romance">
-                    <div class="wrapper">
-                      <div class="content-wrapper-1">
-                        <input class="content-romance" name="email" placeholder="Enter your email" type="email" required />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="label-wrapper-1">
-                  <div class="label inter-normal-mirage-16px">Subject</div>
-                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-                </div>
-                <div class="input">
-                  <div class="content-wrapper-romance">
-                    <div class="wrapper">
-                      <div class="content-wrapper-1">
-                        <input class="content-romance" name="subject" placeholder="Enter subject" type="text" required />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <div class="label-wrapper-1">
-                  <div class="label inter-normal-mirage-16px">Message</div>
-                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-                </div>
-                <div class="input">
-                  <div class="content-wrapper-romance textarea-wrapper">
-                    <div class="wrapper">
-                      <div class="content-wrapper-1">
-                        <textarea 
-                          class="content-romance" 
-                          name="message" 
-                          placeholder="Type your message" 
-                          required
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="primary-button-salem">
-              <div class="primary-button-romance-text body-2-regular">Submit</div>
-            </button>
-            <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-              <div class="tertiary-button"><div class="tertiary-mirage-text body-2-regular">Cancel</div></div>
-            </a>
-          </form>
-        </div>
-      </div>
-    </div>
-    <script>
-      ShowOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") == -1) {
-          document.getElementById(overlayName).className =
-            document.getElementById(overlayName).className + " " + animationName;
-        }
-        if (window.loadAsyncSrc != undefined) {
-          loadAsyncSrc();
-        }
-      };
-
-      HideOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") != -1) {
-          cssClasses.splice(-1);
-          cssClasses.push(animationName);
-          document.getElementById(overlayName).className = cssClasses.join(" ");
-
-          cssClasses.splice(-1);
-          setTimeout(function () {
-            document.getElementById(overlayName).className = cssClasses.join(" ");
-          }, 1100);
-        }
-        var vids = document.getElementsByTagName("video");
-        if (vids) {
-          for (var i = 0; i < vids.length; i++) {
-            var video = vids.item(i);
-            video.pause();
-          }
-        }
-      };
-
-      closeOutsideOverlay = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        const overlayElement = document.getElementById(overlay_id);
-        overlayElement.addEventListener(
-          `click`,
-          function (event) {
-            var overlay_id = `overlay-${overlay_slug}`;
-            var e = event || window.event;
-            var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-            if (e.target === overlayElement) {
-              HideOverlay(`${overlay_slug}`, "animate-disappear");
-            }
-          },
-          false
-        );
-      };
-
-      CloseOnOverlayClick = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        document.getElementById(overlay_id).addEventListener(
-          `click`,
-          function (event) {
-            {
-              var overlay_id = `overlay-${overlay_slug}`;
-              var e = event || window.event;
-              var overlayElement = document.getElementById(overlay_id);
-              var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-              var clickedDiv = e.toElement || e.target;
-              var dismissButton = clickedDiv.parentElement.id == overlay_id;
-              var clickOutsideOverlay = false;
-              if (overlayContainer.length > 0) {
-                {
-                  clickOutsideOverlay = !overlayContainer[0].contains(clickedDiv) || overlayContainer[0] == clickedDiv;
-                }
-              }
-              if (dismissButton || clickOutsideOverlay) {
-                {
-                  HideOverlay(`${overlay_slug}`, "animate-disappear");
-                }
-              }
-            }
-          },
-          false
-        );
-      };
-    </script>
-    <script>
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
+   <script>
       /* Copyright (c) 2016 Tobias Buschor https://goo.gl/gl0mbf | MIT License https://goo.gl/HgajeK */
 
       if (!HTMLFormElement.prototype.reportValidity) {

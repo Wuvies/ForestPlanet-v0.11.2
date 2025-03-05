@@ -1449,45 +1449,6 @@ to{opacity: 1;
   width: 350px;
 }
 
-.landing-desktop-all-breakpoints .our-team-1 {
-  align-items: center;
-  background-color: var(--fuchsia-blue);
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 68px;
-  padding: 80px 165px;
-  width: 100%;
-}
-
-.landing-desktop-all-breakpoints .frame-135-1 {
-  align-items: flex-end;
-  align-self: center;
-  max-width: 1110px;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 24px;
-  position: relative;
-  width: 100%;
-}
-
-.landing-desktop-all-breakpoints .our-team-2 {
-  letter-spacing: 0.48px;
-  line-height: 72px;
-  margin-top: -1.00px;
-  text-align: right;
-}
-
-.landing-desktop-all-breakpoints .our-dedicated-board-1 {
-  color: var(--romance);
-  font-weight: 500;
-  line-height: 26px;
-  position: relative;
-  text-align: right;
-  max-width: 635px;
-}
-
 .landing-desktop-all-breakpoints .frame-5-2 {
   align-items: flex-end;
   gap: 25px;
@@ -1908,11 +1869,6 @@ to{opacity: 1;
   position: relative;
   white-space: nowrap;
   width: fit-content;
-}
-
-.landing-desktop-all-breakpoints .our-team {
-  align-self: stretch;
-  position: relative;
 }
 
 .landing-desktop-all-breakpoints .person-name-partner {
@@ -3646,15 +3602,11 @@ to{opacity: 1;
 }
 
 .landing-mobile .where-weve {
-  align-self: stretch;
   position: relative;
-  text-align: right;
 }
 
 .landing-mobile .you-tube-embed-4 {
-  height: 360px;
   position: relative;
-  width: 639px;
 }
 @media screen and (max-width: 901px) {
   .screen.landing-desktop-all-breakpoints { 

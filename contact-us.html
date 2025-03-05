@@ -8,90 +8,101 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
   </head>
   <body style="margin: 0">
     <input type="hidden" id="anPageName" name="page" value="contact-us" />
-    <div class="contact-us">
-      <div class="contact-us-1">
-        <h1 class="title heading-2">Contact Us</h1>
-        <form class="frame-197 frame" name="contactForm" action="contact-confirmation.html" method="post">
-          <div class="frame-196 frame">
-            <div class="input-field">
-              <div class="label-wrapper-1">
-                <div class="label inter-normal-mirage-16px">Email</div>
-                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-              </div>
-              <div class="input">
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1">
-                      <input class="content" name="email" placeholder="Enter your email" type="email" required />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="input-field">
-              <div class="label-wrapper-1">
-                <div class="label inter-normal-mirage-16px">Subject</div>
-                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-              </div>
-              <div class="input">
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1">
-                      <input class="content" name="subject" placeholder="Enter subject" type="text" required />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="input-field">
-              <div class="label-wrapper-1">
-                <div class="label inter-normal-mirage-16px">Subject</div>
-                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-              </div>
-              <div class="input">
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1">
-                      <input class="content" name="subject" placeholder="Enter subject" type="text" required />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>            <div class="input-field">
-              <div class="label-wrapper-1">
-                <div class="label inter-normal-mirage-16px">Message</div>
-                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-              </div>
-              <div class="input">
-                <div class="content-wrapper textarea-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1">
-                      <textarea
-                        class="content-mirage"
-                        name="details"
-                        placeholder="Type your message"
-                        required
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-             </div>
-            </div>
-          </div>
-          <button type="submit" class="primary-button-salem button">
-            <div class="primary-button-romance-text body-2-regular">Submit</div>
-          </button>
-          <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-            <div class="tertiary-button"><div class="tertiary-mirage-text body-2-regular">Cancel</div></div>
+    <div class="mobile-overlay animate-appear">
+      <header class="property-mobile">
+        <div class="mobile-nav">
+          <a href="/" aria-label="Home">
+            <img src="img/logos/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-        </form>
+          <a onclick="closeContactForm(); return false;" class="menu-button" aria-label="Close contact form">
+            <img src="img/close.svg" class="menu" alt="Close Icon">
+          </a>
+        </div>
+      </header>
+      <div class="contact-us">
+        <div class="contact-us-1">
+          <h1 class="title heading-2">Contact Us</h1>
+          <form class="frame-197 frame" name="contactForm" action="contact-confirmation.html" method="post">
+            <div class="frame-196 frame">
+              <div class="input-field">
+                <div class="label-wrapper-1">
+                  <div class="label inter-normal-salem-16px">Email</div>
+                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
+                </div>
+                <div class="input">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
+                        <input class="content" name="email" placeholder="Enter your email" type="email" required />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="label-wrapper-1">
+                  <div class="label inter-normal-salem-16px">Subject</div>
+                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
+                </div>
+                <div class="input">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
+                        <input class="content" name="subject" placeholder="Enter subject" type="text" required />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="label-wrapper-1">
+                  <div class="label inter-normal-salem-16px">Message</div>
+                  <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
+                </div>
+                <div class="input">
+                  <div class="content-wrapper textarea-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
+                        <textarea
+                          class="content-mirage"
+                          name="details"
+                          placeholder="Type your message"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+              </div>
+            </div>
+            <button type="submit" class="primary-button-salem button">
+              <div class="primary-button-romance-text body-2-regular">Submit</div>
+            </button>
+            <div class="tertiary-button">
+              <a onclick="cancelContactForm(); return false;" class="tertiary-mirage body-2-regular">Cancel</a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
+    <script>
+      // Use the centralized lock/unlock scroll functions from overlay-loader.js
+      // Lock scrolling when the page loads since this is an overlay page
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.lockScroll) {
+          window.lockScroll();
+        }
+      });
+      
+      // Note: We're now using global functions defined in overlay-loader.js
+      // - cancelContactForm(): for the Cancel button (returns to menu if opened from menu)
+      // - closeContactForm(): for the X button (closes everything and returns to original page)
+    </script>
   </body>
 </html>

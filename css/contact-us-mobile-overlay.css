@@ -1,0 +1,212 @@
+/* Contact Us Styles - Works for both standalone and overlay */
+
+/* Base styles for contact form */
+.contact-us .contact-us-1 {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 40px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  box-shadow: var(--box-shadow-large);
+}
+
+.contact-us .title {
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.contact-us .frame-197 {
+  align-items: center;
+  gap: 24px;
+  min-width: 540px;
+}
+
+.contact-us .frame-196 {
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.contact-us .frame {
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.contact-us .input-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact-us .button {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+
+.contact-us .textarea-wrapper {
+  height: 165px;
+}
+
+/* Desktop overlay styles */
+#overlay-contact-us {
+  align-items: center;
+  background-color: #00000066;
+  justify-content: center;
+}
+
+/* Mobile overlay specific styles */
+.mobile-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: var(--romance) !important;
+  z-index: 1000 !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.1s ease;
+  pointer-events: auto !important;
+}
+
+/* Animation classes */
+.mobile-overlay.animate-appear {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+  pointer-events: auto !important;
+}
+
+.mobile-overlay.animate-disappear {
+  animation: fadeOutMobile 0.3s ease forwards;
+}
+
+@keyframes fadeOutMobile {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* When overlay is gone, restore normal page behavior */
+body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
+  pointer-events: auto !important;
+}
+
+/* Style for the contact form in mobile view */
+.mobile-overlay .contact-us {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--romance) !important;
+  box-shadow: none !important;
+  overflow-y: auto !important;
+}
+
+/* Style for the contact form container in mobile view */
+.mobile-overlay .contact-us-1 {
+  width: 100% !important;
+  border-radius: 0 !important;
+  padding: 30px !important;
+  margin-top: 100px !important; /* Space for the header */
+  box-shadow: none !important;
+}
+
+/* Form element styles for mobile */
+.mobile-overlay input,
+.mobile-overlay textarea,
+.mobile-overlay button {
+  font-size: 16px !important; /* Better for mobile input */
+}
+
+.mobile-overlay .button {
+  width: 100% !important;
+  margin-top: 24px !important;
+}
+
+.mobile-overlay .input-field {
+  width: 100% !important;
+  min-width: 333px !important;
+}
+
+.mobile-overlay .textarea-wrapper {
+  height: 120px !important; /* Slightly smaller for mobile */
+}
+
+.mobile-overlay textarea.content-mirage {
+  height: 105px !important; /* Adjust to match */
+}
+
+/* Ensure the cancel link is visible */
+.mobile-overlay .tertiary-mirage {
+  display: block !important;
+  width: 100% !important;
+  padding: 10px 0 !important;
+  text-align: center !important;
+  margin-top: 10px !important;
+}
+
+/* Make sure the link isn't hidden */
+.mobile-overlay a {
+  display: block !important;
+  color: inherit !important;
+  cursor: pointer !important;
+}
+
+/* Redefine animations to be consistent */
+@keyframes fadeInMobile {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutMobile {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.mobile-overlay .frame-197 {
+  min-width: 333px;
+  gap: 8px;
+  width: 100%;
+} 
+
+/* Lock scrolling when overlay is active */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Ensure form content doesn't overflow screen */
+.mobile-overlay {
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+/* Add padding at the bottom for better form spacing */
+.contact-us-1 {
+  padding-bottom: 40px;
+} 

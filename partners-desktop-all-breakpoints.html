@@ -236,11 +236,11 @@
     </div>
     <div class="partners-mobile screen">
       <header class="property-mobile-mirage">
-        <div class="frame">
+        <div class="mobile-nav">
           <a href="index.html" aria-label="Home">
             <img src="img/logos/FP-Logomark-RGB-Inverse.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a href="menu-mobile.html" class="menu-button" aria-label="Open menu" id="menuButton">
+          <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
             <img src="img/menu.svg" class="menu" alt="Menu Icon">
           </a>
         </div>
@@ -423,142 +423,7 @@
         </div>
       </footer>
     </div>
-    <div id="overlay-contact-us" class="overlay-base">
-      <div class="contact-us screen">
-        <div class="contact-us-1">
-          <h1 class="title heading-2">Contact Us</h1>
-          <div class="frame-197 frame">
-            <div class="frame-196 frame">
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label inter-normal-salem-16px">Email</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter your email</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label-1 inter-normal-salem-16px">Subject</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter subject</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="message inter-normal-salem-16px">Message</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper-2 content-wrapper-3">
-                  <div class="wrapper-1">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Type your message</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="primary-button"><div class="default body-2-regular">Submit</div></div>
-            <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-              <div class="tertiary-button"><div class="default-1 body-2-regular">Cancel</div></div></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <script>
-      ShowOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") == -1) {
-          document.getElementById(overlayName).className =
-            document.getElementById(overlayName).className + " " + animationName;
-        }
-        if (window.loadAsyncSrc != undefined) {
-          loadAsyncSrc();
-        }
-      };
-
-      HideOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") != -1) {
-          cssClasses.splice(-1);
-          cssClasses.push(animationName);
-          document.getElementById(overlayName).className = cssClasses.join(" ");
-
-          cssClasses.splice(-1);
-          setTimeout(function () {
-            document.getElementById(overlayName).className = cssClasses.join(" ");
-          }, 1100);
-        }
-        var vids = document.getElementsByTagName("video");
-        if (vids) {
-          for (var i = 0; i < vids.length; i++) {
-            var video = vids.item(i);
-            video.pause();
-          }
-        }
-      };
-
-      closeOutsideOverlay = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        const overlayElement = document.getElementById(overlay_id);
-        overlayElement.addEventListener(
-          `click`,
-          function (event) {
-            var overlay_id = `overlay-${overlay_slug}`;
-            var e = event || window.event;
-            var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-            if (e.target === overlayElement) {
-              HideOverlay(`${overlay_slug}`, "animate-disappear");
-            }
-          },
-          false
-        );
-      };
-
-      CloseOnOverlayClick = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        document.getElementById(overlay_id).addEventListener(
-          `click`,
-          function (event) {
-            {
-              var overlay_id = `overlay-${overlay_slug}`;
-              var e = event || window.event;
-              var overlayElement = document.getElementById(overlay_id);
-              var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-              var clickedDiv = e.toElement || e.target;
-              var dismissButton = clickedDiv.parentElement.id == overlay_id;
-              var clickOutsideOverlay = false;
-              if (overlayContainer.length > 0) {
-                {
-                  clickOutsideOverlay = !overlayContainer[0].contains(clickedDiv) || overlayContainer[0] == clickedDiv;
-                }
-              }
-              if (dismissButton || clickOutsideOverlay) {
-                {
-                  HideOverlay(`${overlay_slug}`, "animate-disappear");
-                }
-              }
-            }
-          },
-          false
-        );
-      };
-    </script>
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
   </body>
 </html>

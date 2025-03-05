@@ -11,37 +11,20 @@
     <link rel="stylesheet" type="text/css" href="css/about.css" />
     <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
     <style></style>
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
     <link rel="stylesheet" type="text/css" href="css/menu-mobile.css" />
-    <style>
-      /* Ensure the overlay covers the full viewport and sits on top */
-      .overlay-base {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 99999;
-        overflow: hidden;
-        display: none; /* Hidden by default */
-        background: rgba(0, 0, 0, 0.5); /* Optional: a semi-transparent background */
-      }
-      /* When overlay is active, it forces display:block */
-      .overlay-base.animate-appear {
-        display: block;
-      }
-    </style>
   </head>
   <body style="margin: 0; background: #fffffc">
     <input type="hidden" id="anPageName" name="page" value="about-desktop-all-breakpoints" />
     <form class="about-mobile screen" name="form2" action="form2" method="post">
       <header class="property-mobile">
-        <div class="frame">
+        <div class="mobile-nav">
           <a href="index.html" aria-label="Home">
             <img src="img/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a href="menu-mobile.html" class="menu-button" aria-label="Open menu" id="menuButton">
+          <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
             <img src="img/menu.svg" class="menu" alt="Menu Icon">
           </a>
         </div>
@@ -1275,210 +1258,8 @@
         </div>
       </footer>
     </form>
-    <div id="overlay-contact-us" class="overlay-base">
-      <div class="contact-us screen">
-        <div class="contact-us-1">
-          <h1 class="title heading-2">Contact Us</h1>
-          <div class="frame-197 frame">
-            <div class="frame-196 frame">
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label inter-normal-salem-16px">Email</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                        </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter your email</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label-1 inter-normal-salem-16px">Subject</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                          </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter subject</div>
-                        </div>
-                            </div>
-                          </div>
-                        </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="message inter-normal-salem-16px">Message</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                      </div>
-                <div class="content-wrapper-2 content-wrapper-3">
-                  <div class="wrapper-1">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Type your message</div>
-                          </div>
-                        </div>
-                            </div>
-                          </div>
-                        </div>
-            <div class="primary-button"><div class="default body-2-regular">Submit</div></div>
-            <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-              <div class="tertiary-button"><div class="default-1 body-2-regular">Cancel</div></div></a
-            >
-                      </div>
-                          </div>
-                        </div>
-                            </div>
-    
-    <!-- Newly added Menu Mobile Overlay -->
-    <div id="overlay-menu-mobile" class="overlay-base">
-      <!-- Content will be loaded dynamically from menu-mobile.html -->
-                          </div>
-
-    <!-- Script to load menu-mobile overlay content -->
-    <script>
-      (function() {
-        function loadMenuMobileOverlay() {
-          fetch('menu-mobile.html')
-            .then(function(response) {
-              return response.text();
-            })
-            .then(function(htmlText) {
-              // Parse the fetched HTML and extract the menu element
-              var parser = new DOMParser();
-              var doc = parser.parseFromString(htmlText, "text/html");
-              // Here we select the element with class "menu-mobile" which holds the mobile menu content
-              var menuContent = doc.querySelector('.menu-mobile');
-              if (menuContent) {
-                // Remove the duplicate id from the close button so that the cloned header shows the X as intended,
-                // avoiding conflicts with the menu icon in the underlying header.
-                var closeBtn = menuContent.querySelector('#menuButton');
-                if (closeBtn) { closeBtn.removeAttribute('id'); }
-                document.getElementById('overlay-menu-mobile').innerHTML = menuContent.outerHTML;
-              } else {
-                console.error("Could not find the '.menu-mobile' element in menu-mobile.html");
-              }
-            })
-            .catch(function(err) {
-              console.error('Error loading menu mobile overlay:', err);
-            });
-        }
-        // Load the mobile menu overlay when the page loads (optional—you could also load it on demand)
-        window.addEventListener("load", loadMenuMobileOverlay);
-      })();
-    </script>
-    <script>
-      ShowOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var overlayElem = document.getElementById(overlayName);
-        var cssClasses = overlayElem.className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") == -1) {
-          overlayElem.className = overlayElem.className + " " + animationName;
-        }
-        // Disable body scrolling when the mobile menu overlay is active
-        if (overlayName === "overlay-menu-mobile") {
-          document.body.style.overflow = 'hidden';
-        }
-        if (window.loadAsyncSrc != undefined) {
-          loadAsyncSrc();
-        }
-      };
-
-      HideOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var overlayElem = document.getElementById(overlayName);
-        var cssClasses = overlayElem.className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") != -1) {
-          cssClasses.splice(-1);
-          cssClasses.push(animationName);
-          overlayElem.className = cssClasses.join(" ");
-
-          cssClasses.splice(-1);
-          setTimeout(function () {
-            overlayElem.className = cssClasses.join(" ");
-          }, 1100);
-        }
-        // Re-enable body scrolling when the mobile menu overlay is closed
-        if (overlayName === "overlay-menu-mobile") {
-          document.body.style.overflow = 'auto';
-        }
-        var vids = document.getElementsByTagName("video");
-        if (vids) {
-          for (var i = 0; i < vids.length; i++) {
-            var video = vids.item(i);
-            video.pause();
-          }
-        }
-      };
-
-      closeOutsideOverlay = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        const overlayElement = document.getElementById(overlay_id);
-        overlayElement.addEventListener(
-          `click`,
-          function (event) {
-            var overlay_id = `overlay-${overlay_slug}`;
-            var e = event || window.event;
-            var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-            if (e.target === overlayElement) {
-              HideOverlay(`${overlay_slug}`, "animate-disappear");
-            }
-          },
-          false
-        );
-      };
-
-      CloseOnOverlayClick = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        document.getElementById(overlay_id).addEventListener(
-          `click`,
-          function (event) {
-            {
-              var overlay_id = `overlay-${overlay_slug}`;
-              var e = event || window.event;
-              var overlayElement = document.getElementById(overlay_id);
-              var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-              var clickedDiv = e.toElement || e.target;
-              var dismissButton = clickedDiv.parentElement.id == overlay_id;
-              var clickOutsideOverlay = false;
-              if (overlayContainer.length > 0) {
-                {
-                  clickOutsideOverlay = !overlayContainer[0].contains(clickedDiv) || overlayContainer[0] == clickedDiv;
-                }
-              }
-              if (dismissButton || clickOutsideOverlay) {
-                {
-                  HideOverlay(`${overlay_slug}`, "animate-disappear");
-                }
-              }
-            }
-          },
-          false
-        );
-      };
-    </script>
-    <script>
-      if (!HTMLFormElement.prototype.reportValidity) {
-        HTMLFormElement.prototype.reportValidity = function () {
-          if (this.checkValidity()) return true;
-          var btn = document.createElement("button");
-          this.appendChild(btn);
-          btn.click();
-          this.removeChild(btn);
-          return false;
-        };
-      }
-
-      function SubmitForm(form_name) {
-        var form = document.getElementsByName(form_name)[0];
-        if (form.reportValidity()) {
-          form.submit();
-          if (window.submitted) window.submitted();
-        }
-      }
-    </script>
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
     <!-- Story Cards Load More Functionality -->
     <script>
       var currentVisibleRows = 1;

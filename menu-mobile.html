@@ -11,21 +11,21 @@
     <link rel="stylesheet" type="text/css" href="css/menu-mobile.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
   </head>
-  <body style="margin: 30; background: var(--romance)">
+  <body style="margin: 0; padding: 0; background: var(--romance);">
     <input type="hidden" id="anPageName" name="page" value="menu-mobile" />
     <div class="menu-mobile screen">
        <header class="property-mobile">
-        <div class="frame">
+        <div class="mobile-nav">
           <a href="/" aria-label="Home">
-            <svg class="rgb-logo" role="img" aria-label="RGB Logo">
-              <use xlink:href="img/sprite.svg#rgb-logo"></use>
-            </svg>
+            <img src="img/logos/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a href="javascript:HideOverlay('menu-mobile', 'animate-disappear');" class="menu-button" aria-label="Close menu" id="menuButton">
-            <svg class="menu" role="img" aria-label="Menu Icon">
-              <use xlink:href="img/sprite.svg#X"></use>
-            </svg>
+          <a onclick="closeMenuMobile(); return false;" class="menu-button" aria-label="Close menu" id="menuButton">
+            <img src="img/X.svg" class="menu" alt="Close Icon">
           </a>
         </div>
       </header>
@@ -40,7 +40,7 @@
                 <div class="tertiary-mirage body-2-regular">Stories</div>
               </div>
             </a>
-            <a onclick="ShowOverlay('contact-us', 'animate-appear');">
+            <a onclick="ShowMobileContact();">
               <div class="tertiary-button">
                 <div class="tertiary-mirage body-2-regular">Contact</div>
               </div>
@@ -63,5 +63,71 @@
       </div>
       <img class="logo-mark-1-1" src="img/FP-Logomark-RGB.svg" alt="Logo Mark 1" />
     </div>
+    
+    <script>
+      // Use the centralized lock/unlock scroll functions
+      
+      // Lock scrolling when the page loads since this is an overlay page
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.lockScroll) {
+          window.lockScroll();
+        } else {
+          document.documentElement.classList.add('no-scroll');
+          document.body.classList.add('no-scroll');
+        }
+      });
+      
+      // Check if we're loaded as standalone page rather than in an overlay
+      if (window.self === window.top) {
+        // Function to show the mobile contact form when standalone
+        window.ShowMobileContact = function() {
+          // Instead of hiding the menu, reduce its opacity to make it visible in background
+          const menuElement = document.querySelector('.menu-mobile');
+          if (menuElement) {
+            menuElement.style.opacity = '0.3'; // Reduce opacity but keep it visible
+            // Make it non-interactive while in background
+            menuElement.style.pointerEvents = 'none';
+          }
+          
+          // Then show the contact form with mobile styling
+          setTimeout(function() {
+            ShowExternalOverlay('contact-us', 'animate-appear', 'contact-us.html', true);
+            
+            // Add custom data attribute to contact form to indicate it was opened from menu
+            setTimeout(() => {
+              const contactForm = document.querySelector('.mobile-overlay');
+              if (contactForm) {
+                contactForm.setAttribute('data-from-menu', 'true');
+                // Also store the id of the standalone menu for reference
+                contactForm.setAttribute('data-standalone-menu', 'true');
+              }
+            }, 100);
+          }, 100); // Small delay for better transition
+        };
+
+        // Function to close the mobile menu when standalone
+        window.closeMenuMobile = function() {
+          // Add animation class
+          document.querySelector('.menu-mobile').classList.add('animate-disappear');
+          
+          // Unlock scrolling using the global function immediately
+          if (window.unlockScroll) {
+            window.unlockScroll();
+          } else {
+            document.documentElement.classList.remove('no-scroll');
+            document.body.classList.remove('no-scroll');
+          }
+          
+          // After animation completes, hide the menu without navigating
+          setTimeout(function() {
+            // Just hide the menu without navigating away
+            const menuElement = document.querySelector('.menu-mobile');
+            if (menuElement && menuElement.parentNode) {
+              menuElement.parentNode.removeChild(menuElement);
+            }
+          }, 300); // Match this to the animation duration
+        };
+      }
+    </script>
   </body>
 </html>

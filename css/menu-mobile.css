@@ -1,125 +1,83 @@
-/* screen - menu-mobile */
+/* Menu Mobile Styles */
 
+/* Base menu styling - works for both standalone and overlay modes */
 .menu-mobile {
-  align-items: center;
-  background-color: var(--romance);
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  left: 0;
   display: flex;
   flex-direction: column;
-  gap: 66px;
-  height: 100vh;
+  background-color: var(--romance);
+  opacity: 1;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Navigation menu */
+.menu-mobile .nav-menu {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 120px auto 0;
+  padding: 20px 0;
+  gap: 20px;
+}
+
+/* Logo styling */
+.menu-mobile .logo-mark-1-1 {
+  display: flex;
+  width: 100%;
+  margin: 40px auto 0;
+}
+
+/* Button styling */
+.menu-mobile .tertiary-button,
+.menu-mobile .secondary-button,
+.menu-mobile .primary-button-salem {
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* When used as an overlay container */
+#mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: transparent;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.menu-mobile.animate-disappear {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Lock scrolling when overlay is active */
+html.no-scroll,
+body.no-scroll {
   overflow: hidden;
   position: fixed;
-  justify-content: flex-start;
-  padding-top: 80px;
   width: 100%;
-}
-
-.menu-mobile .header {
-  align-items: center;
-  align-self: stretch;
-  background-color: var(--romance);
-  display: flex;
-  height: 80px;
-  justify-content: space-between;
-  padding: 0px 30px;
-  position: relative;
-  width: 100%;
-}
-
-.menu-mobile .logo-mark-1 {
-  height: 40px;
-  position: relative;
-  width: 40px;
-}
-
-.menu-mobile .x {
-  cursor: pointer;
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.menu-mobile .nav-menu {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 40px;
-  position: relative;
-  padding-top: 100px;
-}
-
-.menu-mobile .tertiary-button {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  position: relative;
-}
-
-.menu-mobile .default {
-  color: var(--mirage);
-  font-weight: 500;
-  line-height: 26px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.menu-mobile .secondary-button {
-  align-items: center;
-  border: 2px solid;
-  border-color: var(--salem);
-  border-radius: 16px;
-  display: inline-flex;
-  gap: 10px;
-  height: 40px;
-  justify-content: center;
-  margin-left: -1.50px;
-  margin-right: -1.50px;
-  max-height: 38px;
-  padding: 7px 16px;
-  position: relative;
-}
-
-.menu-mobile .default-1 {
-  color: var(--salem);
-  margin-top: -2.00px;
-}
-
-.menu-mobile .primary-button {
-  align-items: center;
-  background-color: var(--salem);
-  border-radius: 16px;
-  box-shadow: 0px 6px 12px #19192329;
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: center;
-  padding: 7px 18px;
-  position: relative;
-}
-
-.menu-mobile .default-2 {
-  color: var(--romance);
-  margin-top: -1.00px;
-}
-
-.menu-mobile .logo-mark-1-1 {
-  align-self: stretch;
-  height: 460px;
-  margin-bottom: -160.00px;
-  position: relative;
-  width: 100%;
-}
-
-.menu-mobile .default-3 {
-  font-weight: 500;
-  line-height: 26px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
+  height: 100%;
+  touch-action: none;
 }
