@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive SDG Cards</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: auto;
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            width: auto;
+            padding: 32px;
+            margin: 0;
+            max-height: 510px;
+            box-sizing: border-box;
+            overflow: visible; /* Allow tooltips to overflow */
+        }
+        .grid {
+            max-height: 550px; /* Leave space for tooltip */
+            overflow: visible; /* Allow tooltips to overflow */
+        }
+        .card {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-radius: 10px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            overflow: hidden;
+            max-width: 120px;
+            max-height: 120px;
+            margin: 0 auto;
+            -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on iOS/Safari */
+            outline: none; /* Remove outline on focus */
+        }
+        .card:focus {
+            outline: none; /* Ensure no outline when focused */
+        }
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+        .card:hover, .card:active {
+            transform: scale(1.08);
+            filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
+            z-index: 10;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease, top 0.25s ease, left 0.25s ease;
+            z-index: 20;
+            max-width: 280px;
+            text-align: center;
+            transform-origin: bottom center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+            line-height: 1.4;
+            --pointer-position: 50%; /* Default pointer position (center) */
+        }
+        
+        /* Add pointer to tooltip (will be positioned dynamically) */
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(0, 0, 0, 0.85);
+            bottom: -8px;
+            left: var(--pointer-position, 50%); /* Use the custom property */
+            transform: translateX(-50%);
+            pointer-events: none;
+            transition: left 0.25s ease;
+        }
+        
+        /* For tooltips positioned below elements */
+        .tooltip.tooltip-below::after {
+            border-top: none;
+            border-bottom: 8px solid rgba(0, 0, 0, 0.85);
+            bottom: auto;
+            top: -8px;
+        }
+        
+        /* Add special class for touch devices */
+        .tooltip.touch-visible {
+            pointer-events: auto;
+            opacity: 1;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            padding: 10px 14px;
+        }
+        @media (max-width: 600px) {
+            body {
+                align-items: center;
+                padding: 0;
+                overflow: hidden;
+            }
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 100%;
+                gap: 8px;
+                padding: 10px;
+                margin: 0;
+            }
+            .card {
+                border-radius: 6px;
+            }
+            .card:hover, .card:active {
+                transform: scale(1.05); /* Smaller scale on mobile */
+            }
+            .tooltip {
+                font-size: 12px;
+                padding: 8px 12px;
+                max-width: 240px; /* Increased from 200px for more consistent width */
+                width: 240px; /* Fixed width for consistency */
+                line-height: 1.3;
+                box-sizing: border-box; /* Ensure padding is included in width calculation */
+            }
+            .tooltip::after {
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid rgba(0, 0, 0, 0.85);
+                left: var(--pointer-position, 50%);
+            }
+            .tooltip.tooltip-below::after {
+                border-top: none;
+                border-bottom: 6px solid rgba(0, 0, 0, 0.85);
+                left: var(--pointer-position, 50%);
+            }
+            .tooltip.touch-visible {
+                padding: 10px 14px;
+                font-size: 13px;
+                background: rgba(0, 0, 0, 0.9);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            }
+        }
+        /* Remove visible outline but keep the class for state tracking */
+        .card.card-active {
+            /* outline: 2px solid rgba(0, 120, 255, 0.5); */
+        }
+        
+        /* iOS-specific styles to fix shadow rendering issues */
+        [data-ios="true"] .card:hover,
+        [data-ios="true"] .card:active {
+            filter: none; /* Remove shadows on iOS devices */
+            /* Still keep the scaling effect */
+            transform: scale(1.08);
+            z-index: 10;
+        }
+        
+        /* Smaller scale on mobile iOS devices */
+        @media (max-width: 600px) {
+            [data-ios="true"] .card:hover,
+            [data-ios="true"] .card:active {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="card" data-desc="End poverty in all its forms everywhere">
+            <img src="img/unsdg-graphics/unsdg-card-1.svg" alt="SDG 1: No Poverty">
+        </div>
+        <div class="card" data-desc="End hunger, achieve food security and promote sustainable agriculture">
+            <img src="img/unsdg-graphics/unsdg-card-2.svg" alt="SDG 2: Zero Hunger">
+        </div>
+        <div class="card" data-desc="Ensure healthy lives and promote well-being for all">
+            <img src="img/unsdg-graphics/unsdg-card-3.svg" alt="SDG 3: Good Health and Well-being">
+        </div>
+        <div class="card" data-desc="Ensure inclusive and equitable quality education">
+            <img src="img/unsdg-graphics/unsdg-card-4.svg" alt="SDG 4: Quality Education">
+        </div>
+        <div class="card" data-desc="Achieve gender equality and empower all women and girls">
+            <img src="img/unsdg-graphics/unsdg-card-5.svg" alt="SDG 5: Gender Equality">
+        </div>
+        <div class="card" data-desc="Ensure availability and sustainable management of water and sanitation for all">
+            <img src="img/unsdg-graphics/unsdg-card-6.svg" alt="SDG 6: Clean Water and Sanitation">
+        </div>
+        <div class="card" data-desc="Ensure access to affordable, reliable, sustainable and modern energy for all">
+            <img src="img/unsdg-graphics/unsdg-card-7.svg" alt="SDG 7: Affordable and Clean Energy">
+        </div>
+        <div class="card" data-desc="Promote sustained, inclusive and sustainable economic growth">
+            <img src="img/unsdg-graphics/unsdg-card-8.svg" alt="SDG 8: Decent Work and Economic Growth">
+        </div>
+        <div class="card" data-desc="Build resilient infrastructure, promote sustainable industrialization and foster innovation">
+            <img src="img/unsdg-graphics/unsdg-card-9.svg" alt="SDG 9: Industry, Innovation and Infrastructure">
+        </div>
+        <div class="card" data-desc="Reduce inequality within and among countries">
+            <img src="img/unsdg-graphics/unsdg-card-10.svg" alt="SDG 10: Reduced Inequalities">
+        </div>
+        <div class="card" data-desc="Take urgent action to combat climate change and its impacts">
+            <img src="img/unsdg-graphics/unsdg-card-11.svg" alt="SDG 13: Climate Action">
+        </div>
+        <div class="card" data-desc="ForestPlanet - Planting Trees, Planting Hope">
+            <img src="img/logos/FP-Logomark-RGB.svg" alt="ForestPlanet Logo">
+        </div>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+    <script>
+        const cards = document.querySelectorAll(".card");
+        const tooltip = document.getElementById("tooltip");
+        
+        // Check if device uses touch and detect iOS specifically
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ||
+                      /CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
+        
+        // Mark the document for iOS-specific styling
+        if (isIOS) {
+            document.documentElement.setAttribute('data-ios', 'true');
+        }
+        
+        // Global variable to track which card has an active tooltip
+        let activeTooltipCard = null;
+        // Track the last time a tooltip was hidden
+        let lastTooltipHideTime = 0;
+        // Track whether we're in a tap sequence
+        let isTapSequence = false;
+        
+        function showTooltip(e, isTouch = false) {
+            const card = e.target.closest(".card");
+            
+            // For touch, mark the card visually as active (helps with debugging)
+            if (isTouch) {
+                // Remove active class from all cards
+                cards.forEach(c => c.classList.remove('card-active'));
+                // Add active class to current card
+                card.classList.add('card-active');
+            }
+            
+            tooltip.innerText = card.getAttribute("data-desc");
+            
+            // Get card position
+            const rect = card.getBoundingClientRect();
+            
+            // Get grid position and dimensions
+            const grid = document.querySelector('.grid');
+            const gridRect = grid.getBoundingClientRect();
+            
+            // Calculate the center of the grid
+            const gridCenterX = gridRect.left + (gridRect.width / 2);
+            
+            // Calculate how far card center is from grid center (as percentage)
+            const cardCenterX = rect.left + (rect.width / 2);
+            const distanceFromCenter = cardCenterX - gridCenterX;
+            const distancePercentage = distanceFromCenter / (gridRect.width / 2);
+            
+            let tooltipX;
+            
+            // More aggressive centering approach for desktop
+            if (window.innerWidth > 600) {
+                // If card is away from center, pull tooltip toward center
+                // The further from center, the more aggressive the pull
+                if (Math.abs(distancePercentage) > 0.2) { // If more than 20% away from center
+                    // Calculate a position between card and center
+                    // The 0.6 factor controls how strongly to pull toward center (higher = more centered)
+                    tooltipX = cardCenterX - (distanceFromCenter * 0.6);
+                } else {
+                    // Card is fairly central, keep tooltip centered on card
+                    tooltipX = cardCenterX;
+                }
+            } else {
+                // For mobile screens, use improved positioning logic
+                // On mobile, we want to prioritize keeping tooltips within viewport
+                const viewportWidth = window.innerWidth;
+                
+                // Fixed tooltip width on mobile (match the CSS)
+                const mobileTooltipWidth = 240;
+                const halfTooltipWidth = mobileTooltipWidth / 2;
+                
+                // Start by positioning tooltip centered over card
+                tooltipX = cardCenterX;
+                
+                // Check if tooltip would go off left edge
+                if (tooltipX - halfTooltipWidth < 10) {
+                    tooltipX = halfTooltipWidth + 10;
+                }
+                
+                // Check if tooltip would go off right edge
+                if (tooltipX + halfTooltipWidth > viewportWidth - 10) {
+                    tooltipX = viewportWidth - halfTooltipWidth - 10;
+                }
+            }
+            
+            // Adjust vertical position - always above the card but with safeguards
+            let tooltipY = rect.top - 15;
+            
+            // Get the tooltip size (approximately)
+            const tooltipHeight = Math.min(70, tooltip.innerText.length / 2); // Approximate height
+            
+            // Check if tooltip would go off the top of the viewport
+            if (tooltipY - tooltipHeight < 10) {
+                // Position below the card instead
+                tooltipY = rect.bottom + 15;
+                tooltip.style.transform = 'translate(-50%, 0)';
+                tooltip.classList.add('tooltip-below');
+                
+                // For below tooltips, we may need to adjust pointer position differently
+                // Pointer should point upward to the card's bottom center
+            } else {
+                tooltip.style.transform = 'translate(-50%, -100%)';
+                tooltip.classList.remove('tooltip-below');
+                
+                // For above tooltips, pointer should point downward to the card's top center
+            }
+            
+            // Final position adjustments to ensure tooltip stays within grid boundaries
+            // For desktop, ensure tooltip doesn't exceed grid boundaries horizontally
+            if (window.innerWidth > 600) {
+                const tooltipWidth = Math.min(280, tooltip.innerText.length * 8); // Approximate width
+                const halfTooltipWidth = tooltipWidth / 2;
+                
+                // Check left boundary
+                if (tooltipX - halfTooltipWidth < gridRect.left + 10) {
+                    tooltipX = gridRect.left + halfTooltipWidth + 10;
+                }
+                
+                // Check right boundary
+                if (tooltipX + halfTooltipWidth > gridRect.right - 10) {
+                    tooltipX = gridRect.right - halfTooltipWidth - 10;
+                }
+            }
+            
+            // Position tooltip
+            tooltip.style.left = `${tooltipX}px`;
+            tooltip.style.top = `${tooltipY}px`;
+            
+            // Calculate where the pointer should point (relative to the tooltip's left edge)
+            // This ensures the pointer always points to the card, even if tooltip is shifted
+            const pointerPosition = cardCenterX - tooltipX;
+            
+            // Convert to percentage of tooltip width
+            // Use fixed width value for mobile to match CSS
+            const tooltipWidth = window.innerWidth <= 600 ? 240 : Math.min(280, tooltip.innerText.length * 8);
+            let pointerPositionPercent = (pointerPosition / tooltipWidth) * 100 + 50;
+            
+            // Constrain pointer position to stay within the tooltip (with some padding)
+            // Use tighter constraints on mobile for better aesthetics
+            const minPointer = window.innerWidth <= 600 ? 20 : 15;
+            const maxPointer = window.innerWidth <= 600 ? 80 : 85;
+            pointerPositionPercent = Math.max(minPointer, Math.min(maxPointer, pointerPositionPercent));
+            
+            // Set the pointer position
+            tooltip.style.setProperty('--pointer-position', `${pointerPositionPercent}%`);
+            
+            // Show the tooltip
+            tooltip.style.opacity = 1;
+            
+            // For touch devices, add the special class
+            if (isTouch) {
+                tooltip.classList.add('touch-visible');
+            }
+        }
+        
+        function hideTooltip() {
+            tooltip.style.opacity = 0;
+            tooltip.classList.remove('touch-visible');
+            tooltip.classList.remove('tooltip-below');
+            
+            // Remove active class from all cards to prevent any visual indicators
+            cards.forEach(card => card.classList.remove('card-active'));
+            
+            // Record the time when tooltip was hidden
+            lastTooltipHideTime = Date.now();
+            
+            // Reset active card
+            activeTooltipCard = null;
+        }
+        
+        cards.forEach(card => {
+            card.addEventListener("mouseover", (e) => showTooltip(e, false));
+            card.addEventListener("mousemove", (e) => showTooltip(e, false));
+            card.addEventListener("mouseleave", hideTooltip);
+
+            card.addEventListener("touchstart", (e) => {
+                e.preventDefault();
+                
+                // Get the tapped card
+                const thisCard = e.target.closest(".card");
+                
+                // Prevent double-taps from being interpreted as two separate taps
+                const now = Date.now();
+                const timeSinceLastHide = now - lastTooltipHideTime;
+                
+                // Tapping on the same card that had a tooltip - handle differently based on timing
+                if (activeTooltipCard === thisCard) {
+                    // Always hide the current tooltip
+                    hideTooltip();
+                    
+                    // For iOS devices, set a flag to improve retapping behavior
+                    if (isIOS) {
+                        isTapSequence = true;
+                        setTimeout(() => {
+                            isTapSequence = false;
+                        }, 300);
+                    }
+                    
+                    return;
+                }
+                
+                // Special handling for iOS retapping after hiding
+                if (isIOS && isTapSequence && timeSinceLastHide < 500) {
+                    // Show tooltip immediately for quick retaps on iOS
+                    showTooltip({target: thisCard}, true);
+                    activeTooltipCard = thisCard;
+                    isTapSequence = false;
+                    return;
+                }
+                
+                // Hide any existing tooltip first
+                hideTooltip();
+                
+                // Small delay to ensure clean transition
+                setTimeout(() => {
+                    // Show tooltip and mark this card as active
+                    showTooltip({target: thisCard}, true);
+                    activeTooltipCard = thisCard;
+                    
+                    // Add event listener to hide tooltip when tapping elsewhere
+                    document.addEventListener("touchstart", function closeTooltip(event) {
+                        // If tap is outside the cards
+                        if (!event.target.closest(".card")) {
+                            hideTooltip();
+                            document.removeEventListener("touchstart", closeTooltip);
+                        }
+                    }, {once: true, passive: true});
+                }, 50);
+            });
+            
+            card.addEventListener("touchmove", (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Listen for all touch events on the document to ensure we handle iOS behavior correctly
+        document.addEventListener('touchend', function(e) {
+            // For iOS, make sure we capture all touch end events properly
+            if (isIOS) {
+                // If there's an active tooltip and the touch ended outside all cards
+                if (activeTooltipCard && !e.target.closest('.card')) {
+                    hideTooltip();
+                    isTapSequence = false;
+                }
+                
+                // If the touch ends on a card that isn't the active one, prepare for a potential new tooltip
+                if (e.target.closest('.card') && e.target.closest('.card') !== activeTooltipCard) {
+                    isTapSequence = false;
+                }
+            } else {
+                // For non-iOS, simpler logic
+                if (!e.target.closest('.card') && activeTooltipCard) {
+                    hideTooltip();
+                }
+            }
+        });
+        
+        // Ensure tooltips are properly hidden when scrolling (common on iOS)
+        document.addEventListener('scroll', function() {
+            if (activeTooltipCard) {
+                hideTooltip();
+            }
+        });
+        
+        // Handle window resizing
+        window.addEventListener("resize", () => {
+            // If tooltip is visible, hide it during resize
+            if (tooltip.style.opacity !== "0") {
+                hideTooltip();
+            }
+        });
+    </script>
+
+    <script>
+        // Calculate and send the full content height to the parent page
+        function sendHeightToParent() {
+            // Get grid element
+            const grid = document.querySelector('.grid');
+            let height = 0;
+            
+            if (grid) {
+                // Get grid's full height including margin and padding
+                const gridRect = grid.getBoundingClientRect();
+                height = gridRect.height;
+                
+                // Add padding for hover effects
+                const gridStyle = window.getComputedStyle(grid);
+                const paddingTop = parseInt(gridStyle.paddingTop) || 0;
+                const paddingBottom = parseInt(gridStyle.paddingBottom) || 0;
+                
+                // Account for any margins
+                const marginTop = parseInt(gridStyle.marginTop) || 0;
+                const marginBottom = parseInt(gridStyle.marginBottom) || 0;
+                
+                // We don't need to add much extra space for hover effects since they're visible
+                // Just add a small buffer to ensure all elements are fully visible
+                const buffer = 10;
+                
+                // Calculate total height including all spacing
+                height = gridRect.height + buffer + marginTop + marginBottom;
+                
+                // Ensure we don't exceed max height of 520px
+                height = Math.min(height, 520);
+            } else {
+                // Fallback if grid not found
+                height = document.body.scrollHeight;
+            }
+            
+            // Send message to parent
+            if (window.parent) {
+                window.parent.postMessage({ height: height }, '*');
+            }
+        }
+        
+        // Send height when all images have loaded
+        window.addEventListener('load', function() {
+            // Give a small delay to ensure everything is rendered
+            setTimeout(sendHeightToParent, 100);
+        });
+        
+        // Listen for height request messages from parent
+        window.addEventListener('message', function(e) {
+            if (e.data === 'getHeight') {
+                sendHeightToParent();
+            }
+        });
+        
+        // Send height when window is resized
+        window.addEventListener('resize', sendHeightToParent);
+    </script>
+</body>
+</html> 

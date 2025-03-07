@@ -238,11 +238,13 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 56px;
+  gap: 40px;
   max-width: 1440px;
   padding: 0px 165px;
   position: relative;
   width: 100%;
+  height: auto;
+  margin-bottom: -40px;
 }
 
 .about-desktop-all-breakpoints .frame-121 {
@@ -274,11 +276,12 @@
 }
 
 .about-desktop-all-breakpoints .unsdg-graphic {
-  align-self: stretch;
-  height: auto;
+  height: 520px !important;
   position: relative;
   width: 100%;
-  filter: drop-shadow(var(--box-shadow-large));
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
 .about-desktop-all-breakpoints .timeline {
@@ -578,6 +581,17 @@
   width: 100%;
 }
 
+.about-desktop-all-breakpoints .act-now-2 {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+}
+
+
 .about-desktop-all-breakpoints .secondary-button-4 {
   border-color: var(--salem);
   cursor: pointer;
@@ -770,6 +784,7 @@
   padding: 0px 30px;
   position: relative;
   width: 100%;
+  height: auto;
 }
 
 .about-mobile .frame-274-1 {
@@ -803,13 +818,14 @@
 }
 
 .about-mobile .unsdg-graphic-mobile {
-  height: 448px;
+  height: auto;
+  min-height: 500px;
   max-height: 726.49px;
   max-width: 540px;
   min-width: 333px;
   position: relative;
   width: 100%;
-  filter: drop-shadow(var(--box-shadow-large));
+  filter: drop-shadow(var(--box-shadow-small));
 }
 
 .about-mobile .our-timeline {

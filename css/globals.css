@@ -1997,6 +1997,15 @@ input::placeholder {
   width: 80px;
 }
 
+.image-5 {
+  width: 100%;
+  object-fit: cover;
+  min-width: 400px;
+  max-width: 540px;
+  border-radius: var(--border-radius-40);
+  box-shadow: var(--box-shadow-large);
+}
+
 .footer-charity-nav-logo {
   align-items: center;
   background-color: var(--romance);
