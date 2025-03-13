@@ -20,9 +20,9 @@
           <a href="/" aria-label="Home">
             <img src="img/logos/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
           </a>
-          <a onclick="closeContactForm(); return false;" class="menu-button" aria-label="Close contact form">
-            <img src="img/close.svg" class="menu" alt="Close Icon">
-          </a>
+          <button type="button" class="menu-button" aria-label="Close contact form" id="closeContactButton" onclick="handleCloseContact(event); return false;">
+            <img src="img/X.svg" class="menu" alt="Close Icon">
+          </button>
         </div>
       </header>
       <div class="contact-us">
@@ -92,17 +92,152 @@
       </div>
     </div>
     <script>
+      // Add debug function
+      function debugLog(message) {
+        if (window.console && window.console.log) {
+          console.log('[ContactForm Debug] ' + message);
+        }
+      }
+      
+      // Direct handler function to ensure it works
+      function handleCloseContact(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        debugLog('Close button clicked');
+        
+        // Handle the close logic directly
+        const overlay = document.querySelector('.mobile-overlay');
+        if (!overlay) {
+          debugLog('No mobile overlay found');
+          return false;
+        }
+        
+        const isFromMenu = overlay.getAttribute('data-from-menu') === 'true';
+        debugLog('Is from menu: ' + isFromMenu);
+        
+        // If from menu, start the menu disappear animation immediately
+        // This makes both animations run in parallel
+        if (isFromMenu && window.closeMenuMobile) {
+          debugLog('Starting menu animation in parallel');
+          const menuElement = document.querySelector('.menu-mobile');
+          if (menuElement) {
+            menuElement.classList.add('animate-disappear');
+          }
+        }
+        
+        // Apply disappear animation to contact form
+        overlay.classList.remove('animate-appear');
+        overlay.classList.add('animate-disappear');
+        
+        // After animation completes
+        setTimeout(function() {
+          // Hide the overlay
+          overlay.style.display = 'none';
+          debugLog('Hidden overlay');
+          
+          // If from menu, hide the menu overlay (without animation since we started it earlier)
+          if (isFromMenu) {
+            debugLog('Hiding menu overlay');
+            const menuOverlay = document.getElementById('mobile-menu-overlay');
+            if (menuOverlay) {
+              menuOverlay.style.display = 'none';
+            }
+          }
+          
+          // Always unlock scrolling
+          if (window.unlockScroll) {
+            window.unlockScroll();
+            debugLog('Unlocked scroll');
+          } else {
+            document.documentElement.classList.remove('no-scroll');
+            document.body.classList.remove('no-scroll');
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            debugLog('Unlocked scroll with fallback');
+          }
+        }, 300);
+        
+        return false;
+      }
+      
       // Use the centralized lock/unlock scroll functions from overlay-loader.js
       // Lock scrolling when the page loads since this is an overlay page
       document.addEventListener('DOMContentLoaded', function() {
         if (window.lockScroll) {
           window.lockScroll();
         }
+        
+        debugLog('DOM loaded - setting up close handlers');
+        
+        // Just in case, ensure the closeContactButton has the onclick handler
+        const closeButton = document.getElementById('closeContactButton');
+        if (closeButton) {
+          if (!closeButton.onclick) {
+            closeButton.onclick = handleCloseContact;
+            debugLog('Added click handler to close button');
+          }
+          
+          // Also support touch events for mobile
+          closeButton.ontouchend = function(e) {
+            handleCloseContact(e);
+            return false;
+          };
+          
+          debugLog('Added touch handler to close button');
+          
+          // Make it accessible
+          closeButton.setAttribute('tabindex', '0');
+          
+          // Add keypress handler
+          closeButton.onkeypress = function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleCloseContact(e);
+            }
+          };
+        } else {
+          debugLog('WARNING: Close button not found!');
+        }
+        
+        // Also close the form when ESC key is pressed
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            debugLog('ESC key pressed');
+            handleCloseContact(e);
+          }
+        });
       });
       
-      // Note: We're now using global functions defined in overlay-loader.js
-      // - cancelContactForm(): for the Cancel button (returns to menu if opened from menu)
-      // - closeContactForm(): for the X button (closes everything and returns to original page)
+      // Function to handle all contact form cancellation
+      function closeContactFormHandler() {
+        debugLog('closeContactFormHandler called');
+        handleCloseContact(new Event('click'));
+        return false;
+      }
+      
+      // Function to cancel contact form (used by the Cancel button)
+      function cancelContactForm() {
+        debugLog('Local cancelContactForm called');
+        
+        // Check if we're in mobile or desktop mode
+        const isMobileOverlay = document.querySelector('.mobile-overlay') !== null;
+        
+        if (isMobileOverlay) {
+          // Use the local handler for mobile
+          debugLog('Using local close handler for mobile');
+          closeContactFormHandler();
+        } else {
+          // For desktop, use the global handler
+          debugLog('Using global close handler for desktop');
+          if (window.cancelContactForm) {
+            window.cancelContactForm();
+          } else {
+            debugLog('Fallback to local handler');
+            closeContactFormHandler();
+          }
+        }
+        
+        return false;
+      }
     </script>
   </body>
 </html>

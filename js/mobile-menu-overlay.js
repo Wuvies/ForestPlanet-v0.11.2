@@ -24,8 +24,7 @@ function loadMobileMenuOverlay() {
   overlay.style.display = 'block';
   
   // Lock scrolling on main page
-  document.documentElement.classList.add('no-scroll');
-  document.body.classList.add('no-scroll');
+  window.lockScroll();
   
   // Load menu content
   fetch('menu-mobile.html')
@@ -59,25 +58,34 @@ function loadMobileMenuOverlay() {
         // Override the close function to work with our overlay
         window.closeMenuMobile = function() {
           // Add animation class
-          document.querySelector('.menu-mobile').classList.add('animate-disappear');
+          const menuElement = document.querySelector('.menu-mobile');
+          if (menuElement) {
+            menuElement.classList.add('animate-disappear');
+          }
           
           // Unlock scrolling immediately
-          if (window.unlockScroll) {
-            window.unlockScroll();
-          } else {
-            document.documentElement.classList.remove('no-scroll');
-            document.body.classList.remove('no-scroll');
-          }
+          window.unlockScroll();
           
           // After animation completes, hide the overlay without navigating
           setTimeout(function() {
             // Just hide the menu overlay
-            document.getElementById('mobile-menu-overlay').style.display = 'none';
+            const menuOverlay = document.getElementById('mobile-menu-overlay');
+            if (menuOverlay) {
+              menuOverlay.style.display = 'none';
+            }
+            
+            // Remove any leftover overlays
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            if (mobileOverlay) {
+              mobileOverlay.style.display = 'none';
+            }
           }, 500);
         };
         
         // Fix for showing the contact form from the menu overlay
         window.ShowMobileContact = function() {
+          console.log("ShowMobileContact called");
+          
           // Instead of hiding the menu, reduce its opacity to make it visible in background
           const menuElement = document.querySelector('.menu-mobile');
           if (menuElement) {
@@ -93,7 +101,18 @@ function loadMobileMenuOverlay() {
             setTimeout(() => {
               const contactForm = document.querySelector('.mobile-overlay');
               if (contactForm) {
+                console.log("Setting data-from-menu attribute on contact form");
                 contactForm.setAttribute('data-from-menu', 'true');
+                
+                // Verify the close button is properly set up
+                const closeButton = contactForm.querySelector('#closeContactButton');
+                if (closeButton) {
+                  console.log("Found close button in contact form");
+                } else {
+                  console.log("WARNING: Close button not found in contact form!");
+                }
+              } else {
+                console.log("WARNING: Contact form not found after ShowExternalOverlay");
               }
             }, 100);
           }, 100); // Small delay for better transition
@@ -105,14 +124,38 @@ function loadMobileMenuOverlay() {
     });
 }
 
-// Lock scrolling function
-function lockScroll() {
+// Lock scrolling function - exposed to window object for global use
+window.lockScroll = function() {
+  // Save the current scroll position
+  window.scrollPosition = {
+    top: window.pageYOffset || document.documentElement.scrollTop,
+    left: window.pageXOffset || document.documentElement.scrollLeft
+  };
+
+  // Apply the no-scroll class to prevent scrolling
   document.documentElement.classList.add('no-scroll');
   document.body.classList.add('no-scroll');
-}
 
-// Unlock scrolling function
-function unlockScroll() {
+  // Instead of setting body to fixed position which hides content,
+  // we'll add a padding-right to account for scrollbar width
+  // and keep the body positioned as is
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.body.style.overflow = 'hidden';
+  document.body.style.paddingRight = scrollbarWidth + 'px';
+};
+
+// Unlock scrolling function - exposed to window object for global use
+window.unlockScroll = function() {
+  // Remove the no-scroll class
   document.documentElement.classList.remove('no-scroll');
   document.body.classList.remove('no-scroll');
-} 
+  
+  // Restore normal body styling
+  document.body.style.overflow = '';
+  document.body.style.paddingRight = '';
+  
+  // Restore the scroll position
+  if (window.scrollPosition) {
+    window.scrollTo(window.scrollPosition.left, window.scrollPosition.top);
+  }
+}; 

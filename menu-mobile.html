@@ -72,6 +72,7 @@
         if (window.lockScroll) {
           window.lockScroll();
         } else {
+          // Fallback if lockScroll isn't available yet
           document.documentElement.classList.add('no-scroll');
           document.body.classList.add('no-scroll');
         }
@@ -114,6 +115,7 @@
           if (window.unlockScroll) {
             window.unlockScroll();
           } else {
+            // Fallback if unlockScroll isn't available
             document.documentElement.classList.remove('no-scroll');
             document.body.classList.remove('no-scroll');
           }

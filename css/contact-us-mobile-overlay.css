@@ -3,6 +3,7 @@
 /* Base styles for contact form */
 .contact-us .contact-us-1 {
   align-items: center;
+  z-index: 1000;
   background-color: var(--romance);
   border-radius: 40px;
   display: inline-flex;
@@ -62,72 +63,107 @@
 
 /* Desktop overlay styles */
 #overlay-contact-us {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
   align-items: center;
-  background-color: #00000066;
   justify-content: center;
+  backdrop-filter: blur(3px);
+  background-color: rgba(25, 25, 35, 0.9);
 }
 
-/* Mobile overlay specific styles */
+/* Ensure the form inside desktop overlay is properly centered */
+#overlay-contact-us .contact-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#overlay-contact-us .contact-us-1 {
+  margin: 0 auto;
+}
+
+#overlay-contact-us.animate-appear {
+  display: flex;
+  animation: fadeInDesktop 0.25s forwards;
+}
+
+#overlay-contact-us.animate-disappear {
+  animation: fadeOutDesktop 0.25s forwards;
+}
+
+@keyframes fadeInDesktop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutDesktop {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Mobile overlay styling */
 .mobile-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: var(--romance) !important;
-  z-index: 1000 !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  opacity: 0; /* Start hidden */
-  transition: opacity 0.1s ease;
-  pointer-events: auto !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--romance);
+  overflow-y: auto; /* Allow scrolling within the overlay if needed */
 }
 
-/* Animation classes */
+/* Animation for mobile overlay appearance */
 .mobile-overlay.animate-appear {
-  opacity: 1;
-  transition: opacity 0.1s ease;
-  pointer-events: auto !important;
+  animation: fadeInMobile 0.3s forwards;
 }
 
+/* Animation for mobile overlay disappearance */
 .mobile-overlay.animate-disappear {
-  animation: fadeOutMobile 0.3s ease forwards;
+  animation: fadeOutMobile 0.3s forwards;
+}
+
+/* Keyframes for mobile animations */
+@keyframes fadeInMobile {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeOutMobile {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* When overlay is gone, restore normal page behavior */
-body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
-  pointer-events: auto !important;
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 /* Style for the contact form in mobile view */
 .mobile-overlay .contact-us {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--romance) !important;
-  box-shadow: none !important;
-  overflow-y: auto !important;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--romance);
+  overflow-y: auto;
+  padding: 0 16px 40px 16px; /* Add padding for better spacing */
 }
 
 /* Style for the contact form container in mobile view */
 .mobile-overlay .contact-us-1 {
   width: 100% !important;
+  max-width: 450px; /* Limit width for better usability */
   border-radius: 0 !important;
   padding: 30px !important;
   margin-top: 100px !important; /* Space for the header */
+  margin-left: auto !important; /* Center horizontally */
+  margin-right: auto !important; /* Center horizontally */
   box-shadow: none !important;
 }
 
@@ -165,11 +201,9 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
   margin-top: 10px !important;
 }
 
-/* Make sure the link isn't hidden */
-.mobile-overlay a {
+
+.mobile-nav a {
   display: block !important;
-  color: inherit !important;
-  cursor: pointer !important;
 }
 
 /* Redefine animations to be consistent */
@@ -187,16 +221,17 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
   min-width: 333px;
   gap: 8px;
   width: 100%;
-} 
+}
 
 /* Lock scrolling when overlay is active */
 html.no-scroll,
 body.no-scroll {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  touch-action: none;
+  /* We're only disabling scrolling in JavaScript now */
+  /* overflow: hidden; */
+  /* We're handling position in JavaScript now to preserve scroll position */
+  /* position: fixed; */
+  /* width: 100%; */
+  /* height: 100%; */
 }
 
 /* Ensure form content doesn't overflow screen */
@@ -209,4 +244,31 @@ body.no-scroll {
 /* Add padding at the bottom for better form spacing */
 .contact-us-1 {
   padding-bottom: 40px;
-} 
+}
+
+/* When overlay is gone, restore normal page behavior */
+body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
+  pointer-events: auto !important;
+}
+
+/* Responsive adjustments for form positioning */
+@media (max-height: 700px) {
+  .mobile-overlay .contact-us-1 {
+    margin-top: 80px !important; /* Less space for smaller screens */
+  }
+}
+
+@media (max-height: 600px) {
+  .mobile-overlay .contact-us-1 {
+    margin-top: 60px !important; /* Even less space for very small screens */
+    padding: 20px !important; /* Reduce padding */
+    gap: 20px !important; /* Reduce gap between elements */
+  }
+}
+
+/* Center form better for larger screens */
+@media (min-width: 768px) {
+  .mobile-overlay .contact-us-1 {
+    max-width: 500px; /* Slightly wider on larger screens */
+  }
+}
