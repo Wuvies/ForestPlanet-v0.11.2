@@ -356,11 +356,22 @@ function loadOverlay(overlayId, htmlFilePath, isMobile = false) {
         if (overlayId === 'overlay-contact-us' && !isMobile) {
           console.log("Adding click-outside-to-close functionality for desktop");
           
-          // Remove any existing listener first to avoid duplicates
-          overlayContainer.removeEventListener('click', closeOnClickOutside);
+          // Double-check that this is not a mobile overlay
+          const isMobileOverlay = overlayContainer.classList.contains('mobile-overlay') || 
+                                overlayContainer.querySelector('.mobile-overlay') !== null;
           
-          // Add the click listener that closes when clicking outside the form
-          overlayContainer.addEventListener('click', closeOnClickOutside);
+          if (!isMobileOverlay) {
+            // Remove any existing listener first to avoid duplicates
+            overlayContainer.removeEventListener('click', closeOnClickOutside);
+            
+            // Add the click listener that closes when clicking outside the form
+            overlayContainer.addEventListener('click', closeOnClickOutside);
+            console.log("Click-outside-to-close functionality added for desktop");
+          } else {
+            console.log("Skipping click-outside-to-close for mobile overlay");
+            // Remove any existing listener to ensure mobile doesn't have this behavior
+            overlayContainer.removeEventListener('click', closeOnClickOutside);
+          }
         }
         
         return true;
@@ -377,12 +388,23 @@ function loadOverlay(overlayId, htmlFilePath, isMobile = false) {
 
 // Function to close overlay when clicking outside the form
 function closeOnClickOutside(event) {
+  // First verify we're dealing with a desktop overlay, not mobile
+  const overlayElement = event.currentTarget;
+  const isMobileOverlay = overlayElement.classList.contains('mobile-overlay') || 
+                          overlayElement.querySelector('.mobile-overlay') !== null;
+  
+  // Exit if this is a mobile overlay
+  if (isMobileOverlay) {
+    console.log("Ignoring outside click on mobile overlay");
+    return;
+  }
+  
   // Find the form container - the contact-us-1 div
-  const formContainer = document.querySelector('#overlay-contact-us .contact-us-1');
+  const formContainer = overlayElement.querySelector('.contact-us-1');
   
   // If we have a form container and the click is outside it
   if (formContainer && !formContainer.contains(event.target)) {
-    console.log("Click detected outside form - closing");
+    console.log("Click detected outside desktop form - closing");
     
     // Stop the event from propagating further
     event.preventDefault();
@@ -404,12 +426,22 @@ function initOverlayScripts() {
   
   // Add click-outside-to-close for desktop contact form if it exists
   const desktopOverlay = document.getElementById('overlay-contact-us');
-  if (desktopOverlay && !desktopOverlay.classList.contains('mobile-view')) {
-    console.log("Adding click-outside-to-close to existing desktop overlay");
-    // Remove any existing listener first to avoid duplicates
-    desktopOverlay.removeEventListener('click', closeOnClickOutside);
-    // Add the click listener
-    desktopOverlay.addEventListener('click', closeOnClickOutside);
+  if (desktopOverlay) {
+    // Only add this behavior to desktop overlays (not mobile)
+    const isMobileOverlay = desktopOverlay.classList.contains('mobile-overlay') || 
+                            desktopOverlay.querySelector('.mobile-overlay') !== null;
+    
+    if (!isMobileOverlay) {
+      console.log("Adding click-outside-to-close to existing desktop overlay");
+      // Remove any existing listener first to avoid duplicates
+      desktopOverlay.removeEventListener('click', closeOnClickOutside);
+      // Add the click listener
+      desktopOverlay.addEventListener('click', closeOnClickOutside);
+    } else {
+      console.log("Skipping click-outside-to-close for mobile overlay");
+      // Remove any existing listener to ensure mobile doesn't have this behavior
+      desktopOverlay.removeEventListener('click', closeOnClickOutside);
+    }
   }
 }
 
