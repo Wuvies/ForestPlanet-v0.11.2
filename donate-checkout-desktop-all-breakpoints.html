@@ -8,16 +8,25 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="css/donate-checkout-desktop-all-breakpoints.css" />
-    <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
-    <style></style>
+    <link rel="stylesheet" type="text/css" href="css/donate-checkout.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu-mobile.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
   </head>
   <body style="margin: 0; background: #fffffc">
     <input type="hidden" id="anPageName" name="page" value="donate-checkout-desktop-all-breakpoints" />
     <form class="donate-checkout-mobile screen" name="form16" action="form16" method="post">
-      <img class="header" src="img/header-8@2x.png" alt="header" />
+      <header class="property-mobile">
+        <div class="mobile-nav">
+          <a href="index.html" aria-label="Home">
+            <img src="img/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
+          </a>
+          <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
+            <img src="img/menu.svg" class="menu" alt="Menu Icon">
+          </a>
+        </div>
+      </header>
       <div class="main-content">
         <div class="frame-362">
           <h1 class="title heading-2-mobile">
@@ -25,9 +34,8 @@
             ><span class="span heading-2-mobile">Donation</span>
           </h1>
           <div class="payment-form">
-            <div class="frame-1">
               <div class="frame-157">
-                <article class="input">
+                <article class="payment-input">
                   <div class="label-wrapper">
                     <div class="label inter-normal-salem-16px">Name On Card</div>
                     <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
@@ -46,7 +54,7 @@
                     </div>
                   </div>
                 </article>
-                <article class="input">
+                <article class="payment-input">
                   <div class="label-wrapper">
                     <div class="label inter-normal-salem-16px">Card Number</div>
                     <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
@@ -59,13 +67,16 @@
                           name="content"
                           placeholder="0000-0000-0000-0000"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9\-]*"
+                          autocomplete="cc-number"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-1">
+                <article class="payment-input">
                   <div class="label-wrapper">
                     <div class="label inter-normal-salem-16px">CVV</div>
                     <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
@@ -74,17 +85,20 @@
                     <div class="wrapper">
                       <div class="content-wrapper-1">
                         <input
-                          class="content-1 inter-normal-mirage-18px"
+                          class="content inter-normal-mirage-18px"
                           name="content"
                           placeholder="123"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9]*"
+                          autocomplete="cc-csc"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-1">
+                <article class="payment-input">
                   <div class="label-wrapper">
                     <div class="label inter-normal-salem-16px">Expiration Date</div>
                     <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
@@ -93,17 +107,20 @@
                     <div class="wrapper">
                       <div class="content-wrapper-1">
                         <input
-                          class="content-1 inter-normal-mirage-18px"
+                          class="content inter-normal-mirage-18px"
                           name="content"
                           placeholder="MM/YY"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9/]*"
+                          autocomplete="cc-exp"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-1">
+                <article class="payment-input">
                   <div class="label-wrapper">
                     <div class="label inter-normal-salem-16px">Zip Code</div>
                     <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
@@ -116,6 +133,9 @@
                           name="content"
                           placeholder="00000"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9]*"
+                          autocomplete="postal-code"
                           required
                         />
                       </div>
@@ -124,189 +144,206 @@
                 </article>
               </div>
               <div class="frame-160">
-                <img class="line-7 line" src="img/line-7@2x.png" alt="Line 7" />
-                <div class="frame-162"><div class="or body-2-regular">Or</div></div>
-                <img class="line-6 line" src="img/line-6@2x.png" alt="Line 6" />
+                <hr class="line-mirage" />
+                <div class="frame-162-1"><div class="body-2-regular">Or</div></div>
+                <hr class="line-mirage" />
               </div>
               <div class="frame-158">
                 <img
                   class="payment-methodsdark"
-                  src="img/payment-methods-dark-paypal@2x.png"
+                  src="img/paypal.svg"
                   alt="payment-methods/dark/paypal"
                 />
                 <img
-                  class="payment-methodsdark"
-                  src="img/payment-methods-dark-google-pay@2x.png"
+                  class="payment-methodsdark-1"
+                  src="img/googlepay.svg"
                   alt="payment-methods/dark/google-pay"
                 />
                 <img
-                  class="payment-methodsdark"
-                  src="img/payment-methods-dark-apple-pay@2x.png"
+                  class="payment-methodsdark-1"
+                  src="img/applepay.svg"
                   alt="payment-methods/dark/apple-pay"
                 />
-              </div>
             </div>
             <div class="frame-194">
-              <div class="frame-19">
-                <div class="radio-button">
-                  <div class="rectangle-16"></div>
-                </div>
-                <p class="i-want-to-receive-up body-2-regular">I want to receive updates from ForestPlanet.</p>
-              </div>
-              <div class="frame-19">
-                <div class="radio-button"></div>
-                <p class="i-accept-the-privacy body-2-regular">
-                  <span class="span-1 body-2-regular">I accept the </span
-                  ><span class="span1-1 body-2-regular">privacy policy</span
-                  ><span class="span-1 body-2-regular"> by ForestPlanet.</span>
-                </p>
+              <div class="frame-19-1">
+                  <label class="radio-label">
+                    <input type="checkbox" class="radio-input" name="receive_updates" value="yes">
+                    <img src="img/radio-button-mirage-false.svg" alt="Unchecked" class="radio-icon radio-false">
+                    <img src="img/radio-button-mirage-true.svg" alt="Checked" class="radio-icon radio-true hidden">
+                    <p class="i-want-to-receive-up body-2-regular">I want to receive updates from ForestPlanet.</p>
+                  </label>
               </div>
             </div>
-            <a href="javascript:SubmitForm('form16')"
-              ><input class="primary-button" name="1474_37761" placeholder="MM/YY" type="text" required
-            /></a>
+            <a href="javascript:SubmitForm('form18')">
+              <div class="primary-button-salem button-width">
+                <div class="primary-button-romance-text body-2-regular">Complete Donation</div>
+                <img class="chevron-right-1" src="img/chevron-right-romance.svg" alt="Chevron Right" /></div
+            ></a>
           </div>
         </div>
       </div>
-      <footer class="footer body-2-regular">
-        <img class="line-5 line" src="img/line-8@2x.png" alt="Line 5" />
-        <div class="footer-menu">
-          <img class="layer-1" src="img/layer-1-15@2x.png" alt="Layer 1" />
-          <div class="frame-1 body-2-regular">
-            <p class="address">5028 Wisconsin Avenue NW Suite 100<br />Washington, DC 20016</p>
-            <div class="frame-1-item">+1-202-792-8060</div>
-            <div class="frame-1-item">EIN: 81-5025238</div>
+      <footer class="footer">
+        <div class="full-footer-frame footer-display">
+          <div class="top-footer-frame footer-display">
+            <img class="logo-1" src="img/FP-Logomark-RGB-Black.svg" alt="logo" />
+            <div class="location">
+              <p class="address body-2-regular">5028 Wisconsin Avenue NW Suite 100<br />Washington, DC 20016</p>
+            </div>
+              <div class="social-media-icons">
+                <img class="facebook" src="img/facebook.svg" alt="Facebook" />
+                <img class="linkedin" src="img/linkedin.svg" alt="Linkedin" />
+               <!-- <img class="bluesky" src="img/bluesky.svg" alt="Bluesky" /> -->
+                <img class="instagram" src="img/instagram.svg" alt="Instagram" />
+                <img class="youtube" src="img/youtube.svg" alt="Youtube" />
+              </div>
           </div>
-        </div>
-        <div class="footer-menu-1 footer-menu-3">
-          <div class="non-profit-information subtitle-2">NON-PROFIT INFORMATION</div>
-          <div class="frame-99">
-            <img class="image-8" src="img/image-8@2x.png" alt="image 8" />
-            <div class="frame-236">
-              <div class="frame-235">
-                <img class="charity-nav_-logo_-ver-1" src="img/charitynav-logo-ver-1.png" alt="CharityNav_Logo_Ver 1" />
+          <div class="footer-links">
+            <div class="link-frame">
+              <div class="t-in subtitle-2">NON-PROFIT INFORMATION</div>
+              <div class="footer-non-profit-awards footer-display">
+                <img class="image-8" src="img/image-8@2x.png" alt="image 8" />
+                <div class="footer-charity-nav-logo footer-display">
+                  <div class="footer-charity-nav-logo-img footer-display">
+                    <img
+                      class="charity-nav_-logo_-ver-1"
+                      src="img/charitynav-logo-ver-1.png"
+                      alt="CharityNav_Logo_Ver 1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">IRS 990 Form</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">IRS Determination Letter</div>
+              </div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">CONTACT INFORMATION</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Contact Us</div>
+              </div>
+              <div class="tertiary-mirage-2-text body-2-regular">EIN: 81-5025238</div>
+              <div class="tertiary-mirage-2-text body-2-regular">+1-202-792-8060</div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">GET INVOLVED</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Donate</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Partner</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Invite</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Connect</div>
+              </div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">RESOURCES</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Stories</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Shop</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">About Us</div>
               </div>
             </div>
           </div>
-          <div class="tertiary-button">
-            <div class="default-11 body-2-regular">IRS 990 Form</div>
-            <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-          </div>
-          <div class="tertiary-button">
-            <div class="default-11 body-2-regular">IRS Determination Letter</div>
-            <img class="icon" src="img/icon-14@2x.png" alt="Icon" />
-          </div>
-        </div>
-        <div class="footer-menu-2 footer-menu-3">
-          <div class="frame-44">
-            <div class="get-involved subtitle-2">GET INVOLVED</div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Donate</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Partner</div>
-              <img class="icon" src="img/icon-14@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Invite</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Connect</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
+          <div class="newsletter">
+            <div class="join-our-newsletter heading-3">Join Our Newsletter</div>
+            <div class="newsletter-input-frame footer-display">
+              <div class="input">
+                <div class="content-wrapper">
+                  <div class="wrapper">
+                    <div class="content-wrapper-1">
+                      <input
+                        class="content"
+                        name="email"
+                        placeholder="Your Email Address"
+                        type="email"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="secondary-button-fuchsia-blue secondary-button" onclick="document.forms['form13'].submit();">
+                <div class="secondary-button-fuchsia-blue-text body-2-regular">Subscribe</div>
+              </div>
             </div>
           </div>
-          <div class="frame-60">
-            <div class="resources subtitle-2">RESOURCES</div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Contact Us</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Stories</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">Shop</div>
-              <img class="icon" src="img/icon-13@2x.png" alt="Icon" />
-            </div>
-            <div class="tertiary-button">
-              <div class="default-11 body-2-regular">About Us</div>
-              <img class="icon" src="img/icon-14@2x.png" alt="Icon" />
-            </div>
-          </div>
-        </div>
-        <div class="social-media-icons">
-          <img class="ffacebook" src="img/f-facebook-1@2x.png" alt="F/facebook" />
-          <img class="llinkedin" src="img/l-linkedin-1@2x.png" alt="L/linkedin" />
-          <img
-            class="bluesky-streamline-simple-icons-1"
-            src="img/bluesky--streamline-simple-icons-1-1@2x.png"
-            alt="Bluesky--Streamline-Simple-Icons 1"
-          />
-          <img class="iinstagram" src="img/i-instagram-1@2x.png" alt="I/instagram" />
-          <img class="yyoutube" src="img/y-youtube-7@2x.png" alt="Y/youtube" />
-        </div>
-        <img class="line-5-1" src="img/line-5-3@2x.png" alt="Line 5" />
-        <p class="forest-planet-2024">© ForestPlanet 2024. All rights reserved.</p>
-        <div class="frame-46">
-          <div class="privacy-policy">Privacy Policy</div>
-          <div class="cookies-preferences cookies">Cookies Preferences</div>
-          <div class="cookies">Cookies Policy</div>
+          <p class="forest-planet-2025 body-2-regular">© ForestPlanet 2025. All rights reserved.</p>
         </div>
       </footer>
     </form>
     <form class="donate-checkout-desktop-all-breakpoints screen" name="form18" action="form18" method="post">
-      <header class="header-1">
+      <header class="header-romance">
         <div class="nav-bar">
-          <img class="logo" src="img/logo@2x.png" alt="logo" />
+          <a href="index.html">
+            <svg class="rgb-wordmark" role="img" aria-label="ForestPlanet Logo">
+              <use href="img/sprite.svg#rgb-wordmark"></use>
+            </svg>
+          </a>
           <div class="menu">
             <a href="about-desktop-all-breakpoints.html">
-              <div class="tertiary-button-1 tertiary-button">
-                <div class="default-11 default body-2-regular">About</div>
-              </div></a
-            ><a href="stories-desktop-all-breakpoints.html">
-              <div class="tertiary-button-1 tertiary-button">
-                <div class="default-12 default body-2-regular">Stories</div>
-              </div></a
-            ><a onclick="ShowOverlay('contact-us', 'animate-appear');">
-              <div class="tertiary-button-1 tertiary-button">
-                <div class="default-13 default body-2-regular">Contact</div>
-              </div></a
-            ><a href="partners-desktop-all-breakpoints.html">
-              <div class="tertiary-button-1 tertiary-button">
-                <div class="default-14 default body-2-regular">Partners</div>
-              </div></a
-            ><a href="partner-desktop-all-breakpoints.html">
-              <div class="secondary-button"><div class="default-15 default body-2-regular">Partner</div></div></a
-            ><a href="donate-desktop-all-breakpoints.html">
-              <div class="primary-button-1 primary-button">
-                <div class="default-16 default body-2-regular">Donate</div>
-              </div></a
-            >
+              <div class="tertiary-button">
+                <div class="tertiary-mirage body-2-regular">About</div>
+              </div>
+            </a>
+            <a href="stories-desktop-all-breakpoints.html">
+              <div class="tertiary-button">
+                <div class="tertiary-mirage body-2-regular">Stories</div>
+              </div>
+            </a>
+            <a onclick="ShowOverlay('contact-us', 'animate-appear');">
+              <div class="tertiary-button">
+                <div class="tertiary-mirage body-2-regular">Contact</div>
+              </div>
+            </a>
+            <a href="partners-desktop-all-breakpoints.html">
+              <div class="tertiary-button">
+                <div class="tertiary-mirage body-2-regular">Partners</div>
+              </div>
+            </a>
+            <a href="partner-desktop-all-breakpoints.html">
+              <div class="secondary-button-salem secondary-button">
+                <div class="secondary-button-salem-text body-2-regular">Partner</div>
+              </div>
+            </a>
+            <a href="donate-desktop-all-breakpoints.html">
+              <div class="primary-button-salem">
+                <div class="primary-button-romance-text body-2-regular">Donate</div>
+              </div>
+            </a>
           </div>
         </div>
       </header>
       <div class="main-content-1">
-        <div class="frame-353 frame-1">
+        <div class="frame-353">
           <h1 class="title-1 heading-2">
             <span class="span-2 heading-2">Thank You for Your </span><span class="span1-2 heading-2">$5 </span
             ><span class="span-2 heading-2">Donation</span>
           </h1>
           <div class="pyament-form">
-            <div class="frame-160-1 frame-160">
+            <div class="frame-160-1">
               <div class="frame-157-1">
-                <article class="input-2 input">
+                <article class="payment-input">
                   <div class="label-wrapper-1">
                     <div class="label-1 inter-normal-salem-16px">Name On Card</div>
                     <div class="required-wrapper-1"><div class="text text-small">*</div></div>
                   </div>
-                  <div class="content-wrapper-2 content-wrapper">
-                    <div class="wrapper-1 wrapper">
-                      <div class="content-wrapper-3 content-wrapper">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
                         <input
-                          class="content-2 inter-normal-mirage-18px"
+                          class="content"
                           name="content"
                           placeholder="Full name"
                           type="text"
@@ -316,76 +353,88 @@
                     </div>
                   </div>
                 </article>
-                <article class="input-3 input">
+                <article class="payment-input">
                   <div class="label-wrapper-1">
                     <div class="label-1 inter-normal-salem-16px">Card Number</div>
                     <div class="required-wrapper-1"><div class="text text-small">*</div></div>
                   </div>
-                  <div class="content-wrapper-2 content-wrapper">
-                    <div class="wrapper-1 wrapper">
-                      <div class="content-wrapper-3 content-wrapper">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
                         <input
-                          class="content-2 inter-normal-mirage-18px"
+                          class="content"
                           name="content"
                           placeholder="0000-0000-0000-0000"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9\-]*"
+                          autocomplete="cc-number"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-4 input">
+                <article class="payment-input">
                   <div class="label-wrapper-1">
                     <div class="label-1 inter-normal-salem-16px">CVV</div>
                     <div class="required-wrapper-1"><div class="text text-small">*</div></div>
                   </div>
-                  <div class="content-wrapper-2 content-wrapper">
-                    <div class="wrapper-2 wrapper">
-                      <div class="content-wrapper-3 content-wrapper">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
                         <input
-                          class="content-4 inter-normal-mirage-18px"
+                          class="content"
                           name="content"
                           placeholder="123"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9]*"
+                          autocomplete="cc-csc"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-5 input">
+                <article class="payment-input">
                   <div class="label-wrapper-1">
                     <div class="label-1 inter-normal-salem-16px">Expiration Date</div>
                     <div class="required-wrapper-1"><div class="text text-small">*</div></div>
                   </div>
-                  <div class="content-wrapper-2 content-wrapper">
-                    <div class="wrapper-1 wrapper">
-                      <div class="content-wrapper-3 content-wrapper">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
                         <input
-                          class="content-3 inter-normal-mirage-18px"
+                          class="content"
                           name="content"
                           placeholder="MM/YY"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9/]*"
+                          autocomplete="cc-exp"
                           required
                         />
                       </div>
                     </div>
                   </div>
                 </article>
-                <article class="input-6 input">
+                <article class="payment-input">
                   <div class="label-wrapper-1">
                     <div class="label-1 inter-normal-salem-16px">Zip Code</div>
                     <div class="required-wrapper-1"><div class="text text-small">*</div></div>
                   </div>
-                  <div class="content-wrapper-2 content-wrapper">
-                    <div class="wrapper-1 wrapper">
-                      <div class="content-wrapper-3 content-wrapper">
+                  <div class="content-wrapper">
+                    <div class="wrapper">
+                      <div class="content-wrapper-1">
                         <input
-                          class="content-3 inter-normal-mirage-18px"
+                          class="content"
                           name="content"
                           placeholder="00000"
                           type="text"
+                          inputmode="numeric"
+                          pattern="[0-9]*"
+                          autocomplete="postal-code"
                           required
                         />
                       </div>
@@ -393,293 +442,149 @@
                   </div>
                 </article>
               </div>
-              <div class="frame-160-2 frame-160">
-                <img class="line-7-1" src="img/line-7-1@2x.png" alt="Line 7" />
-                <div class="frame-162-1"><div class="or-1 body-2-regular">Or</div></div>
-                <img class="line-6-1" src="img/line-7-1@2x.png" alt="Line 6" />
+              <div class="frame-160-2">
+                <hr class="line-mirage" />
+                <div class="frame-162-1"><div class="body-2-regular">Or</div></div>
+                <hr class="line-mirage" />
               </div>
               <div class="frame-158-1">
                 <img
-                  class="payment-methodsdark-1"
-                  src="img/payment-methods-dark-paypal-1@2x.png"
+                  class="payment-methodsdark"
+                  src="img/paypal.svg"
                   alt="payment-methods/dark/paypal"
                 />
                 <img
                   class="payment-methodsdark-1"
-                  src="img/payment-methods-dark-google-pay-1@2x.png"
+                  src="img/googlepay.svg"
                   alt="payment-methods/dark/google-pay"
                 />
                 <img
                   class="payment-methodsdark-1"
-                  src="img/payment-methods-dark-apple-pay-1@2x.png"
+                  src="img/applepay.svg"
                   alt="payment-methods/dark/apple-pay"
                 />
               </div>
             </div>
             <div class="frame-1-1">
               <div class="frame-19-1">
-                <div class="radio-button-1">
-                  <div class="rectangle-16-1"></div>
-                </div>
-                <p class="i-want-to-receive-up-1 body-2-regular">I want to receive updates from ForestPlanet.</p>
-              </div>
-              <div class="frame-19-1">
-                <div class="radio-button-1"></div>
-                <p class="i-accept-the-privacy-1 body-2-regular">
-                  <span class="span-3 body-2-regular">I accept the </span
-                  ><span class="span1-3 body-2-regular">privacy policy</span
-                  ><span class="span-3 body-2-regular"> by ForestPlanet.</span>
-                </p>
+                  <label class="radio-label">
+                    <input type="checkbox" class="radio-input" name="receive_updates" value="yes">
+                    <img src="img/radio-button-mirage-false.svg" alt="Unchecked" class="radio-icon radio-false">
+                    <img src="img/radio-button-mirage-true.svg" alt="Checked" class="radio-icon radio-true hidden">
+                    <p class="i-want-to-receive-up-1 body-2-regular">I want to receive updates from ForestPlanet.</p>
+                  </label>
               </div>
             </div>
             <a href="javascript:SubmitForm('form18')">
-              <div class="primary-button-2 primary-button">
-                <div class="default-17 default body-2-regular">Continue</div>
-                <img class="chevron-right-1" src="img/chevron-right-16@2x.png" alt="Chevron Right" /></div
+              <div class="primary-button-salem button-width">
+                <div class="primary-button-romance-text body-2-regular">Complete Donation</div>
+                <img class="chevron-right-1" src="img/chevron-right-romance.svg" alt="Chevron Right" /></div
             ></a>
           </div>
         </div>
       </div>
-      <footer class="footer-1 footer">
-        <img class="line" src="img/line-8-8.png" alt="Line 5" />
-        <div class="frame-14 frame-1">
-          <div class="frame-145 frame-1">
-            <div class="frame-141 frame-1">
-              <div class="footer-links footer">
-                <div class="frame">
-                  <img class="layer-1-1" src="img/layer-1-19@2x.png" alt="Layer 1" />
-                  <div class="frame-1-1 body-2-regular">
-                    <p class="address-1">5028 Wisconsin Avenue NW Suite 100<br />Washington, DC 20016</p>
-                    <div class="frame-1-1-item">+1-202-792-8060</div>
-                    <div class="frame-1-1-item">EIN: 81-5025238</div>
+      <footer class="footer">
+        <div class="full-footer-frame footer-display">
+          <div class="top-footer-frame footer-display">
+            <img class="logo-1" src="img/FP-Logomark-RGB-Black.svg" alt="logo" />
+            <div class="location">
+              <p class="address body-2-regular">5028 Wisconsin Avenue NW Suite 100<br />Washington, DC 20016</p>
+            </div>
+              <div class="social-media-icons">
+                <img class="facebook" src="img/facebook.svg" alt="Facebook" />
+                <img class="linkedin" src="img/linkedin.svg" alt="Linkedin" />
+               <!-- <img class="bluesky" src="img/bluesky.svg" alt="Bluesky" /> -->
+                <img class="instagram" src="img/instagram.svg" alt="Instagram" />
+                <img class="youtube" src="img/youtube.svg" alt="Youtube" />
+              </div>
+          </div>
+          <div class="footer-links">
+            <div class="link-frame">
+              <div class="t-in subtitle-2">NON-PROFIT INFORMATION</div>
+              <div class="footer-non-profit-awards footer-display">
+                <img class="image-8" src="img/image-8@2x.png" alt="image 8" />
+                <div class="footer-charity-nav-logo footer-display">
+                  <div class="footer-charity-nav-logo-img footer-display">
+                    <img
+                      class="charity-nav_-logo_-ver-1"
+                      src="img/charitynav-logo-ver-1.png"
+                      alt="CharityNav_Logo_Ver 1"
+                    />
                   </div>
                 </div>
-                <div class="frame">
-                  <div class="non-profit-information-1 subtitle-2">NON-PROFIT INFORMATION</div>
-                  <div class="frame-99-1">
-                    <img class="image-8-1" src="img/image-8@2x.png" alt="image 8" />
-                    <div class="frame-236-1">
-                      <div class="frame-235-1">
-                        <img
-                          class="charity-nav_-logo_-ver-1-1"
-                          src="img/charitynav-logo-ver-1.png"
-                          alt="CharityNav_Logo_Ver 1"
-                        />
-                      </div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">IRS 990 Form</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">IRS Determination Letter</div>
+              </div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">CONTACT INFORMATION</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Contact Us</div>
+              </div>
+              <div class="tertiary-mirage-2-text body-2-regular">EIN: 81-5025238</div>
+              <div class="tertiary-mirage-2-text body-2-regular">+1-202-792-8060</div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">GET INVOLVED</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Donate</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Partner</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Invite</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Connect</div>
+              </div>
+            </div>
+            <div class="link-frame">
+              <div class="t-in subtitle-2">RESOURCES</div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Stories</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">Shop</div>
+              </div>
+              <div class="tertiary-mirage-2 tertiary-button">
+                <div class="tertiary-mirage-2-text body-2-regular">About Us</div>
+              </div>
+            </div>
+          </div>
+          <div class="newsletter">
+            <div class="join-our-newsletter heading-3">Join Our Newsletter</div>
+            <div class="newsletter-input-frame footer-display">
+              <div class="input">
+                <div class="content-wrapper">
+                  <div class="wrapper">
+                    <div class="content-wrapper-1">
+                      <input
+                        class="content"
+                        name="email"
+                        placeholder="Your Email Address"
+                        type="email"
+                        required
+                      />
                     </div>
                   </div>
-                  <div class="tertiary-button">
-                    <div class="default-18 default body-2-regular">IRS 990 Form</div>
-                    <img class="icon-1" src="img/icon-23@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-19 default body-2-regular">IRS Determination Letter</div>
-                    <img class="icon-1" src="img/icon-23@2x.png" alt="Icon" />
-                  </div>
-                </div>
-                <div class="frame">
-                  <div class="get-involved-1 subtitle-2">GET INVOLVED</div>
-                  <div class="tertiary-button">
-                    <div class="default-20 default body-2-regular">Donate</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-21 default body-2-regular">Partner</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-22 default body-2-regular">Invite</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-23 default body-2-regular">Connect</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                </div>
-                <div class="frame">
-                  <div class="resources-1 subtitle-2">RESOURCES</div>
-                  <div class="tertiary-button">
-                    <div class="default-24 default body-2-regular">Contact Us</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-25 default body-2-regular">Stories</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-26 default body-2-regular">Shop</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
-                  <div class="tertiary-button">
-                    <div class="default-27 default body-2-regular">About Us</div>
-                    <img class="icon-1" src="img/icon-129@2x.png" alt="Icon" />
-                  </div>
                 </div>
               </div>
-              <div class="social-media-icons-1">
-                <img class="ffacebook-1" src="img/f-facebook-10@2x.png" alt="F/facebook" />
-                <img class="llinkedin-1" src="img/l-linkedin-10@2x.png" alt="L/linkedin" />
-                <img
-                  class="bluesky-streamline-simple-icons-1-1"
-                  src="img/bluesky--streamline-simple-icons-1-19@2x.png"
-                  alt="Bluesky--Streamline-Simple-Icons 1"
-                />
-                <img class="iinstagram-1" src="img/i-instagram-10@2x.png" alt="I/instagram" />
-                <img class="yyoutube-1" src="img/y-youtube-13@2x.png" alt="Y/youtube" />
+              <div class="secondary-button-fuchsia-blue secondary-button" onclick="document.forms['form15'].submit();">
+                <div class="secondary-button-fuchsia-blue-text body-2-regular">Subscribe</div>
               </div>
             </div>
           </div>
-          <div class="frame-14 frame-1">
-            <img class="line" src="img/line-3-4.png" alt="Line 3" />
-            <div class="frame-47 frame-1 body-2-regular">
-              <div class="frame-46-1">
-                <div class="privacy-policy-1">Privacy Policy</div>
-                <div class="cookies-preferences-1">Cookies Preferences</div>
-                <div class="cookies-policy-1">Cookies Policy</div>
-              </div>
-              <p class="forest-planet-2024-1">© ForestPlanet 2024. All rights reserved.</p>
-            </div>
-          </div>
+          <p class="forest-planet-2025 body-2-regular">© ForestPlanet 2025. All rights reserved.</p>
         </div>
       </footer>
     </form>
-    <div id="overlay-contact-us" class="overlay-base">
-      <div class="contact-us screen">
-        <div class="contact-us-1">
-          <h1 class="title heading-2">Contact Us</h1>
-          <div class="frame-197 frame">
-            <div class="frame-196 frame">
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label inter-normal-salem-16px">Email</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter your email</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label-1 inter-normal-salem-16px">Subject</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter subject</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="message inter-normal-salem-16px">Message</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper-2 content-wrapper-3">
-                  <div class="wrapper-1">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Type your message</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="primary-button"><div class="default body-2-regular">Submit</div></div>
-            <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-              <div class="tertiary-button"><div class="default-1 body-2-regular">Cancel</div></div></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <script>
-      ShowOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") == -1) {
-          document.getElementById(overlayName).className =
-            document.getElementById(overlayName).className + " " + animationName;
-        }
-        if (window.loadAsyncSrc != undefined) {
-          loadAsyncSrc();
-        }
-      };
-
-      HideOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") != -1) {
-          cssClasses.splice(-1);
-          cssClasses.push(animationName);
-          document.getElementById(overlayName).className = cssClasses.join(" ");
-
-          cssClasses.splice(-1);
-          setTimeout(function () {
-            document.getElementById(overlayName).className = cssClasses.join(" ");
-          }, 1100);
-        }
-        var vids = document.getElementsByTagName("video");
-        if (vids) {
-          for (var i = 0; i < vids.length; i++) {
-            var video = vids.item(i);
-            video.pause();
-          }
-        }
-      };
-
-      closeOutsideOverlay = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        const overlayElement = document.getElementById(overlay_id);
-        overlayElement.addEventListener(
-          `click`,
-          function (event) {
-            var overlay_id = `overlay-${overlay_slug}`;
-            var e = event || window.event;
-            var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-            if (e.target === overlayElement) {
-              HideOverlay(`${overlay_slug}`, "animate-disappear");
-            }
-          },
-          false
-        );
-      };
-
-      CloseOnOverlayClick = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        document.getElementById(overlay_id).addEventListener(
-          `click`,
-          function (event) {
-            {
-              var overlay_id = `overlay-${overlay_slug}`;
-              var e = event || window.event;
-              var overlayElement = document.getElementById(overlay_id);
-              var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-              var clickedDiv = e.toElement || e.target;
-              var dismissButton = clickedDiv.parentElement.id == overlay_id;
-              var clickOutsideOverlay = false;
-              if (overlayContainer.length > 0) {
-                {
-                  clickOutsideOverlay = !overlayContainer[0].contains(clickedDiv) || overlayContainer[0] == clickedDiv;
-                }
-              }
-              if (dismissButton || clickOutsideOverlay) {
-                {
-                  HideOverlay(`${overlay_slug}`, "animate-disappear");
-                }
-              }
-            }
-          },
-          false
-        );
-      };
-    </script>
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
     <script>
       /* Copyright (c) 2016 Tobias Buschor https://goo.gl/gl0mbf | MIT License https://goo.gl/HgajeK */
 
@@ -699,6 +604,224 @@
         if (form.reportValidity()) {
           form.submit();
           if (window.submitted) window.submitted();
+        }
+      }
+    </script>
+    <script>
+      /* Handling Custom Radio Buttons */
+      document.addEventListener('DOMContentLoaded', function() {
+        const radioInputs = document.querySelectorAll('.radio-input');
+        
+        radioInputs.forEach(input => {
+          input.addEventListener('change', function() {
+            // Toggle the display of the SVG icons based on checked state
+            const falseIcon = this.nextElementSibling;
+            const trueIcon = falseIcon.nextElementSibling;
+            
+            if (this.checked) {
+              falseIcon.classList.add('hidden');
+              trueIcon.classList.remove('hidden');
+            } else {
+              falseIcon.classList.remove('hidden');
+              trueIcon.classList.add('hidden');
+            }
+          });
+        });
+        
+        // Get the donation amount from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let amount = urlParams.get('amount');
+        
+        // Format the amount with dollar sign and handle default
+        if (amount) {
+          // Format with 2 decimal places if it has cents
+          if (amount.includes('.')) {
+            const parts = amount.split('.');
+            if (parts[1].length === 1) {
+              amount = parseFloat(amount).toFixed(1);
+            } else {
+              amount = parseFloat(amount).toFixed(2);
+            }
+          }
+          
+          // Update the amount in the heading for both desktop and mobile
+          const desktopAmountSpan = document.querySelector('.span1-2');
+          const mobileAmountSpan = document.querySelector('.span1');
+          
+          if (desktopAmountSpan) {
+            desktopAmountSpan.textContent = '$' + amount + ' ';
+          }
+          
+          if (mobileAmountSpan) {
+            mobileAmountSpan.textContent = '$' + amount + ' ';
+          }
+        }
+
+        // Add input formatting for card number fields
+        const cardNumberInputs = document.querySelectorAll('input[placeholder="0000-0000-0000-0000"]');
+        cardNumberInputs.forEach(input => {
+          input.addEventListener('input', formatCardNumber);
+          input.addEventListener('keydown', handleCardNumberBackspace);
+        });
+
+        // Add input formatting for expiration date fields
+        const expirationDateInputs = document.querySelectorAll('input[placeholder="MM/YY"]');
+        expirationDateInputs.forEach(input => {
+          input.addEventListener('input', formatExpirationDate);
+          input.addEventListener('keydown', handleExpirationDateBackspace);
+        });
+
+        // Add input formatting for CVV fields to limit to 3-4 digits
+        const cvvInputs = document.querySelectorAll('input[placeholder="123"]');
+        cvvInputs.forEach(input => {
+          input.addEventListener('input', function() {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/\D/g, '');
+            // Limit length to 4 digits (for Amex cards)
+            if (this.value.length > 4) {
+              this.value = this.value.slice(0, 4);
+            }
+          });
+        });
+
+        // Add input formatting for zip code fields
+        const zipInputs = document.querySelectorAll('input[placeholder="00000"]');
+        zipInputs.forEach(input => {
+          input.addEventListener('input', function() {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/\D/g, '');
+            // Limit length to 5 digits
+            if (this.value.length > 5) {
+              this.value = this.value.slice(0, 5);
+            }
+          });
+        });
+      });
+
+      function getCardType(cardNumber) {
+        // Remove all non-digit characters
+        const cleanNumber = cardNumber.replace(/\D/g, '');
+        
+        // Check for Amex (starts with 34 or 37)
+        if (/^3[47]/.test(cleanNumber)) {
+          return 'amex';
+        }
+        
+        // For all other cards, return 'other'
+        return 'other';
+      }
+
+      function formatCardNumber(e) {
+        let value = e.target.value;
+        
+        // Remove all non-digit characters
+        value = value.replace(/\D/g, '');
+        
+        const cardType = getCardType(value);
+        
+        if (cardType === 'amex') {
+          // Format American Express: XXXX-XXXXXX-XXXXX
+          if (value.length > 4 && value.length <= 10) {
+            value = value.slice(0, 4) + '-' + value.slice(4);
+          } else if (value.length > 10) {
+            value = value.slice(0, 4) + '-' + value.slice(4, 10) + '-' + value.slice(10, 15);
+          }
+          // Limit to 15 digits for Amex
+          if (value.length > 17) { // 15 digits + 2 dashes
+            value = value.substring(0, 17);
+          }
+        } else {
+          // Format other cards: XXXX-XXXX-XXXX-XXXX
+          if (value.length > 4 && value.length <= 8) {
+            value = value.slice(0, 4) + '-' + value.slice(4);
+          } else if (value.length > 8 && value.length <= 12) {
+            value = value.slice(0, 4) + '-' + value.slice(4, 8) + '-' + value.slice(8);
+          } else if (value.length > 12) {
+            value = value.slice(0, 4) + '-' + value.slice(4, 8) + '-' + value.slice(8, 12) + '-' + value.slice(12, 16);
+          }
+          // Limit to 16 digits for most cards
+          if (value.length > 19) { // 16 digits + 3 dashes
+            value = value.substring(0, 19);
+          }
+        }
+        
+        e.target.value = value;
+      }
+
+      function handleCardNumberBackspace(e) {
+        if (e.key === 'Backspace' && (e.target.value.slice(-1) === '-' || e.target.selectionStart === e.target.selectionEnd)) {
+          const caretPosition = e.target.selectionStart;
+          if (caretPosition > 0 && e.target.value[caretPosition - 1] === '-') {
+            e.preventDefault();
+            e.target.value = e.target.value.slice(0, caretPosition - 2) + e.target.value.slice(caretPosition);
+            e.target.setSelectionRange(caretPosition - 1, caretPosition - 1);
+          }
+        }
+      }
+
+      function formatExpirationDate(e) {
+        let value = e.target.value;
+        
+        // Remove all non-digit characters except the slash
+        value = value.replace(/[^\d/]/g, '');
+        
+        // Only allow one slash
+        if ((value.match(/\//g) || []).length > 1) {
+          value = value.replace(/\/.*\//, '/');
+        }
+        
+        // Automatically add the slash after 2 digits if not already there
+        if (value.length === 2 && !value.includes('/')) {
+          value = value + '/';
+        }
+        
+        // Handle case where user types slash manually
+        if (value.length > 2 && value[2] !== '/' && !value.includes('/')) {
+          value = value.slice(0, 2) + '/' + value.slice(2);
+        }
+        
+        // Limit to MM/YY format (5 characters total)
+        if (value.length > 5) {
+          value = value.substring(0, 5);
+        }
+        
+        // Validate month (01-12)
+        if (value.length >= 2) {
+          const month = parseInt(value.slice(0, 2), 10);
+          if (month < 1) {
+            value = '01' + value.slice(2);
+          } else if (month > 12) {
+            value = '12' + value.slice(2);
+          }
+        }
+        
+        // Validate year (prevent years before current)
+        if (value.length === 5) {
+          const currentYear = new Date().getFullYear() % 100; // Get last 2 digits of current year
+          const month = parseInt(value.slice(0, 2), 10);
+          const year = parseInt(value.slice(3, 5), 10);
+          
+          // If year is in the past, set to current year
+          if (year < currentYear || (year === currentYear && month < new Date().getMonth() + 1)) {
+            const currentMonth = new Date().getMonth() + 1; // January is 0, so add 1
+            value = 
+              (currentMonth < 10 ? '0' + currentMonth : currentMonth) + 
+              '/' + 
+              currentYear;
+          }
+        }
+        
+        e.target.value = value;
+      }
+
+      function handleExpirationDateBackspace(e) {
+        if (e.key === 'Backspace' && e.target.selectionStart === e.target.selectionEnd) {
+          const caretPosition = e.target.selectionStart;
+          if (caretPosition > 0 && e.target.value[caretPosition - 1] === '/') {
+            e.preventDefault();
+            e.target.value = e.target.value.slice(0, caretPosition - 1) + e.target.value.slice(caretPosition);
+            e.target.setSelectionRange(caretPosition - 1, caretPosition - 1);
+          }
         }
       }
     </script>

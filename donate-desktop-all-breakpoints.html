@@ -9,7 +9,8 @@
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <link rel="stylesheet" type="text/css" href="css/donate.css" />
-    <link rel="stylesheet" type="text/css" href="css/contact-us.css" />
+    <link rel="stylesheet" type="text/css" href="css/contact-us-mobile-overlay.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu-mobile.css" />
     <style></style>
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
@@ -33,22 +34,33 @@
             <div class="frame-152">
               <div class="frame-151">
                 <div class="frame-150">
-                  <div class="primary-button-salem button-width"><div class="primary-button-romance-text body-2-regular">$5</div></div>
-                  <div class="secondary-button-salem secondary-button button-width"><div class="secondary-button-salem-text body-2-regular">$10</div></div>
-                  <div class="secondary-button-salem secondary-button button-width"><div class="secondary-button-salem-text body-2-regular">$50</div></div>
-                  <div class="secondary-button-salem secondary-button button-width"><div class="secondary-button-salem-text body-2-regular">$100</div></div>
+                  <div class="primary-button-salem button-width donation-amount" data-amount="5" onclick="selectDonationAmount(this)">
+                    <div class="primary-button-romance-text body-2-regular">$5</div>
+                  </div>
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="10" onclick="selectDonationAmount(this)">
+                    <div class="secondary-button-salem-text body-2-regular">$10</div>
+                  </div>
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="50" onclick="selectDonationAmount(this)">
+                    <div class="secondary-button-salem-text body-2-regular">$50</div>
+                  </div>
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="100" onclick="selectDonationAmount(this)">
+                    <div class="secondary-button-salem-text body-2-regular">$100</div>
+                  </div>
                 </div>
                 <div class="input">
                   <div class="content-wrapper">
                     <div class="wrapper">
                       <div class="content-wrapper-1">
-                        <input class="content" name="custom-amount" placeholder="Custom Amount" type="text" required />
+                        <div style="position: relative; width: 100%;">
+                          <span style="position: absolute; left: 6px; top: 50%; transform: translateY(-50%); color: var(--mirage);" class="body-2-regular">$</span>
+                          <input class="content" name="custom-amount" placeholder="Custom Amount" type="text" inputmode="numeric" pattern="[0-9\-]*" required oninput="handleCustomAmount(this)" style="padding-left: 24px;" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <a href="donate-checkout-desktop-all-breakpoints.html">
+              <a href="donate-checkout-desktop-all-breakpoints.html" id="continueLinkMobile">
                 <div class="primary-button-salem button-width">
                   <div class="primary-button-romance-text body-2-regular">Continue</div>
                   <img class="chevron-right" src="img/chevron-right-17@2x.png" alt="Chevron Right" /></div
@@ -204,16 +216,16 @@
             <div class="frame-152-1">
               <div class="frame-151-1">
                 <div class="frame-150-1">
-                  <div class="primary-button-salem button-width">
+                  <div class="primary-button-salem button-width donation-amount" data-amount="5" onclick="selectDonationAmount(this)">
                     <div class="primary-button-romance-text body-2-regular">$5</div>
                   </div>
-                  <div class="secondary-button-salem secondary-button button-width">
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="10" onclick="selectDonationAmount(this)">
                     <div class="secondary-button-salem-text body-2-regular">$10</div>
                   </div>
-                  <div class="secondary-button-salem secondary-button button-width">
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="50" onclick="selectDonationAmount(this)">
                     <div class="secondary-button-salem-text body-2-regular">$50</div>
                   </div>
-                  <div class="secondary-button-salem secondary-button button-width">
+                  <div class="secondary-button-salem secondary-button button-width donation-amount" data-amount="100" onclick="selectDonationAmount(this)">
                     <div class="secondary-button-salem-text body-2-regular">$100</div>
                   </div>
                 </div>
@@ -221,13 +233,16 @@
                   <div class="content-wrapper">
                     <div class="wrapper">
                       <div class="content-wrapper-1">
-                        <input class="content" name="custom-amount" placeholder="Custom Amount" type="text" required />
+                        <div style="position: relative; width: 100%;">
+                          <span style="position: absolute; left: 6px; top: 50%; transform: translateY(-50%); color: var(--mirage);" class="body-2-regular">$</span>
+                          <input class="content" name="custom-amount" placeholder="Custom Amount" type="text" inputmode="numeric" pattern="[0-9\-]*" required oninput="handleCustomAmount(this)" style="padding-left: 24px;" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <a href="donate-checkout-desktop-all-breakpoints.html">
+              <a href="donate-checkout-desktop-all-breakpoints.html" id="continueLink">
                 <div class="primary-button-salem button-width">
                   <div class="primary-button-romance-text body-2-regular">Continue</div>
                   <img class="chevron-right-1" src="img/chevron-right-16@2x.png" alt="Chevron Right" /></div
@@ -335,142 +350,103 @@
         </div>
       </footer>
     </div>
-    <div id="overlay-contact-us" class="overlay-base">
-      <div class="contact-us screen">
-        <div class="contact-us-1">
-          <h1 class="title heading-2">Contact Us</h1>
-          <div class="frame-197 frame">
-            <div class="frame-196 frame">
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label inter-normal-salem-16px">Email</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter your email</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="label-1 inter-normal-salem-16px">Subject</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper">
-                  <div class="wrapper">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Enter subject</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="input">
-                <div class="label-wrapper">
-                  <div class="message inter-normal-salem-16px">Message</div>
-                  <div class="required-wrapper"><div class="text text-small">*</div></div>
-                </div>
-                <div class="content-wrapper-2 content-wrapper-3">
-                  <div class="wrapper-1">
-                    <div class="content-wrapper-1 content-wrapper-3">
-                      <div class="content inter-normal-mirage-18px">Type your message</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="primary-button"><div class="default body-2-regular">Submit</div></div>
-            <a href="javascript:HideOverlay('contact-us', 'animate-disappear');">
-              <div class="tertiary-button"><div class="default-1 body-2-regular">Cancel</div></div></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
+    <script src="js/overlay-loader.js"></script>
+    <script src="js/mobile-menu-overlay.js"></script>
     <script>
-      ShowOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") == -1) {
-          document.getElementById(overlayName).className =
-            document.getElementById(overlayName).className + " " + animationName;
-        }
-        if (window.loadAsyncSrc != undefined) {
-          loadAsyncSrc();
-        }
-      };
+      function selectDonationAmount(button) {
+        // Get all donation amount buttons
+        const allButtons = document.querySelectorAll('.donation-amount');
+        
+        // Reset all buttons to secondary style
+        allButtons.forEach(btn => {
+          btn.classList.remove('primary-button-salem');
+          btn.classList.add('secondary-button-salem', 'secondary-button');
+          const textDiv = btn.querySelector('div');
+          textDiv.classList.remove('primary-button-romance-text');
+          textDiv.classList.add('secondary-button-salem-text');
+        });
 
-      HideOverlay = function (overlayName, animationName) {
-        overlayName = "overlay-" + overlayName;
-        var cssClasses = document.getElementById(overlayName).className.split(" ");
-        var last = cssClasses.slice(-1)[0];
-        if (last.lastIndexOf("animate") != -1) {
-          cssClasses.splice(-1);
-          cssClasses.push(animationName);
-          document.getElementById(overlayName).className = cssClasses.join(" ");
+        // Set selected button to primary style
+        button.classList.remove('secondary-button-salem', 'secondary-button');
+        button.classList.add('primary-button-salem');
+        const textDiv = button.querySelector('div');
+        textDiv.classList.remove('secondary-button-salem-text');
+        textDiv.classList.add('primary-button-romance-text');
 
-          cssClasses.splice(-1);
-          setTimeout(function () {
-            document.getElementById(overlayName).className = cssClasses.join(" ");
-          }, 1100);
+        // Clear custom amount input if it exists
+        const customAmountInputs = document.querySelectorAll('input[name="custom-amount"]');
+        customAmountInputs.forEach(input => {
+          input.value = '';
+        });
+        
+        // Update continue button href with selected amount
+        updateContinueLink(button.getAttribute('data-amount'));
+      }
+
+      function handleCustomAmount(input) {
+        // Remove any non-numeric characters except decimal point
+        let value = input.value.replace(/[^\d.]/g, '');
+        
+        // Ensure only one decimal point
+        const parts = value.split('.');
+        if (parts.length > 2) {
+          value = parts[0] + '.' + parts.slice(1).join('');
         }
-        var vids = document.getElementsByTagName("video");
-        if (vids) {
-          for (var i = 0; i < vids.length; i++) {
-            var video = vids.item(i);
-            video.pause();
+        
+        // Limit to 2 decimal places
+        if (parts.length === 2) {
+          value = parts[0] + '.' + parts[1].slice(0, 2);
+        }
+        
+        // Update the input value
+        input.value = value;
+        
+        // Get all donation amount buttons
+        const allButtons = document.querySelectorAll('.donation-amount');
+        
+        // If there's a value in the custom amount input
+        if (value.trim() !== '') {
+          // Reset all buttons to secondary style
+          allButtons.forEach(btn => {
+            btn.classList.remove('primary-button-salem');
+            btn.classList.add('secondary-button-salem', 'secondary-button');
+            const textDiv = btn.querySelector('div');
+            textDiv.classList.remove('primary-button-romance-text');
+            textDiv.classList.add('secondary-button-salem-text');
+          });
+          
+          // Update continue button href with custom amount
+          updateContinueLink(value);
+        } else {
+          // If custom amount is cleared, select the $5 button by default
+          const fiveDollarButton = document.querySelector('.donation-amount[data-amount="5"]');
+          if (fiveDollarButton) {
+            selectDonationAmount(fiveDollarButton);
           }
         }
-      };
-
-      closeOutsideOverlay = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        const overlayElement = document.getElementById(overlay_id);
-        overlayElement.addEventListener(
-          `click`,
-          function (event) {
-            var overlay_id = `overlay-${overlay_slug}`;
-            var e = event || window.event;
-            var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-            if (e.target === overlayElement) {
-              HideOverlay(`${overlay_slug}`, "animate-disappear");
-            }
-          },
-          false
-        );
-      };
-
-      CloseOnOverlayClick = function (overlay_slug) {
-        var overlay_id = `overlay-${overlay_slug}`;
-        document.getElementById(overlay_id).addEventListener(
-          `click`,
-          function (event) {
-            {
-              var overlay_id = `overlay-${overlay_slug}`;
-              var e = event || window.event;
-              var overlayElement = document.getElementById(overlay_id);
-              var overlayContainer = overlayElement.getElementsByClassName(`${overlay_slug}`);
-              var clickedDiv = e.toElement || e.target;
-              var dismissButton = clickedDiv.parentElement.id == overlay_id;
-              var clickOutsideOverlay = false;
-              if (overlayContainer.length > 0) {
-                {
-                  clickOutsideOverlay = !overlayContainer[0].contains(clickedDiv) || overlayContainer[0] == clickedDiv;
-                }
-              }
-              if (dismissButton || clickOutsideOverlay) {
-                {
-                  HideOverlay(`${overlay_slug}`, "animate-disappear");
-                }
-              }
-            }
-          },
-          false
-        );
-      };
+      }
+      
+      function updateContinueLink(amount) {
+        // Update both desktop and mobile continue links
+        const continueLink = document.getElementById('continueLink');
+        const continueLinkMobile = document.getElementById('continueLinkMobile');
+        
+        if (continueLink) {
+          continueLink.href = "donate-checkout-desktop-all-breakpoints.html?amount=" + amount;
+        }
+        
+        if (continueLinkMobile) {
+          continueLinkMobile.href = "donate-checkout-desktop-all-breakpoints.html?amount=" + amount;
+        }
+      }
+      
+      // Initialize with default amount ($5)
+      document.addEventListener('DOMContentLoaded', function() {
+        const fiveDollarButton = document.querySelector('.donation-amount[data-amount="5"]');
+        if (fiveDollarButton) {
+          updateContinueLink(5);
+        }
+      });
     </script>
   </body>
 </html>

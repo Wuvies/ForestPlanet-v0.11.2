@@ -76,6 +76,11 @@ input:focus {
  |               Button Styles               |
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+.button-width {
+  width: 100%;
+  box-shadow: none;
+}
+
 /* ------------ Tertiary Button ------------ */
 
 .tertiary-button {
@@ -302,6 +307,11 @@ input::placeholder {
   padding: 4px 6px;
   position: relative;
   width: 100%;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.content-wrapper:focus-within {
+  border-color: var(--salem);
 }
 
 .content-wrapper-romance {
@@ -348,7 +358,6 @@ input::placeholder {
   font-weight: 400;
   letter-spacing: 0;
   line-height: 20px;
-  margin-top: -1.00px;
   padding-left: 10px;
   position: relative;
   width: 100%;
@@ -899,6 +908,15 @@ input::placeholder {
   border: none;
   height: 2px;
   background-color: var(--mirage);
+  border-radius: 1px;
+  margin: 0;
+  width: 100%;
+}
+
+.line-mirage-2 {
+  border: none;
+  height: 2px;
+  background-color: var(--mirage-2);
   border-radius: 1px;
   margin: 0;
   width: 100%;
