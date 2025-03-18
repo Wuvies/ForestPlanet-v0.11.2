@@ -3625,7 +3625,10 @@ to{opacity: 1;
   overflow: hidden;
   border-radius: var(--border-radius-40);
   box-shadow: var(--box-shadow-large);
+  position: relative;
+  touch-action: none; /* Prevent default touch behaviors */
 }
+
 .landing-desktop-all-breakpoints .comparison figure {
   background-image: url(../img/after-image.jpg);
   background-size: cover;
@@ -3652,6 +3655,28 @@ to{opacity: 1;
   bottom: 0;
 }
 
+/* Handle styles - only visible on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .landing-desktop-all-breakpoints .comparison {
+    --handle-left: 50%;
+  }
+  
+  .landing-desktop-all-breakpoints .comparison::after {
+    content: '';
+    position: absolute;
+    background-image: url(../img/before-after-slider.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    left: var(--handle-left);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
 /* --- Mobile Comparison Slider Styles --- */
 .landing-mobile .comparison {
   width: 100%;
@@ -3660,6 +3685,8 @@ to{opacity: 1;
   overflow: hidden;
   border-radius: var(--border-radius-20);
   box-shadow: var(--box-shadow-large);
+  position: relative;
+  touch-action: none; /* Prevent default touch behaviors */
 }
 
 .landing-mobile .comparison figure {
@@ -3687,6 +3714,28 @@ to{opacity: 1;
   overflow: hidden;
   bottom: 0;
   height: 100%;
+}
+
+/* Handle styles - only visible on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .landing-mobile .comparison {
+    --handle-left: 50%;
+  }
+  
+  .landing-mobile .comparison::after {
+    content: '';
+    position: absolute;
+    background-image: url(../img/before-after-slider.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    left: var(--handle-left);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
 
 /* --- Partner Logo Carousel Styles --- */
@@ -3780,7 +3829,6 @@ to{opacity: 1;
   display: flex;
   gap: 1.5rem;
 }
-
 
 /* Mobile Styles (Half the size) */
 .landing-mobile .partner-card {
