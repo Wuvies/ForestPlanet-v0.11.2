@@ -146,10 +146,6 @@
   justify-content: center;
 }
 
-.stories-desktop-all-breakpoints .story-card-3 {
-  cursor: pointer;
-}
-
 .stories-desktop-all-breakpoints .rectangle-18-1 {
   height: 200px;
   object-fit: cover;
@@ -197,18 +193,6 @@
 .stories-desktop-all-breakpoints .frame {
   flex: 0 0 auto;
   position: relative;
-}
-
-.stories-desktop-all-breakpoints .story-card {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  width: 350px;
-  box-shadow: var(--box-shadow-small);
 }
 
 /* screen - stories-mobile */
@@ -399,18 +383,6 @@
   justify-content: center;
 }
 
-.stories-mobile .story-card-1 {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 30px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  width: 333px;
-}
-
 .stories-mobile .rectangle-18 {
   align-self: stretch;
   height: 174px;
@@ -418,12 +390,17 @@
   width: 100%;
 }
 
-.stories-mobile .story-card {
-  background-color: var(--romance);
-  border-radius: 30px;
-  overflow: hidden;
-  width: 333px;
-  box-shadow: var(--box-shadow-small);
+.stories-mobile .rectangle {
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .story {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .stories-mobile .quote {
@@ -467,19 +444,6 @@
   width: 100%;
 }
 
-.stories-mobile .rectangle {
-  object-fit: cover;
-  position: relative;
-  width: 100%;
-}
-
-.stories-mobile .story {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
 @media screen and (max-width: 901px) {
   .screen.stories-desktop-all-breakpoints { 
     display: none;
@@ -493,17 +457,6 @@
 
 /* Add responsive behavior for desktop view */
 @media screen and (min-width: 902px) and (max-width: 1200px) {
-  .stories-desktop-all-breakpoints .story-card {
-    width: calc(50% - 30px);
-    min-width: 300px;
-    max-width: 450px;
-  }
-  
-  .stories-desktop-all-breakpoints .rectangle-18-1 {
-    width: 100%;
-    height: 220px;
-  }
-  
   .stories-desktop-all-breakpoints .main-content-1 {
     padding: 0px 80px;
   }
@@ -512,29 +465,4 @@
 /* Add responsive behavior for frame-215 as well */
 .stories-desktop-all-breakpoints .frame-215 .frame-17 {
   justify-content: center;
-}
-
-/* Additional responsive styles for smaller screens */
-@media screen and (min-width: 550px) and (max-width: 901px) {
-  .stories-mobile .frame {
-    justify-content: center;
-  }
-  
-  .stories-mobile .story-card,
-  .stories-mobile .story-card-1 {
-    width: calc(50% - 24px);
-    min-width: 250px;
-  }
-  
-  .stories-mobile .rectangle-18 {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 549px) {
-  .stories-mobile .story-card,
-  .stories-mobile .story-card-1 {
-    width: 100%;
-    max-width: 333px;
-  }
 }

@@ -1872,6 +1872,96 @@ input::placeholder {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ |               Story Card Styles          |
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*
+.story-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+}
+*/
+
+.story-card {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 350px;
+  flex: 0 0 auto;
+  box-shadow: var(--box-shadow-small);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.story-card-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.story-card-content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  width: 100%;
+}
+
+.story-card-date {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.story-card-title {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 32px;
+  position: relative;
+}
+
+.story-card-description {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-self: stretch;
+  color: var(--mirage-2);
+  display: -webkit-box;
+  font-weight: 500;
+  line-height: 26px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 901px) {
+  .story-card {
+    width: 333px;
+  }
+  
+  .story-card-image {
+    height: 174px;
+  }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  |               Footer Styles               |
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

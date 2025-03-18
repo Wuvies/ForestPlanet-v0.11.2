@@ -1416,24 +1416,6 @@ to{opacity: 1;
   max-width: 1440px;
 }
 
-.landing-desktop-all-breakpoints .story-cards::-webkit-scrollbar {
-  display: none;
-  width: 0;
-}
-
-.landing-desktop-all-breakpoints .story-card-1 {
-  align-items: center;
-  background-color: var(--romance);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-  overflow: hidden;
-  position: relative;
-  width: 350px;
-  box-shadow: var(--box-shadow-small);
-}
-
 .landing-desktop-all-breakpoints .stories-button {
   display: flex;
   justify-content: flex-end;
@@ -3160,33 +3142,25 @@ to{opacity: 1;
   text-align: center;
 }
 
+.landing-mobile .story-cards {
+  flex-direction: row;
+  align-self: center;
+  flex: 0 0 auto;
+  gap: 30px;
+  min-width: 333px;
+  overflow-x: scroll;
+  width: 100%;
+  padding: 32px 30px;
+  align-items: center;
+  display: flex;
+}
+
 .landing-mobile .story-cards::-webkit-scrollbar {
   display: none;
   overflow: visible;
   width: 0;
 }
 
-.landing-mobile .story-cards {
-  align-self: center;
-  flex: 0 0 auto;
-  gap: 30px;
-  overflow: visible;
-  min-width: 333px;
-  overflow-x: scroll;
-  width: 100%;
-  padding: 32px 30px;
-}
-
-.landing-mobile .story-card {
-  align-items: center;
-  flex: 0 0 auto;
-  background-color: var(--romance);
-  border-radius: 30px;
-  flex-direction: column;
-  overflow: hidden;
-  width: 333px;
-  box-shadow: var(--box-shadow-small);
-}
 
 .landing-mobile .rectangle-18 {
   align-self: stretch;
@@ -3594,12 +3568,13 @@ to{opacity: 1;
   max-height: 38px;
   position: relative;
 }
-
+/*
 .landing-mobile .story {
   align-items: center;
   display: flex;
   position: relative;
 }
+*/
 
 .landing-mobile .where-weve {
   position: relative;
