@@ -363,6 +363,8 @@
   flex-wrap: wrap;
   gap: 30px 30px;
   width: 100%;
+  display: flex;
+  position: relative;
 }
 
 .invite-us-mobile .story-card {
@@ -467,10 +469,6 @@
   width: 100%;
 }
 
-.invite-us-mobile .story {
-  display: flex;
-  position: relative;
-}
 @media screen and (max-width: 901px) {
   .screen.invite-us-desktop-all-breakpoints { 
     display: none;

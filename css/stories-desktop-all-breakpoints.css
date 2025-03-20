@@ -146,6 +146,16 @@
   justify-content: center;
 }
 
+/* Card grid for mixed content */
+.stories-desktop-all-breakpoints .card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1110px;
+  width: 100%;
+  justify-content: center;
+}
+
 .stories-desktop-all-breakpoints .rectangle-18-1 {
   height: 200px;
   object-fit: cover;
@@ -192,6 +202,56 @@
 
 .stories-desktop-all-breakpoints .frame {
   flex: 0 0 auto;
+  position: relative;
+}
+
+/* Quote card styles for desktop */
+.stories-desktop-all-breakpoints .quote-card {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 350px;
+  height: 395px;
+  flex: 0 0 auto;
+  box-shadow: var(--box-shadow-small);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stories-desktop-all-breakpoints .quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.stories-desktop-all-breakpoints .quote-card-content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.stories-desktop-all-breakpoints .quote-text {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 48px;
+  font-size: 32px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .quote-attribution {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
   position: relative;
 }
 
@@ -444,6 +504,66 @@
   width: 100%;
 }
 
+/* Quote card styles for mobile */
+.stories-mobile .quote-card {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 333px;
+  height: 369px;
+  flex: 0 0 auto;
+  box-shadow: var(--box-shadow-small);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stories-mobile .quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.stories-mobile .quote-card-content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.stories-mobile .quote-text {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 48px;
+  font-size: 32px;
+  position: relative;
+}
+
+.stories-mobile .quote-attribution {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+/* Mobile card grid for mixed content */
+.stories-mobile .card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  padding: 0 30px;
+}
+
 @media screen and (max-width: 901px) {
   .screen.stories-desktop-all-breakpoints { 
     display: none;
@@ -453,16 +573,4 @@
   .screen.stories-mobile { 
     display: none;
    }
-}
-
-/* Add responsive behavior for desktop view */
-@media screen and (min-width: 902px) and (max-width: 1200px) {
-  .stories-desktop-all-breakpoints .main-content-1 {
-    padding: 0px 80px;
-  }
-}
-
-/* Add responsive behavior for frame-215 as well */
-.stories-desktop-all-breakpoints .frame-215 .frame-17 {
-  justify-content: center;
 }

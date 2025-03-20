@@ -51,6 +51,14 @@
   letter-spacing: 0;
 }
 
+.heading-4 {
+  font-family: var(--font-family-inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 .subtitle-1 {
   font-family: var(--font-family-inter);
   font-size: var(--font-size-28px);
@@ -173,6 +181,14 @@
 
 .inter-normal-mirage-16px {
   color: var(--mirage);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.inter-normal-romance-16px {
+  color: var(--romance);
   font-family: var(--font-family-inter);
   font-size: var(--font-size-s);
   font-style: normal;
