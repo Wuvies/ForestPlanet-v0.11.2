@@ -61,9 +61,17 @@
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
-  gap: 24px;
+  gap: 16px;
+  padding: 8px 165px;
+  margin-left: -165px;
+  margin-right: -165px;
+  width: calc(100% + 330px);
   position: relative;
-  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
 }
 
 .stories-desktop-all-breakpoints .latest-story {
@@ -253,6 +261,49 @@
   font-weight: 500;
   line-height: 40px;
   position: relative;
+}
+
+/* Quote card color themes for desktop */
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia {
+  background: linear-gradient(135deg, var(--fuchsia-blue) 0%, #6045a8 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia .quote-text,
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia .quote-attribution {
+  color: var(--white);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-salem {
+  background: linear-gradient(135deg, var(--salem) 0%, #007035 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-salem .quote-text,
+.stories-desktop-all-breakpoints .quote-card.theme-salem .quote-attribution {
+  color: var(--white);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-harp {
+  background: linear-gradient(135deg, var(--harp) 0%, #d8e7d6 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-harp .quote-attribution {
+  color: var(--salem);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-purple {
+  background: linear-gradient(135deg, #f0e6ff 0%, #e2d6f5 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-purple .quote-attribution {
+  color: var(--fuchsia-blue);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-green {
+  background: linear-gradient(135deg, #e8f5e6 0%, #d5ebd2 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-green .quote-attribution {
+  color: var(--salem);
 }
 
 /* screen - stories-mobile */
@@ -552,6 +603,49 @@
   font-weight: 500;
   line-height: 40px;
   position: relative;
+}
+
+/* Quote card color themes for mobile */
+.stories-mobile .quote-card.theme-fuchsia {
+  background: linear-gradient(135deg, var(--fuchsia-blue) 0%, #6045a8 100%);
+}
+
+.stories-mobile .quote-card.theme-fuchsia .quote-text,
+.stories-mobile .quote-card.theme-fuchsia .quote-attribution {
+  color: var(--white);
+}
+
+.stories-mobile .quote-card.theme-salem {
+  background: linear-gradient(135deg, var(--salem) 0%, #007035 100%);
+}
+
+.stories-mobile .quote-card.theme-salem .quote-text,
+.stories-mobile .quote-card.theme-salem .quote-attribution {
+  color: var(--white);
+}
+
+.stories-mobile .quote-card.theme-harp {
+  background: linear-gradient(135deg, var(--harp) 0%, #d8e7d6 100%);
+}
+
+.stories-mobile .quote-card.theme-harp .quote-attribution {
+  color: var(--salem);
+}
+
+.stories-mobile .quote-card.theme-soft-purple {
+  background: linear-gradient(135deg, #f0e6ff 0%, #e2d6f5 100%);
+}
+
+.stories-mobile .quote-card.theme-soft-purple .quote-attribution {
+  color: var(--fuchsia-blue);
+}
+
+.stories-mobile .quote-card.theme-soft-green {
+  background: linear-gradient(135deg, #e8f5e6 0%, #d5ebd2 100%);
+}
+
+.stories-mobile .quote-card.theme-soft-green .quote-attribution {
+  color: var(--salem);
 }
 
 /* Mobile card grid for mixed content */

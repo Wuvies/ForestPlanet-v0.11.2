@@ -20,7 +20,7 @@
       <header class="property-mobile">
         <div class="mobile-nav">
           <a href="index.html" aria-label="Home">
-            <img src="img/logos/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
+            <img src="img/FP-Logomark-RGB.svg" class="rgb-logo" alt="RGB Logo">
           </a>
           <a onclick="loadMobileMenuOverlay(); return false;" class="menu-button" aria-label="Open menu" id="menuButton">
             <img src="img/menu.svg" class="menu" alt="Menu Icon">
@@ -33,7 +33,7 @@
             <div class="heading">
               <h1 class="title">Our Stories</h1>
             </div>
-              <div class="catagories">
+            <div class="catagories">
                 <article class="secondary-button-mirage secondary-button">
                 <div class="secondary-button-mirage-text body-2-regular">Default</div>
               </article>
@@ -272,7 +272,9 @@
       <header class="header-romance">
         <div class="nav-bar">
           <a href="index.html">
-            <img src="img/logos/FP-Wordmark-RGB.svg" class="rgb-wordmark" alt="ForestPlanet Logo">
+            <svg class="rgb-wordmark" role="img" aria-label="ForestPlanet Logo">
+              <use href="img/sprite.svg#rgb-wordmark"></use>
+            </svg>
           </a>
           <div class="menu">
             <a href="about-desktop-all-breakpoints.html">
@@ -671,6 +673,35 @@
           return;
         }
         
+        // Available color themes for quote cards
+        var colorThemes = [
+          'theme-fuchsia',
+          'theme-salem',
+          'theme-harp',
+          'theme-soft-purple',
+          'theme-soft-green'
+        ];
+        
+        // Assign random color themes to quote cards
+        // Avoid consecutive quotes having the same color theme
+        var lastColorIndex = -1;
+        quoteCards.forEach(function(card) {
+          // Remove any existing theme classes
+          colorThemes.forEach(function(theme) {
+            card.classList.remove(theme);
+          });
+          
+          // Select a random theme, but not the same as the last one
+          var colorIndex;
+          do {
+            colorIndex = Math.floor(Math.random() * colorThemes.length);
+          } while (colorIndex === lastColorIndex && colorThemes.length > 1);
+          
+          // Add the selected theme class
+          card.classList.add(colorThemes[colorIndex]);
+          lastColorIndex = colorIndex;
+        });
+        
         // Shuffle both arrays
         shuffleArray(quoteCards);
         shuffleArray(storyCards);
@@ -780,14 +811,22 @@
           card.style.display = index < visibleCount ? "flex" : "none";
         });
         
-        // Center cards and store data for infinite scroll
-        container.style.justifyContent = "center";
+        // Set justification based on column count
+        if (columnsCount === 2) {
+          // For 2 columns, use space-around to give cards more room
+          container.style.justifyContent = "space-around";
+        } else {
+          // For 1 or 3 columns, center the cards
+          container.style.justifyContent = "center";
+        }
+        
+        // Store data for infinite scroll
         container.setAttribute('data-columns', columnsCount);
         container.setAttribute('data-visible-count', visibleCount);
         container.setAttribute('data-total-cards', totalCards);
         
-        // Hide load more buttons
-        var loadMoreButtons = document.querySelectorAll('.tertiary-button');
+        // Hide only the "Load More" buttons, not all tertiary buttons
+        var loadMoreButtons = document.querySelectorAll('.story-cards .tertiary-button, .story-cards-1 .tertiary-button');
         loadMoreButtons.forEach(function(button) {
           button.style.display = 'none';
         });
