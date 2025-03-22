@@ -164,6 +164,14 @@
   justify-content: center;
 }
 
+/* General story card styles for responsive display */
+.stories-desktop-all-breakpoints .story-card {
+  max-width: 350px;
+  min-width: 334px;
+  width: 100%;
+  flex: 1 1 334px;
+}
+
 .stories-desktop-all-breakpoints .rectangle-18-1 {
   height: 200px;
   object-fit: cover;
@@ -222,9 +230,11 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  width: 350px;
+  max-width: 350px;
+  min-width: 334px;
+  width: 100%;
   height: 395px;
-  flex: 0 0 auto;
+  flex: 1 1 334px;
   box-shadow: var(--box-shadow-small);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -558,17 +568,17 @@
 /* Quote card styles for mobile */
 .stories-mobile .quote-card {
   align-items: center;
-  background-color: var(--romance);
+  background: var(--romance);
   border-radius: 30px;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   overflow: hidden;
   position: relative;
   width: 333px;
   height: 369px;
-  flex: 0 0 auto;
   box-shadow: var(--box-shadow-small);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .stories-mobile .quote-card:hover {

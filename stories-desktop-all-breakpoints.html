@@ -658,11 +658,11 @@
       
       // ===== Main Functions =====
       
-      // Randomize the order of cards with improved distribution of quote cards
+      // Place quote cards randomly while keeping story cards in sequential order
       function randomizeCards(container) {
         if (!container) return;
         
-        // Separate quote cards and story cards
+        // Separate quote cards and story cards - maintain original order for story cards
         var cards = Array.from(container.children);
         var quoteCards = cards.filter(card => card.classList.contains('quote-card'));
         var storyCards = cards.filter(card => !card.classList.contains('quote-card'));
@@ -691,6 +691,16 @@
             card.classList.remove(theme);
           });
           
+          // Force card to use theme styling by removing inline styles
+          if (card.hasAttribute('style')) {
+            var display = card.style.display;
+            var opacity = card.style.opacity;
+            card.removeAttribute('style');
+            // Restore essential properties
+            if (display) card.style.display = display;
+            if (opacity) card.style.opacity = opacity;
+          }
+          
           // Select a random theme, but not the same as the last one
           var colorIndex;
           do {
@@ -702,64 +712,66 @@
           lastColorIndex = colorIndex;
         });
         
-        // Shuffle both arrays
+        // Shuffle only the quote cards to randomize their order
         shuffleArray(quoteCards);
-        shuffleArray(storyCards);
         
-        // Force proper distribution by positioning quotes explicitly
+        // Do NOT shuffle story cards - maintain sequential order for blog posts
+        // They're already in the correct order from the original DOM
+        
+        // Prepare variables for distribution
         var totalCards = cards.length;
         var numQuotes = quoteCards.length;
         
-        // Step 1: Create an empty array with positions for the quotes
-        var resultArray = new Array(totalCards);
-        
-        // Step 2: Calculate minimum spacing between quotes (at least 2 cards between them)
+        // Calculate appropriate spacing between quotes
         var minQuoteSpacing = Math.min(3, Math.floor(totalCards / numQuotes));
         
-        // Step 3: Place quotes first at well-spaced positions
-        var lastQuotePos = -minQuoteSpacing; // Start with negative position to ensure first position can be near start
+        // Create an empty array for final ordering
+        var resultArray = new Array(totalCards);
         
-        // Place each quote card
+        // Place quotes at well-spaced positions
+        var lastQuotePos = -minQuoteSpacing;
+        
+        // Place each quote card at a strategic position
         for (var i = 0; i < quoteCards.length; i++) {
-          // Calculate next position (ensure minimum spacing)
           var nextPos;
           
           if (i === 0) {
-            // First quote can be in first 3 positions
-            nextPos = Math.floor(Math.random() * 3);
+            // First quote can be in first few positions
+            nextPos = Math.floor(Math.random() * Math.min(3, totalCards));
           } else {
-            // Calculate a position with spacing between minQuoteSpacing and minQuoteSpacing*2
+            // Calculate position with appropriate spacing
             var minPos = lastQuotePos + minQuoteSpacing;
             var maxPos = Math.min(totalCards - (numQuotes - i), minPos + minQuoteSpacing);
             
-            // Ensure we don't exceed array bounds
+            // Ensure valid positions
             if (maxPos >= totalCards) maxPos = totalCards - 1;
             if (minPos >= maxPos) minPos = maxPos - 1;
             
-            // Get a random position in this range
+            // Get random position in this range
             nextPos = minPos + Math.floor(Math.random() * (maxPos - minPos + 1));
           }
           
-          // Place quote if position is valid
+          // Place quote card if position is valid
           if (nextPos < totalCards) {
             resultArray[nextPos] = quoteCards[i];
             lastQuotePos = nextPos;
           }
         }
         
-        // Step 4: Fill remaining positions with story cards
+        // Fill remaining positions with story cards - IN THEIR ORIGINAL ORDER
+        var storyIndex = 0;
         for (var j = 0; j < totalCards; j++) {
-          if (!resultArray[j] && storyCards.length > 0) {
-            resultArray[j] = storyCards.shift();
+          if (!resultArray[j] && storyIndex < storyCards.length) {
+            resultArray[j] = storyCards[storyIndex++];
           }
         }
         
-        // Step 5: Final sanity check - if any positions are empty, fill them
+        // Final sanity check - if any positions are empty, fill them
         for (var k = 0; k < totalCards; k++) {
           if (!resultArray[k]) {
             // If we ran out of story cards, repeat the last one
-            if (storyCards.length > 0) {
-              resultArray[k] = storyCards.shift();
+            if (storyIndex < storyCards.length) {
+              resultArray[k] = storyCards[storyIndex++];
             } else if (k > 0) {
               // Clone the previous card if it's not a quote
               var prevCard = resultArray[k-1];
@@ -770,7 +782,7 @@
           }
         }
         
-        // Step 6: Remove any null positions
+        // Remove any null positions
         var orderedCards = resultArray.filter(card => card);
         
         // Create a document fragment with the ordered cards
@@ -792,9 +804,21 @@
         var config = getConfig();
         var containerWidth = container.clientWidth;
         
-        // Calculate columns (min 1, max 3)
-        var columnsCount = Math.floor((containerWidth + config.gap) / (config.cardWidth + config.gap));
-        columnsCount = Math.max(1, Math.min(columnsCount, 3));
+        // Calculate columns based on container width for more responsive behavior
+        // We're accounting for the min-width of cards (334px) plus gap
+        var minCardWidthWithGap = 334 + config.gap;
+        
+        // Determine how many cards can fit at minimum width
+        var maxPossibleColumns = Math.floor(containerWidth / minCardWidthWithGap);
+        
+        // Ensure it's between 1 and 3 columns
+        var columnsCount = Math.max(1, Math.min(maxPossibleColumns, 3));
+        
+        // For tablet-sized screens specifically
+        if (containerWidth < 1100 && containerWidth > 750) {
+          // Force 2 columns for better tablet layout
+          columnsCount = 2;
+        }
         
         // Calculate visible cards count
         var visibleCount = columnsCount * gridState.currentVisibleRows;
@@ -994,6 +1018,11 @@
           // Reset to initial rows for the new screen size
           gridState.currentVisibleRows = config.initialRows;
           gridState.allCardsVisible = false;
+          
+          // Re-randomize cards when switching views to ensure proper theme application
+          setTimeout(function() {
+            randomizeCards(getVisibleContainer());
+          }, 50);
         }
         
         // Update layout
@@ -1001,6 +1030,24 @@
         
         // Check if we need to load more
         checkScrollPosition();
+      });
+
+      // Make sure quote cards are properly themed initially on mobile too
+      document.addEventListener("DOMContentLoaded", function() {
+        // Force randomizeCards to run after a short delay to ensure mobile theme application
+        setTimeout(function() {
+          if (window.innerWidth < 902) {
+            var mobileContainer = document.querySelector('.stories-mobile .card-grid');
+            if (mobileContainer) {
+              var mobileQuoteCards = mobileContainer.querySelectorAll('.quote-card');
+              mobileQuoteCards.forEach(function(card) {
+                // Remove any inline backgrounds that might override theme
+                card.style.background = '';
+              });
+              randomizeCards(mobileContainer);
+            }
+          }
+        }, 100);
       });
     </script>
   </body>
