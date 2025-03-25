@@ -1,0 +1,312 @@
+.partner-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--mirage);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.partner-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: 140px;
+  gap: 100px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-desktop-all-breakpoints .partner-form-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-desktop-all-breakpoints .title-1 {
+  align-self: stretch;
+  color: transparent;
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.partner-desktop-all-breakpoints .span-2 {
+  color: var(--romance);
+}
+
+.partner-desktop-all-breakpoints .span1-2 {
+  color: var(--salem);
+}
+
+.partner-desktop-all-breakpoints .frame-197-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 540px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-desktop-all-breakpoints .partner-input-fields {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.partner-desktop-all-breakpoints .text-2-1 {
+  align-self: stretch;
+  color: var(--razzmatazz);
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: -2.00px;
+  margin-top: -4.00px;
+  position: relative;
+}
+
+.partner-desktop-all-breakpoints .how-can-we-help-1 {
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.partner-desktop-all-breakpoints .rectangle-16-1 {
+  background-color: var(--salem);
+  border-radius: 3px;
+  height: 10px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 10px;
+}
+
+.partner-desktop-all-breakpoints .i-want-to-receive-up-1 {
+  color: var(--romance-2);
+  flex: 1;
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.partner-desktop-all-breakpoints .span-3 {
+  font-weight: 500;
+}
+
+.partner-desktop-all-breakpoints .default-11 {
+  color: var(--romance);
+}
+
+/* screen - partner-mobile */
+
+.partner-mobile {
+  align-items: center;
+  background-color: var(--mirage);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 393px;
+  position: relative;
+}
+
+.partner-mobile .header {
+  align-self: stretch;
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: 120px;
+  gap: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .partner-form {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 42px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .title {
+  align-self: stretch;
+  color: transparent;
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.partner-mobile .span {
+  color: var(--romance);
+}
+
+.partner-mobile .span1 {
+  color: var(--salem);
+}
+
+.partner-mobile .frame-197 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .frame-19 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .input {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  min-width: 116px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .text-2 {
+  align-self: stretch;
+  color: var(--razzmatazz);
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: -2.00px;
+  margin-top: -4.00px;
+  position: relative;
+}
+
+.partner-mobile .label-3 {
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.partner-mobile .how-can-we-help {
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.partner-mobile .wrapper-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 4px 6px 2px;
+  position: relative;
+}
+
+.partner-mobile .label-4 {
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.partner-mobile .frame-19-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.partner-mobile .rectangle-16 {
+  background-color: var(--salem);
+  border-radius: 3px;
+  height: 10px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 10px;
+}
+
+.partner-mobile .i-want-to-receive-up {
+  color: var(--romance-2);
+  flex: 1;
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.partner-mobile .span-1 {
+  font-weight: 500;
+}
+
+.partner-mobile .span1-1 {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+@media screen and (max-width: 901px) {
+  .screen.partner-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.partner-mobile { 
+    display: none;
+   }
+}

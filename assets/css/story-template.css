@@ -1,0 +1,201 @@
+/**
+ * ForestPlanet - Story Template Styles
+ * 
+ * This file contains styles for story pages in the ForestPlanet WordPress theme.
+ * It's organized to be responsive and work across different screen sizes.
+ */
+
+/* Common styles for all story pages */
+.fp-story {
+  background-color: var(--romance);
+  position: relative;
+  width: 100%;
+}
+
+/* Hero Section */
+.fp-story-hero {
+  align-items: center;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.fp-story-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 72.17%);
+  pointer-events: none;
+}
+
+.fp-story-hero-content {
+  max-width: 790px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.fp-story-title {
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: -1px;
+  text-align: center;
+}
+
+.fp-story-subtitle {
+  color: var(--romance);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+}
+
+/* Story Content Area */
+.fp-story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.fp-story-text {
+  color: var(--mirage);
+  line-height: 1.6;
+}
+
+.fp-story-text p {
+  margin-bottom: 1.5em;
+}
+
+.fp-story-text strong {
+  font-weight: 700;
+}
+
+.fp-story-text a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* Image Container */
+.fp-story-image-container {
+  display: flex;
+  flex: 1 1 auto;
+  align-self: stretch;
+  align-items: center;
+  padding: 16px;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  gap: 16px;
+}
+
+.fp-story-image {
+  border-radius: var(--border-radius-40);
+  box-shadow: var(--box-shadow-large);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  align-self: center;
+  height: auto;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out;
+}
+
+.fp-story-image:hover {
+  transform: scale(0.99);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.fp-story-image:active {
+  transform: scale(0.98);
+  box-shadow: var(--box-shadow-small);
+}
+
+.fp-story-image-caption {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Desktop specific styles */
+@media screen and (min-width: 902px) {
+  .fp-story-hero {
+    height: 60vh;
+    padding: 24px 20%;
+  }
+  
+  .fp-story-content {
+    max-width: 790px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    gap: 54px;
+  }
+  
+  .fp-story-text {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  
+  .fp-story-image {
+    max-width: 790px;
+  }
+  
+  .fp-story-image-caption {
+    max-width: 476px;
+  }
+}
+
+/* Mobile specific styles */
+@media screen and (max-width: 901px) {
+  .fp-story-hero {
+    height: 75vh;
+    padding: 24px 30px;
+  }
+  
+  .fp-story-content {
+    padding: 40px 30px;
+  }
+  
+  .fp-story-text {
+    font-size: 16px;
+  }
+  
+  .fp-story-image-caption {
+    max-width: 282px;
+  }
+  
+  .fp-story-image {
+    border-radius: var(--border-radius-20);
+  }
+}
+
+/* Additional mobile version with smaller border radius */
+@media screen and (max-width: 768px) {
+  .fp-story-image {
+    border-radius: var(--border-radius-20);
+  }
+}
+
+/* iOS Fix for Hero Background */
+/* iOS doesn't support background-attachment: fixed properly */
+@supports (-webkit-touch-callout: none) {
+  .fp-story-hero {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+} 

@@ -1,0 +1,712 @@
+.partners-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--mirage);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .header {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--mirage);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-desktop-all-breakpoints .menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  margin-left: -201px;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .tertiary-button {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .tertiary-button-1 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .default {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.partners-desktop-all-breakpoints .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0px 165px;
+  margin-top: 140px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-desktop-all-breakpoints .partners {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-desktop-all-breakpoints .title {
+  align-self: stretch;
+  color: var(--white);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxxl);
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: 72px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.partners-desktop-all-breakpoints .frame-222 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 30px 30px;
+  max-width: 1110px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-desktop-all-breakpoints .layer {
+  flex: 1;
+  flex-grow: 1;
+  height: 110px;
+  min-width: 350px;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .layer-6 {
+  cursor: pointer;
+  flex: 1;
+  flex-grow: 1;
+  height: 110px;
+  min-width: 350px;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .layer-7 {
+  flex: 1;
+  flex-grow: 1;
+  height: 110px;
+  min-width: 350px;
+  position: relative;
+}
+
+.partners-desktop-all-breakpoints .make-an-impact {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 95px 30px;
+  justify-content: center;
+  max-width: 1110px;
+  position: relative;
+  width: 100%;
+}
+
+/* screen - partners-mobile */
+
+.partners-mobile {
+  align-items: flex-start;
+  background-color: var(--mirage);
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  min-width: 393px;
+  position: relative;
+}
+
+.partners-mobile .header-1 {
+  align-self: stretch;
+  height: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-mobile .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding-top: 100px;
+  gap: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-mobile .partners-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.partners-mobile .title-1 {
+  align-self: stretch;
+  color: var(--white);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxl);
+  font-weight: 400;
+  letter-spacing: -0.96px;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.partners-mobile .frame-315 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  width: 100%;
+}
+
+.partners-mobile .layer-2 {
+  flex: 1;
+  flex-grow: 1;
+  height: 110px;
+  min-width: 333px;
+  position: relative;
+}
+
+.partners-mobile .layer-6-1 {
+  cursor: pointer;
+  flex: 1;
+  flex-grow: 1;
+  height: 110px;
+  min-width: 333px;
+  position: relative;
+}
+
+.partners-mobile .default-16 {
+  color: var(--mirage);
+}
+
+@media screen and (max-width: 901px) {
+  .screen.partners-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.partners-mobile { 
+    display: none;
+   }
+}
+
+/* New styles for partner cards */
+.partner-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  width: 100%;
+  max-width: 1110px;
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 333px;
+  min-width: 333px;
+  height: 110px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: var(--salem);
+  border-radius: 30px;
+  box-shadow: var(--box-shadow-small);
+  cursor: pointer; /* Make cards clickable */
+  transition: all 0.3s ease;
+  /* Remove default focus outline */
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 0;
+}
+
+.partner-card img {
+  position: relative;
+  width: 208px;
+  height: 80px;
+  object-fit: contain;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.4s ease;
+  z-index: 1;
+}
+
+.partner-card:hover {
+  box-shadow: var(--box-shadow-medium);
+}
+
+.partner-card:hover::before {
+  left: 0;
+}
+
+.partner-card:hover img {
+  filter: none;
+}
+
+/* Only show outline for keyboard navigation - not mouse clicks */
+.partner-cards:focus-within {
+  outline: none;
+}
+
+/* This keeps the focus indicator for keyboard users only */
+.partner-card:focus-visible {
+  outline: 0.125rem solid var(--fuchsia-blue);
+  outline-offset: 0.125rem;
+}
+
+/* Remove focus styling for mouse clicks */
+.partner-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Palmer Foundation Section - Desktop */
+.palmer-foundation {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.foundation-title {
+  align-self: stretch;
+  color: var(--white);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxl);
+  font-weight: 400;
+  letter-spacing: 0.40px;
+  line-height: 60px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.foundation-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  justify-content: space-between;
+  max-width: 1110px;
+  width: 100%;
+}
+
+.foundation-image {
+  flex: 0 0 300px;
+  overflow: hidden;
+  object-fit: cover;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+}
+
+.foundation-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.foundation-text {
+  flex: 1;
+  min-width: 300px;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.foundation-text p {
+  color: var(--white);
+  line-height: 1.7;
+}
+
+.foundation-quote {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--fuchsia-blue) !important;
+  font-size: 1.1em;
+  border-left: 3px solid var(--salem);
+  padding-left: 16px;
+}
+
+/* Palmer Foundation Section - Mobile */
+.palmer-foundation-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 901px) {
+  .palmer-foundation {
+    display: none;
+  }
+  
+  .palmer-foundation-mobile {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    width: 100%;
+    padding: 32px 30px;
+  }
+  
+  .foundation-title-mobile {
+    align-self: stretch;
+    color: var(--white);
+    font-family: var(--font-family-libre_baskerville);
+    font-size: var(--font-size-xl);
+    font-weight: 400;
+    letter-spacing: 0.36px;
+    line-height: 48px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .foundation-content-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .foundation-image-mobile {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    object-fit: cover;
+    filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  }
+  
+  .foundation-image-mobile img {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .foundation-text-mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .foundation-text-mobile p {
+    color: var(--white);
+    line-height: 1.6;
+  }
+  
+  .foundation-quote-mobile {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--fuchsia-blue) !important;
+    font-size: 1.05em;
+    border-left: 3px solid var(--salem);
+    padding-left: 12px;
+  }
+}
+
+/* Partner Modal Styles */
+.partner-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(25, 25, 35, 0.9);
+  display: none; /* Changed from flex to none to support FLIP animation */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(3px);
+}
+
+.partner-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.partner-modal-container {
+  background-color: var(--romance);
+  border-radius: 30px;
+  width: 60%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: var(--mirage);
+  box-shadow: var(--box-shadow-large);
+  will-change: transform, opacity;
+  transform-origin: top left; /* Important for scaling animation */
+  backface-visibility: hidden; /* Prevents flickering */
+  -webkit-font-smoothing: antialiased; /* Smoother text during animation */
+  outline: none; /* Remove any potential outline */
+}
+
+/* Custom animation for modal content to fade in as modal opens */
+.partner-modal-container .partner-modal-content > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition-delay: 0.15s; /* Reduced delay to make content appear faster */
+}
+
+/* Add faster timing for logo to appear first */
+.partner-modal-container .partner-modal-image {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition-delay: 0.05s; /* Very short delay for the logo */
+}
+
+.partner-modal-overlay.active .partner-modal-content > *,
+.partner-modal-overlay.active .partner-modal-image {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.partner-modal-container.animate-transform {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.partner-card {
+  will-change: transform;
+  transform-origin: top left;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.partner-card.card-opening {
+  opacity: 0;
+  pointer-events: none;
+  outline: none !important; /* Force no outline when opening */
+}
+
+/* Remove any possibility of focus styles during animation */
+.partner-card:active,
+.partner-card.card-opening:focus,
+.partner-card.card-opening:focus-visible {
+  outline: none !important;
+}
+
+.partner-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid rgba(25, 25, 35, 0.1);
+  position: relative;
+}
+
+.partner-modal-title {
+  margin: 0;
+  padding: 0px 24px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.partner-modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 0;
+  color: var(--mirage);
+  position: absolute;
+  right: 24px;
+  top: 16px;
+  transition: color 0.2s ease;
+}
+
+.partner-modal-close:hover {
+  color: var(--romance);
+}
+
+.partner-modal-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.partner-modal-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.partner-modal-logo {
+  max-width: 200px;
+  max-height: 120px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  will-change: opacity, transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.partner-modal-description {
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.partner-modal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-modal-link {
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: center;
+  height: 38px;
+  position: relative;
+  border: 2px solid;
+  border-color: var(--mirage);
+  cursor: pointer;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-bottom: -1.00px;
+  margin-top: -1.00px;
+  padding: 7px 16px;
+  transition: all 0.2s ease;
+}
+
+.partner-modal-link:hover {
+  background-color: var(--mirage);
+  color: var(--romance);
+}
+
+.partner-modal-link:hover .secondary-button-mirage-text {
+  color: var(--romance);
+}
+
+.partner-modal-link .link-external {
+  filter: invert(91%) sepia(8%) saturate(65%) hue-rotate(186deg) brightness(92%) contrast(93%);
+}
+
+.partner-modal-link .link-external {
+  transition: transform 0.2s ease;
+}
+
+.partner-modal-link:hover .link-external {
+  transform: translateX(4px);
+  filter: none;
+}
+
+/* Mobile styles for the modal */
+@media screen and (max-width: 901px) {
+  .partner-modal-container {
+    width: 85%;
+    max-width: none;
+    max-height: 85vh;
+  }
+  
+  .partner-modal-content {
+    padding: 20px 16px;
+  }
+  
+  .partner-modal-header {
+    padding: 16px;
+  }
+
+  .partner-modal-title {
+    font-size: 24px;
+  }
+
+  .partner-modal-close {
+    right: 16px;
+    top: 12px;
+    font-size: 28px;
+  }
+
+  .partner-modal-logo {
+    max-width: 160px;
+    max-height: 100px;
+  }
+}
+
+/* Ensure transitions play correctly even when modal becomes active during animation */
+.partner-modal-container.animate-transform + .partner-modal-content > *,
+.partner-modal-container.animate-transform .partner-modal-image {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.partner-modal-overlay.active .partner-modal-container.animate-transform + .partner-modal-content > *,
+.partner-modal-overlay.active .partner-modal-container.animate-transform .partner-modal-image {
+  opacity: 1;
+  transform: translateY(0);
+}
