@@ -20,7 +20,7 @@
 
 .about-desktop-all-breakpoints .hero-1 {
   align-self: stretch;
-  background-image: url(../img/hero-about-low.webp);
+  background-image: url(../images/hero-about-low.webp);
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
@@ -535,7 +535,7 @@
 
 .about-mobile .hero {
   align-self: stretch;
-  background-image: url(../img/hero-about-low.webp);
+  background-image: url(../images/hero-about-low.webp);
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;

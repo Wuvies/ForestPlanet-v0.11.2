@@ -72,6 +72,11 @@ function forestplanet_enqueue_styles() {
     if (is_page_template('page-partner-confirmation.php')) {
         wp_enqueue_style('forestplanet-partner-confirmation', get_template_directory_uri() . '/assets/css/partner-confirmation.css', ['forestplanet-styleguide', 'forestplanet-main'], '1.0.0');
     }
+    
+    // Stories page styles - only on stories page template
+    if (is_page_template('page-stories.php')) {
+        wp_enqueue_style('forestplanet-stories', get_template_directory_uri() . '/assets/css/stories.css', ['forestplanet-styleguide', 'forestplanet-main'], '1.0.0');
+    }
 }
 add_action('wp_enqueue_scripts', 'forestplanet_enqueue_styles');
 
@@ -185,12 +190,12 @@ function forestplanet_get_mobile_menu_items() {
  * Enqueue story template styles
  */
 function forestplanet_enqueue_story_styles() {
-    // Only enqueue on single post templates or story templates
-    if (is_single() || is_page_template('single-story.php') || is_page_template('template-story.php')) {
+    // Only enqueue on single story posts or story archives
+    if (is_singular('story') || is_post_type_archive('story') || is_tax('story_category')) {
         wp_enqueue_style(
             'forestplanet-story-template', 
             get_template_directory_uri() . '/assets/css/story-template.css',
-            array(),
+            array('forestplanet-styleguide', 'forestplanet-main'),
             wp_get_theme()->get('Version')
         );
     }
@@ -262,3 +267,305 @@ function forestplanet_theme_setup() {
     ]);
 }
 add_action('after_setup_theme', 'forestplanet_theme_setup');
+
+/**
+ * Register custom post types
+ */
+function forestplanet_register_post_types() {
+    // Register Story custom post type
+    $labels = [
+        'name'                  => _x('Stories', 'Post type general name', 'forestplanet'),
+        'singular_name'         => _x('Story', 'Post type singular name', 'forestplanet'),
+        'menu_name'             => _x('Stories', 'Admin Menu text', 'forestplanet'),
+        'name_admin_bar'        => _x('Story', 'Add New on Toolbar', 'forestplanet'),
+        'add_new'               => __('Add New', 'forestplanet'),
+        'add_new_item'          => __('Add New Story', 'forestplanet'),
+        'new_item'              => __('New Story', 'forestplanet'),
+        'edit_item'             => __('Edit Story', 'forestplanet'),
+        'view_item'             => __('View Story', 'forestplanet'),
+        'all_items'             => __('All Stories', 'forestplanet'),
+        'search_items'          => __('Search Stories', 'forestplanet'),
+        'parent_item_colon'     => __('Parent Stories:', 'forestplanet'),
+        'not_found'             => __('No stories found.', 'forestplanet'),
+        'not_found_in_trash'    => __('No stories found in Trash.', 'forestplanet'),
+        'featured_image'        => _x('Story Cover Image', 'Overrides the "Featured Image" phrase', 'forestplanet'),
+        'set_featured_image'    => _x('Set cover image', 'Overrides the "Set featured image" phrase', 'forestplanet'),
+        'remove_featured_image' => _x('Remove cover image', 'Overrides the "Remove featured image" phrase', 'forestplanet'),
+        'use_featured_image'    => _x('Use as cover image', 'Overrides the "Use as featured image" phrase', 'forestplanet'),
+        'archives'              => _x('Story archives', 'The post type archive label used in nav menus', 'forestplanet'),
+        'insert_into_item'      => _x('Insert into story', 'Overrides the "Insert into post" phrase', 'forestplanet'),
+        'uploaded_to_this_item' => _x('Uploaded to this story', 'Overrides the "Uploaded to this post" phrase', 'forestplanet'),
+        'filter_items_list'     => _x('Filter stories list', 'Screen reader text for the filter links', 'forestplanet'),
+        'items_list_navigation' => _x('Stories list navigation', 'Screen reader text for the pagination', 'forestplanet'),
+        'items_list'            => _x('Stories list', 'Screen reader text for the items list', 'forestplanet'),
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => ['slug' => 'stories'],
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-book-alt',
+        'supports'           => ['title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'],
+        'show_in_rest'       => true,
+    ];
+
+    register_post_type('story', $args);
+    
+    // Register Story Category taxonomy
+    $tax_labels = [
+        'name'                       => _x('Story Categories', 'taxonomy general name', 'forestplanet'),
+        'singular_name'              => _x('Story Category', 'taxonomy singular name', 'forestplanet'),
+        'search_items'               => __('Search Story Categories', 'forestplanet'),
+        'popular_items'              => __('Popular Story Categories', 'forestplanet'),
+        'all_items'                  => __('All Story Categories', 'forestplanet'),
+        'parent_item'                => __('Parent Story Category', 'forestplanet'),
+        'parent_item_colon'          => __('Parent Story Category:', 'forestplanet'),
+        'edit_item'                  => __('Edit Story Category', 'forestplanet'),
+        'update_item'                => __('Update Story Category', 'forestplanet'),
+        'add_new_item'               => __('Add New Story Category', 'forestplanet'),
+        'new_item_name'              => __('New Story Category Name', 'forestplanet'),
+        'separate_items_with_commas' => __('Separate story categories with commas', 'forestplanet'),
+        'add_or_remove_items'        => __('Add or remove story categories', 'forestplanet'),
+        'choose_from_most_used'      => __('Choose from the most used story categories', 'forestplanet'),
+        'not_found'                  => __('No story categories found.', 'forestplanet'),
+        'menu_name'                  => __('Story Categories', 'forestplanet'),
+    ];
+
+    $tax_args = [
+        'hierarchical'      => true,
+        'labels'            => $tax_labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => ['slug' => 'story-category'],
+        'show_in_rest'      => true,
+    ];
+
+    register_taxonomy('story_category', ['story'], $tax_args);
+}
+add_action('init', 'forestplanet_register_post_types');
+
+/**
+ * AJAX handler for loading more stories
+ */
+function forestplanet_load_more_stories() {
+    // Verify nonce for security
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'load_more_stories_nonce')) {
+        wp_send_json_error('Invalid security token');
+        die();
+    }
+
+    // Get variables from request
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $category = isset($_POST['category']) ? intval($_POST['category']) : 0;
+    
+    // Set up quote content for interspersing
+    $quotes = array(
+        array(
+            'text' => 'The best time to plant a tree is 20 years ago. The second best time is NOW.',
+            'attribution' => 'African Proverb'
+        ),
+        array(
+            'text' => 'He who plants a tree plants hope.',
+            'attribution' => 'Lucy Larcom'
+        ),
+        array(
+            'text' => 'The creation of a thousand forests is in one acorn.',
+            'attribution' => 'Ralph Waldo Emerson'
+        ),
+        array(
+            'text' => 'Trees are poems that the earth writes upon the sky.',
+            'attribution' => 'Kahlil Gibran'
+        )
+    );
+    
+    // Query arguments
+    $args = array(
+        'post_type' => 'story',
+        'posts_per_page' => 12,
+        'paged' => $page,
+        'offset' => ($page === 1) ? 1 : 0, // Skip featured post only on first page
+    );
+    
+    // Add category if specified
+    if ($category > 0) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'story_category',
+                'field' => 'term_id',
+                'terms' => $category
+            )
+        );
+    }
+    
+    $stories_query = new WP_Query($args);
+    $html = '';
+    
+    // Counter for inserting quotes
+    $post_count = 0;
+    $quote_index = 0;
+    
+    if ($stories_query->have_posts()) {
+        ob_start(); // Start output buffering
+        
+        while ($stories_query->have_posts()) {
+            $stories_query->the_post();
+            
+            // Get story categories for data attributes
+            $story_categories = get_the_terms(get_the_ID(), 'story_category');
+            $category_classes = '';
+            $category_slugs = array();
+            
+            if(!empty($story_categories) && !is_wp_error($story_categories)) {
+                foreach($story_categories as $cat) {
+                    $category_classes .= ' category-' . $cat->slug;
+                    $category_slugs[] = $cat->slug;
+                }
+            }
+            
+            // Display a story
+            ?>
+            <a href="<?php the_permalink(); ?>">
+                <article class="story-card<?php echo esc_attr($category_classes); ?>" data-categories="<?php echo esc_attr(implode(',', $category_slugs)); ?>">
+                    <?php if(has_post_thumbnail()): ?>
+                        <img class="story-card-image" src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
+                    <?php endif; ?>
+                    <div class="story-card-content">
+                        <div class="story-card-date subtitle-2"><?php echo esc_html(get_the_date('M d Y')); ?></div>
+                        <p class="story-card-title body-1-semibold"><?php echo esc_html(get_the_title()); ?></p>
+                        <p class="story-card-description body-2-regular">
+                            <?php echo wp_trim_words(get_the_excerpt(), 12, '...'); ?>
+                        </p>
+                    </div>
+                </article>
+            </a>
+            <?php
+            
+            $post_count++;
+            
+            // Insert a quote after every 3-4 posts (if we still have quotes)
+            if($post_count % 3 == 0 && $quote_index < count($quotes)): ?>
+                <article class="quote-card">
+                    <div class="quote-card-content">
+                        <p class="quote-text heading-3">
+                            <?php echo esc_html($quotes[$quote_index]['text']); ?>
+                        </p>
+                        <div class="quote-attribution body-1-regular"><?php echo esc_html($quotes[$quote_index]['attribution']); ?></div>
+                    </div>
+                </article>
+                <?php
+                $quote_index++;
+            endif;
+        }
+        
+        wp_reset_postdata();
+        $html = ob_get_clean(); // Get the buffered content
+    }
+    
+    wp_send_json_success(array(
+        'html' => $html,
+        'found_posts' => $stories_query->found_posts,
+        'max_pages' => $stories_query->max_num_pages
+    ));
+    
+    die();
+}
+add_action('wp_ajax_load_more_stories', 'forestplanet_load_more_stories');
+add_action('wp_ajax_nopriv_load_more_stories', 'forestplanet_load_more_stories');
+
+/**
+ * Create default story categories on theme activation
+ */
+function forestplanet_create_default_categories() {
+    // Define default story categories
+    $default_categories = array(
+        'agroforestry' => 'Agroforestry',
+        'mangroves' => 'Mangroves',
+        'tree-nursery' => 'Tree Nursery',
+        'technology' => 'Technology',
+        'partners' => 'Partners'
+    );
+    
+    // Loop through each category and add it if it doesn't exist
+    foreach ($default_categories as $slug => $name) {
+        if (!term_exists($slug, 'story_category')) {
+            wp_insert_term(
+                $name,
+                'story_category',
+                array(
+                    'slug' => $slug,
+                    'description' => 'Stories about ' . strtolower($name)
+                )
+            );
+        }
+    }
+}
+add_action('after_switch_theme', 'forestplanet_create_default_categories');
+
+/**
+ * Enqueue story archive styles
+ */
+function forestplanet_enqueue_story_archive_styles() {
+    // Only enqueue on story archives or taxonomy pages
+    if (is_post_type_archive('story') || is_tax('story_category')) {
+        wp_enqueue_style('forestplanet-stories', get_template_directory_uri() . '/assets/css/stories.css', ['forestplanet-styleguide', 'forestplanet-main'], '1.0.0');
+        
+        // Add custom pagination styles
+        wp_add_inline_style('forestplanet-stories', '
+            .stories-mobile .pagination,
+            .stories-desktop-all-breakpoints .pagination {
+                margin-top: 2rem;
+                text-align: center;
+            }
+            
+            .pagination ul {
+                display: flex;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .pagination li {
+                margin: 0 0.25rem;
+            }
+            
+            .pagination a,
+            .pagination span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 2.5rem;
+                height: 2.5rem;
+                padding: 0 0.75rem;
+                background-color: #f5f5f5;
+                color: #333;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+            
+            .pagination a:hover,
+            .pagination span.current {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            .pagination .prev,
+            .pagination .next {
+                padding: 0 1rem;
+            }
+        ');
+    }
+}
+add_action('wp_enqueue_scripts', 'forestplanet_enqueue_story_archive_styles');
