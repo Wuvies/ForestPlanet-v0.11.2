@@ -28,6 +28,8 @@ if (is_page_template('template-donate.php') || is_page_template('donate-desktop-
     $header_style = 'mirage'; // Dark header for partner pages
 } elseif (is_page_template('invite-us-confirmation.php') || is_page_template('template-invite.php') || is_page_template('page-invite.php') || is_page('invite-us') || is_page('invite')) {
     $header_style = 'fuchsia-blue'; // Purple header for invite pages
+} elseif (is_post_type_archive('partner') || is_tax('partner_category')) {
+    $header_style = 'mirage'; // Dark header for partner archive pages
 }
 
 // Allow header style override using custom field
@@ -63,7 +65,7 @@ $header_style = apply_filters('forestplanet_header_style', $header_style);
                     <div class="tertiary-<?php echo $header_style === 'romance' ? 'mirage' : 'romance'; ?> body-2-regular">Contact</div>
                 </div>
             </a>
-            <a href="<?php echo esc_url(home_url('/partners')); ?>">
+            <a href="<?php echo esc_url(get_post_type_archive_link('partner')); ?>"> 
                 <div class="tertiary-button">
                     <div class="tertiary-<?php echo $header_style === 'romance' ? 'mirage' : 'romance'; ?> body-2-regular">Partners</div>
                 </div>

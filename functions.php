@@ -777,3 +777,315 @@ function forestplanet_enqueue_story_archive_styles() {
     }
 }
 add_action('wp_enqueue_scripts', 'forestplanet_enqueue_story_archive_styles');
+
+/**
+ * Register Partner custom post type
+ */
+function forestplanet_register_partner_post_type() {
+    // Register Partner custom post type
+    $labels = [
+        'name'                  => _x('Partners', 'Post type general name', 'forestplanet'),
+        'singular_name'         => _x('Partner', 'Post type singular name', 'forestplanet'),
+        'menu_name'             => _x('Partners', 'Admin Menu text', 'forestplanet'),
+        'name_admin_bar'        => _x('Partner', 'Add New on Toolbar', 'forestplanet'),
+        'add_new'               => __('Add New', 'forestplanet'),
+        'add_new_item'          => __('Add New Partner', 'forestplanet'),
+        'new_item'              => __('New Partner', 'forestplanet'),
+        'edit_item'             => __('Edit Partner', 'forestplanet'),
+        'view_item'             => __('View Partner', 'forestplanet'),
+        'all_items'             => __('All Partners', 'forestplanet'),
+        'search_items'          => __('Search Partners', 'forestplanet'),
+        'parent_item_colon'     => __('Parent Partners:', 'forestplanet'),
+        'not_found'             => __('No partners found.', 'forestplanet'),
+        'not_found_in_trash'    => __('No partners found in Trash.', 'forestplanet'),
+        'featured_image'        => _x('Partner Logo', 'Overrides the "Featured Image" phrase', 'forestplanet'),
+        'set_featured_image'    => _x('Set partner logo', 'Overrides the "Set featured image" phrase', 'forestplanet'),
+        'remove_featured_image' => _x('Remove partner logo', 'Overrides the "Remove featured image" phrase', 'forestplanet'),
+        'use_featured_image'    => _x('Use as partner logo', 'Overrides the "Use as featured image" phrase', 'forestplanet'),
+        'archives'              => _x('Partner archives', 'The post type archive label used in nav menus', 'forestplanet'),
+        'insert_into_item'      => _x('Insert into partner', 'Overrides the "Insert into post" phrase', 'forestplanet'),
+        'uploaded_to_this_item' => _x('Uploaded to this partner', 'Overrides the "Uploaded to this post" phrase', 'forestplanet'),
+        'filter_items_list'     => _x('Filter partners list', 'Screen reader text for the filter links', 'forestplanet'),
+        'items_list_navigation' => _x('Partners list navigation', 'Screen reader text for the pagination', 'forestplanet'),
+        'items_list'            => _x('Partners list', 'Screen reader text for the items list', 'forestplanet'),
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => ['slug' => 'partners'],
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 7,
+        'menu_icon'          => 'dashicons-groups',
+        'supports'           => ['title', 'editor', 'thumbnail'],
+        'show_in_rest'       => true,
+    ];
+
+    register_post_type('partner', $args);
+    
+    // Register Partner Category taxonomy
+    $tax_labels = [
+        'name'                       => _x('Partner Categories', 'taxonomy general name', 'forestplanet'),
+        'singular_name'              => _x('Partner Category', 'taxonomy singular name', 'forestplanet'),
+        'search_items'               => __('Search Partner Categories', 'forestplanet'),
+        'popular_items'              => __('Popular Partner Categories', 'forestplanet'),
+        'all_items'                  => __('All Partner Categories', 'forestplanet'),
+        'parent_item'                => __('Parent Partner Category', 'forestplanet'),
+        'parent_item_colon'          => __('Parent Partner Category:', 'forestplanet'),
+        'edit_item'                  => __('Edit Partner Category', 'forestplanet'),
+        'update_item'                => __('Update Partner Category', 'forestplanet'),
+        'add_new_item'               => __('Add New Partner Category', 'forestplanet'),
+        'new_item_name'              => __('New Partner Category Name', 'forestplanet'),
+        'separate_items_with_commas' => __('Separate partner categories with commas', 'forestplanet'),
+        'add_or_remove_items'        => __('Add or remove partner categories', 'forestplanet'),
+        'choose_from_most_used'      => __('Choose from the most used partner categories', 'forestplanet'),
+        'not_found'                  => __('No partner categories found.', 'forestplanet'),
+        'menu_name'                  => __('Partner Categories', 'forestplanet'),
+    ];
+
+    $tax_args = [
+        'hierarchical'      => true,
+        'labels'            => $tax_labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => ['slug' => 'partner-category'],
+        'show_in_rest'      => true,
+    ];
+
+    register_taxonomy('partner_category', ['partner'], $tax_args);
+}
+add_action('init', 'forestplanet_register_partner_post_type');
+
+/**
+ * Register ACF fields for Partner post type
+ */
+function forestplanet_register_partner_acf_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_partner_details',
+            'title' => 'Partner Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_partner_logo_id',
+                    'label' => 'Partner Logo ID',
+                    'name' => 'partner_logo_id',
+                    'type' => 'text',
+                    'instructions' => 'This is used to identify the partner in the system. Leave blank to auto-generate.',
+                    'required' => 0,
+                    'placeholder' => 'e.g. wyld-coffee',
+                ),
+                array(
+                    'key' => 'field_partner_website',
+                    'label' => 'Website URL',
+                    'name' => 'partner_website',
+                    'type' => 'url',
+                    'instructions' => 'Enter the URL of the partner\'s website',
+                    'required' => 0,
+                    'placeholder' => 'https://...',
+                ),
+                array(
+                    'key' => 'field_partner_short_description',
+                    'label' => 'Short Description',
+                    'name' => 'partner_short_description',
+                    'type' => 'textarea',
+                    'instructions' => 'Brief description (1-2 sentences) for the partner card modal',
+                    'required' => 0,
+                    'placeholder' => 'Describe the partner briefly',
+                    'rows' => 3,
+                    'maxlength' => 250,
+                ),
+                array(
+                    'key' => 'field_partner_is_foundation',
+                    'label' => 'Is Foundation',
+                    'name' => 'partner_is_foundation',
+                    'type' => 'true_false',
+                    'instructions' => 'Is this partner a foundation?',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                ),
+                array(
+                    'key' => 'field_partner_foundation_quote',
+                    'label' => 'Foundation Quote',
+                    'name' => 'partner_foundation_quote',
+                    'type' => 'textarea',
+                    'instructions' => 'A quote to display for foundation partners',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_partner_is_foundation',
+                                'operator' => '==',
+                                'value' => 1,
+                            ),
+                        ),
+                    ),
+                    'placeholder' => 'e.g. "Together, we\'re creating a greener future..."',
+                    'rows' => 3,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'partner',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 1,
+        ));
+    }
+}
+add_action('acf/init', 'forestplanet_register_partner_acf_fields');
+
+/**
+ * Create default partner categories on theme activation
+ */
+function forestplanet_create_default_partner_categories() {
+    // Define default partner categories
+    $default_partner_categories = array(
+        'business' => 'Businesses',
+        'foundation' => 'Foundations',
+        'non-profit' => 'Non-Profits',
+        'education' => 'Educational Institutions'
+    );
+    
+    // Loop through each partner category and add it if it doesn't exist
+    foreach ($default_partner_categories as $slug => $name) {
+        if (!term_exists($slug, 'partner_category')) {
+            wp_insert_term(
+                $name,
+                'partner_category',
+                array(
+                    'slug' => $slug,
+                    'description' => 'Partners in the ' . strtolower($name) . ' category'
+                )
+            );
+        }
+    }
+}
+add_action('after_switch_theme', 'forestplanet_create_default_partner_categories');
+
+/**
+ * Enqueue partners page styles and scripts
+ */
+function forestplanet_enqueue_partners_scripts() {
+    // Only enqueue on partners page or partner archives
+    if (is_post_type_archive('partner') || is_tax('partner_category') || is_page('partners')) {
+        // Enqueue partner styles
+        wp_enqueue_style(
+            'forestplanet-partners-style', 
+            get_template_directory_uri() . '/assets/css/partners.css',
+            array('forestplanet-styleguide', 'forestplanet-main'),
+            wp_get_theme()->get('Version')
+        );
+        
+        // Enqueue partner modal script
+        wp_enqueue_script(
+            'forestplanet-partner-modal',
+            get_template_directory_uri() . '/assets/js/partner-modal.js',
+            array('jquery'),
+            wp_get_theme()->get('Version'),
+            true
+        );
+        
+        // Pass partner data to JavaScript
+        $partners_data = forestplanet_get_partners_data();
+        wp_localize_script(
+            'forestplanet-partner-modal',
+            'forestPlanetPartners',
+            array('partnerData' => $partners_data)
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'forestplanet_enqueue_partners_scripts');
+
+/**
+ * Get all partners data for JavaScript
+ *
+ * @return array Array of partner data for JS
+ */
+function forestplanet_get_partners_data() {
+    $partners_data = array();
+    
+    $partners_query = new WP_Query(array(
+        'post_type' => 'partner',
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order' => 'ASC'
+    ));
+    
+    if ($partners_query->have_posts()) {
+        while ($partners_query->have_posts()) {
+            $partners_query->the_post();
+            $post_id = get_the_ID();
+            
+            // Get partner logo ID (used for identifying the partner in JS)
+            $partner_logo_id = get_field('partner_logo_id', $post_id);
+            if (empty($partner_logo_id)) {
+                // Create a slug from the title if no custom ID is set
+                $partner_logo_id = sanitize_title(get_the_title());
+            }
+            
+            // Get logo URL
+            $logo_url = '';
+            if (has_post_thumbnail($post_id)) {
+                $logo_url = get_the_post_thumbnail_url($post_id, 'medium');
+            }
+            
+            // Get partner details
+            $partners_data[$partner_logo_id] = array(
+                'name' => get_the_title(),
+                'description' => get_field('partner_short_description', $post_id),
+                'website' => get_field('partner_website', $post_id),
+                'logoSrc' => $logo_url,
+                'isFoundation' => get_field('partner_is_foundation', $post_id),
+                'foundationQuote' => get_field('partner_foundation_quote', $post_id)
+            );
+        }
+    }
+    
+    wp_reset_postdata();
+    
+    return $partners_data;
+}
+
+/**
+ * Helper function to display a partner card
+ *
+ * @param int|WP_Post $post_id Post ID or post object. Default is global $post.
+ * @return void
+ */
+function forestplanet_display_partner_card($post_id = null) {
+    // If $post_id is not provided, use the current post
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+    
+    // Check if post exists and is a partner
+    $post = get_post($post_id);
+    if (!$post || get_post_type($post) !== 'partner') {
+        return;
+    }
+    
+    // Pass the arguments to the template part
+    get_template_part('template-parts/partners/card', null, array(
+        'post_id' => $post_id
+    ));
+}

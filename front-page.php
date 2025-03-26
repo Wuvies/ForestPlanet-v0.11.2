@@ -210,41 +210,105 @@ get_header();
                 <div class="scrolling-track">
                     <div class="scrolling-group">
                         <?php
-                        // Partner logos
-                        $partner_logos = array(
-                            '5d-vision-logo.svg',
-                            'dov-jewelry-logo.svg',
-                            'full-sail-media-logo.svg',
-                            'holistic-spirits-logo.svg',
-                            'magical-journeys-beyond-logo.svg',
-                            'neighborhood-sun-logo.svg',
-                            'ohana-logo.svg',
-                            'pepper-medical-logo.svg',
-                            'sign-hero-logo.svg',
-                            'sustainable-you-logo.svg',
-                            'swarmbustin-honey-logo.svg',
-                            'vizcaya-swimwear-logo.svg',
-                            'wyld-coffee-logo.svg'
+                        // Query partners for carousel
+                        $partner_args = array(
+                            'post_type' => 'partner',
+                            'posts_per_page' => 12,
+                            'orderby' => 'title',
+                            'order' => 'ASC',
+                            'meta_query' => array(
+                                array(
+                                    'key' => 'partner_is_foundation',
+                                    'value' => '1',
+                                    'compare' => '!=',
+                                ),
+                            ),
                         );
+                        
+                        $partners_query = new WP_Query($partner_args);
+                        
+                        if ($partners_query->have_posts()) :
+                            while ($partners_query->have_posts()) : $partners_query->the_post();
+                                $partner_id = get_the_ID();
+                                $partner_url = get_field('partner_website', $partner_id);
+                                $logo_url = has_post_thumbnail($partner_id) ? get_the_post_thumbnail_url($partner_id, 'medium') : '';
+                                $target = !empty($partner_url) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                                $href = !empty($partner_url) ? esc_url($partner_url) : esc_url(get_post_type_archive_link('partner'));
+                                ?>
+                                <a href="<?php echo $href; ?>"<?php echo $target; ?> class="partner-card" aria-label="Visit <?php echo esc_attr(get_the_title()); ?> website">
+                                    <?php if (!empty($logo_url)) : ?>
+                                        <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?> logo" />
+                                    <?php else : ?>
+                                        <div class="partner-card-no-logo">
+                                            <?php echo esc_html(get_the_title()); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            // Fallback if no partners are found
+                            $partner_logos = array(
+                                '5d-vision-logo.svg',
+                                'dov-jewelry-logo.svg',
+                                'full-sail-media-logo.svg',
+                                'holistic-spirits-logo.svg',
+                                'magical-journeys-beyond-logo.svg',
+                                'neighborhood-sun-logo.svg',
+                                'ohana-logo.svg',
+                                'pepper-medical-logo.svg',
+                                'sign-hero-logo.svg',
+                                'sustainable-you-logo.svg',
+                                'swarmbustin-honey-logo.svg',
+                                'vizcaya-swimwear-logo.svg',
+                                'wyld-coffee-logo.svg'
+                            );
 
-                        foreach ($partner_logos as $logo) :
-                        ?>
-                        <article class="partner-card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
-                        </article>
-                        <?php endforeach; ?>
+                            foreach ($partner_logos as $logo) :
+                            ?>
+                            <article class="partner-card">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
+                            </article>
+                            <?php endforeach;
+                        endif; ?>
                     </div>
                     <div class="scrolling-group" aria-hidden="true">
-                        <?php foreach ($partner_logos as $logo) : ?>
-                        <article class="partner-card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
-                        </article>
-                        <?php endforeach; ?>
+                        <?php 
+                        // Repeat the partners for infinite scrolling effect
+                        if ($partners_query->have_posts()) :
+                            $partners_query->rewind_posts();
+                            while ($partners_query->have_posts()) : $partners_query->the_post();
+                                $partner_id = get_the_ID();
+                                $partner_url = get_field('partner_website', $partner_id);
+                                $logo_url = has_post_thumbnail($partner_id) ? get_the_post_thumbnail_url($partner_id, 'medium') : '';
+                                $target = !empty($partner_url) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                                $href = !empty($partner_url) ? esc_url($partner_url) : esc_url(get_post_type_archive_link('partner'));
+                                ?>
+                                <a href="<?php echo $href; ?>"<?php echo $target; ?> class="partner-card" aria-label="Visit <?php echo esc_attr(get_the_title()); ?> website">
+                                    <?php if (!empty($logo_url)) : ?>
+                                        <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?> logo" />
+                                    <?php else : ?>
+                                        <div class="partner-card-no-logo">
+                                            <?php echo esc_html(get_the_title()); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            foreach ($partner_logos as $logo) : ?>
+                            <article class="partner-card">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
+                            </article>
+                            <?php endforeach;
+                        endif; ?>
                     </div>
                 </div>
             </section>
             <div class="partners-1">
-                <a href="<?php echo esc_url(home_url('/partner')); ?>">
+                <a href="<?php echo esc_url(get_post_type_archive_link('partner')); ?>">
                     <div class="tertiary-button">
                         <div class="default-5 default-18 body-2-regular">See All</div>
                         <img class="icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/chevron-small.svg" alt="Icon" />
@@ -420,33 +484,37 @@ get_header();
             </div>
             <div class="story-cards">
                 <?php
-                // Get recent posts for stories section
-                $recent_posts = get_posts(array(
-                    'numberposts' => 3,
+                // Get recent stories from the story custom post type
+                $recent_stories = new WP_Query(array(
+                    'post_type' => 'story',
+                    'posts_per_page' => 3,
+                    'orderby' => 'date',
+                    'order' => 'DESC',
                     'post_status' => 'publish'
                 ));
 
-                if (!empty($recent_posts)) :
-                    foreach ($recent_posts as $post) :
-                        setup_postdata($post);
+                if ($recent_stories->have_posts()) :
+                    while ($recent_stories->have_posts()) : $recent_stories->the_post();
                         $post_date = get_the_date('M d Y');
-                        $thumbnail = get_the_post_thumbnail_url($post->ID, 'medium') ?: get_template_directory_uri() . '/assets/images/rectangle-18@2x.png';
+                        $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/assets/images/rectangle-18@2x.png';
                 ?>
-                <article class="story-card">
-                    <img class="story-card-image" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
-                    <div class="story-card-content">
-                        <div class="story-card-date subtitle-2"><?php echo esc_html(strtoupper($post_date)); ?></div>
-                        <p class="story-card-title body-1-semibold"><?php echo esc_html(get_the_title()); ?></p>
-                        <p class="story-card-description body-2-regular">
-                            <?php echo esc_html(wp_trim_words(get_the_excerpt(), 12)); ?>
-                        </p>
-                    </div>
-                </article>
+                <a href="<?php the_permalink(); ?>">
+                    <article class="story-card">
+                        <img class="story-card-image" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
+                        <div class="story-card-content">
+                            <div class="story-card-date subtitle-2"><?php echo esc_html(strtoupper($post_date)); ?></div>
+                            <p class="story-card-title body-1-semibold"><?php echo esc_html(get_the_title()); ?></p>
+                            <p class="story-card-description body-2-regular">
+                                <?php echo esc_html(wp_trim_words(get_the_excerpt(), 12)); ?>
+                            </p>
+                        </div>
+                    </article>
+                </a>
                 <?php
-                    endforeach;
+                    endwhile;
                     wp_reset_postdata();
                 else :
-                    // Fallback content if no posts are found
+                    // Fallback content if no stories are found
                     for ($i = 0; $i < 3; $i++) :
                 ?>
                 <article class="story-card">
@@ -465,7 +533,7 @@ get_header();
                 ?>
             </div>
             <div class="stories-button">
-                <a href="<?php echo esc_url(home_url('/stories')); ?>">
+                <a href="<?php echo esc_url(get_post_type_archive_link('story')); ?>">
                     <div class="tertiary-button">
                         <div class="default-3 default-18 body-2-regular">See More</div>
                         <img class="icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/chevron-small.svg" alt="Icon" />
@@ -701,26 +769,92 @@ get_header();
                 <div class="scrolling-track">
                     <div class="scrolling-group">
                         <div class="scrolling-set">
-                            <?php foreach ($partner_logos as $logo) : ?>
-                            <article class="partner-card">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
-                            </article>
-                            <?php endforeach; ?>
+                            <?php
+                            // Query partners for carousel (desktop)
+                            $partner_args = array(
+                                'post_type' => 'partner',
+                                'posts_per_page' => 12,
+                                'orderby' => 'title',
+                                'order' => 'ASC',
+                                'meta_query' => array(
+                                    array(
+                                        'key' => 'partner_is_foundation',
+                                        'value' => '1',
+                                        'compare' => '!=',
+                                    ),
+                                ),
+                            );
+                            
+                            $partners_query = new WP_Query($partner_args);
+                            
+                            if ($partners_query->have_posts()) :
+                                while ($partners_query->have_posts()) : $partners_query->the_post();
+                                    $partner_id = get_the_ID();
+                                    $partner_url = get_field('partner_website', $partner_id);
+                                    $logo_url = has_post_thumbnail($partner_id) ? get_the_post_thumbnail_url($partner_id, 'medium') : '';
+                                    $target = !empty($partner_url) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                                    $href = !empty($partner_url) ? esc_url($partner_url) : esc_url(get_post_type_archive_link('partner'));
+                                    ?>
+                                    <a href="<?php echo $href; ?>"<?php echo $target; ?> class="partner-card" aria-label="Visit <?php echo esc_attr(get_the_title()); ?> website">
+                                        <?php if (!empty($logo_url)) : ?>
+                                            <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?> logo" />
+                                        <?php else : ?>
+                                            <div class="partner-card-no-logo">
+                                                <?php echo esc_html(get_the_title()); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </a>
+                                    <?php
+                                endwhile;
+                                wp_reset_postdata();
+                            else :
+                                // Fallback if no partners are found
+                                foreach ($partner_logos as $logo) : ?>
+                                <article class="partner-card">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
+                                </article>
+                                <?php endforeach;
+                            endif; ?>
                         </div>
                     </div>
                     <div class="scrolling-group" aria-hidden="true">
                         <div class="scrolling-set">
-                            <?php foreach ($partner_logos as $logo) : ?>
-                            <article class="partner-card">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
-                            </article>
-                            <?php endforeach; ?>
+                            <?php
+                            // Repeat the partners for infinite scrolling effect (desktop)
+                            if ($partners_query->have_posts()) :
+                                $partners_query->rewind_posts();
+                                while ($partners_query->have_posts()) : $partners_query->the_post();
+                                    $partner_id = get_the_ID();
+                                    $partner_url = get_field('partner_website', $partner_id);
+                                    $logo_url = has_post_thumbnail($partner_id) ? get_the_post_thumbnail_url($partner_id, 'medium') : '';
+                                    $target = !empty($partner_url) ? ' target="_blank" rel="noopener noreferrer"' : '';
+                                    $href = !empty($partner_url) ? esc_url($partner_url) : esc_url(get_post_type_archive_link('partner'));
+                                    ?>
+                                    <a href="<?php echo $href; ?>"<?php echo $target; ?> class="partner-card" aria-label="Visit <?php echo esc_attr(get_the_title()); ?> website">
+                                        <?php if (!empty($logo_url)) : ?>
+                                            <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?> logo" />
+                                        <?php else : ?>
+                                            <div class="partner-card-no-logo">
+                                                <?php echo esc_html(get_the_title()); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </a>
+                                    <?php
+                                endwhile;
+                                wp_reset_postdata();
+                            else :
+                                foreach ($partner_logos as $logo) : ?>
+                                <article class="partner-card">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-logos/<?php echo esc_attr($logo); ?>" alt="Partner logo" />
+                                </article>
+                                <?php endforeach;
+                            endif; ?>
                         </div>
                     </div>
                 </div>
             </section>
             <div class="partners-2">
-                <a href="<?php echo esc_url(home_url('/partner')); ?>">
+                <a href="<?php echo esc_url(get_post_type_archive_link('partner')); ?>">
                     <div class="tertiary-button-2 tertiary-button">
                         <div class="default-24 default body-2-regular">See All</div>
                         <img class="icon-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/chevron-small.svg" alt="Icon" />
@@ -863,26 +997,36 @@ get_header();
             </div>
             <div class="story-cards">
                 <?php
-                if (!empty($recent_posts)) :
-                    foreach ($recent_posts as $post) :
-                        setup_postdata($post);
+                // Get recent stories from the story custom post type (for desktop)
+                $recent_stories = new WP_Query(array(
+                    'post_type' => 'story',
+                    'posts_per_page' => 3,
+                    'orderby' => 'date',
+                    'order' => 'DESC',
+                    'post_status' => 'publish'
+                ));
+
+                if ($recent_stories->have_posts()) :
+                    while ($recent_stories->have_posts()) : $recent_stories->the_post();
                         $post_date = get_the_date('M d Y');
-                        $thumbnail = get_the_post_thumbnail_url($post->ID, 'medium') ?: get_template_directory_uri() . '/assets/images/rectangle-18-3@2x.png';
+                        $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/assets/images/rectangle-18-3@2x.png';
                 ?>
-                <article class="story-card">
-                    <img class="rectangle-18-1" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
-                    <div class="frame-55-1">
-                        <div class="frame-5-1 frame-5">
-                            <div class="feb-1-1 subtitle-2"><?php echo esc_html(strtoupper($post_date)); ?></div>
-                            <p class="title-for-story-card-template body-1-semibold"><?php echo esc_html(get_the_title()); ?></p>
-                            <p class="story-card-description body-2-regular">
-                                <?php echo esc_html(wp_trim_words(get_the_excerpt(), 12)); ?>
-                            </p>
+                <a href="<?php the_permalink(); ?>">
+                    <article class="story-card">
+                        <img class="rectangle-18-1" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
+                        <div class="frame-55-1">
+                            <div class="frame-5-1 frame-5">
+                                <div class="feb-1-1 subtitle-2"><?php echo esc_html(strtoupper($post_date)); ?></div>
+                                <p class="title-for-story-card-template body-1-semibold"><?php echo esc_html(get_the_title()); ?></p>
+                                <p class="story-card-description body-2-regular">
+                                    <?php echo esc_html(wp_trim_words(get_the_excerpt(), 12)); ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </a>
                 <?php
-                    endforeach;
+                    endwhile;
                     wp_reset_postdata();
                 else :
                     for ($i = 0; $i < 3; $i++) :
@@ -905,7 +1049,7 @@ get_header();
                 ?>
             </div>
             <div class="stories-button">
-                <a href="<?php echo esc_url(home_url('/stories')); ?>">
+                <a href="<?php echo esc_url(get_post_type_archive_link('story')); ?>">
                     <div class="tertiary-button-2 tertiary-button">
                         <div class="default-22 default body-2-regular">See More</div>
                         <img class="icon-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/chevron-small.svg" alt="Icon" />
