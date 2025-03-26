@@ -132,28 +132,49 @@ get_header();
                     <div class="frame-1-1">
                         <div class="podcast-cards">
                             <?php
-                            for ($i = 0; $i < 7; $i++) :
+                            // Query for podcasts using the custom post type
+                            $args = array(
+                                'post_type' => 'podcast',
+                                'posts_per_page' => 7,
+                                'orderby' => 'date',
+                                'order' => 'DESC',
+                            );
+                            
+                            $podcasts_query = new WP_Query($args);
+                            
+                            if ($podcasts_query->have_posts()) :
+                                while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
+                                    // Use helper function to display podcast card
+                                    forestplanet_display_podcast_card(get_the_ID(), 'mobile', true);
+                                endwhile;
+                                wp_reset_postdata();
+                            else :
+                                // If no posts, show sample podcast entries
+                                for ($i = 0; $i < 7; $i++) :
                             ?>
-                            <article class="podcast-card">
-                                <hr class="line-romance" />
-                                <div class="frame-116">
-                                    <img class="rectangle-19" src="<?php echo get_template_directory_uri(); ?>/assets/images/rectangle-19@2x.png" alt="Rectangle 19" />
-                                    <div class="frame-291">
-                                        <div class="frame-112">
-                                            <div class="feb-16-2025-1 subtitle-2">FEB 16 2025</div>
-                                            <p class="example-s2-e3-podcas body-1-semibold">
-                                                Example S2E3: Podcast Title that involves Hank
-                                            </p>
-                                            <div class="podcast-name body-2-regular">Podcast name</div>
-                                        </div>
-                                        <div class="secondary-button-romance secondary-button">
-                                            <div class="listen body-2-regular">Listen</div>
-                                            <img class="link-external" src="<?php echo get_template_directory_uri(); ?>/assets/images/link-external.svg" alt="Link External" />
+                                <article class="podcast-card">
+                                    <hr class="line-romance" />
+                                    <div class="frame-116">
+                                        <img class="rectangle-19" src="<?php echo get_template_directory_uri(); ?>/assets/images/rectangle-19@2x.png" alt="Rectangle 19" />
+                                        <div class="frame-291">
+                                            <div class="frame-112">
+                                                <div class="feb-16-2025-1 subtitle-2">FEB 16 2025</div>
+                                                <p class="example-s2-e3-podcas body-1-semibold">
+                                                    Example S2E3: Podcast Title that involves Hank
+                                                </p>
+                                                <div class="podcast-name body-2-regular">Podcast name</div>
+                                            </div>
+                                            <div class="secondary-button-romance secondary-button">
+                                                <div class="listen body-2-regular">Listen</div>
+                                                <img class="link-external" src="<?php echo get_template_directory_uri(); ?>/assets/images/link-external.svg" alt="Link External" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                            <?php endfor; ?>
+                                </article>
+                            <?php
+                                endfor;
+                            endif;
+                            ?>
                         </div>
                         <div class="tertiary-button"><div class="tertiary-romance-text body-2-regular">Load More</div></div>
                     </div>
@@ -358,32 +379,53 @@ get_header();
                     <div class="frame-1-3 frame-1">
                         <div class="podcast-cards-1">
                             <?php
-                            for ($i = 0; $i < 8; $i++) :
+                            // Query for podcasts using the custom post type
+                            $args = array(
+                                'post_type' => 'podcast',
+                                'posts_per_page' => 8,
+                                'orderby' => 'date',
+                                'order' => 'DESC',
+                            );
+                            
+                            $podcasts_query = new WP_Query($args);
+                            
+                            if ($podcasts_query->have_posts()) :
+                                while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
+                                    // Use helper function to display podcast card
+                                    forestplanet_display_podcast_card(get_the_ID(), 'desktop', true);
+                                endwhile;
+                                wp_reset_postdata();
+                            else :
+                                // If no posts, show sample podcast entries
+                                for ($i = 0; $i < 8; $i++) :
                             ?>
-                            <article class="podcast-card-1">
-                                <hr class="line-romance" />
-                                <div class="frame-117">
-                                    <div class="frame-116-1">
-                                        <img class="rectangle-19-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/rectangle-19-1@2x.png" alt="Rectangle 19" />
-                                        <div class="frame-115">
-                                            <div class="frame-112-1">
-                                                <div class="frame-111">
-                                                    <div class="feb-16-2025-3 feb-16-2025 subtitle-2">FEB 16 2025</div>
-                                                    <p class="example-s2-e3-podcas-1 body-1-semibold">
-                                                        Example S2E3: Podcast Title that involves Hank
-                                                    </p>
+                                <article class="podcast-card-1">
+                                    <hr class="line-romance" />
+                                    <div class="frame-117">
+                                        <div class="frame-116-1">
+                                            <img class="rectangle-19-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/rectangle-19-1@2x.png" alt="Rectangle 19" />
+                                            <div class="frame-115">
+                                                <div class="frame-112-1">
+                                                    <div class="frame-111">
+                                                        <div class="feb-16-2025-3 feb-16-2025 subtitle-2">FEB 16 2025</div>
+                                                        <p class="example-s2-e3-podcas-1 body-1-semibold">
+                                                            Example S2E3: Podcast Title that involves Hank
+                                                        </p>
+                                                    </div>
+                                                    <div class="podcast-name-1 body-2-regular">Podcast name</div>
                                                 </div>
-                                                <div class="podcast-name-1 body-2-regular">Podcast name</div>
                                             </div>
                                         </div>
+                                        <div class="secondary-button-romance secondary-button">
+                                            <div class="listen body-2-regular">Listen</div>
+                                            <img class="link-external" src="<?php echo get_template_directory_uri(); ?>/assets/images/link-external.svg" alt="Link External" />
+                                        </div>
                                     </div>
-                                    <div class="secondary-button-romance secondary-button">
-                                        <div class="listen body-2-regular">Listen</div>
-                                        <img class="link-external" src="<?php echo get_template_directory_uri(); ?>/assets/images/link-external.svg" alt="Link External" />
-                                    </div>
-                                </div>
-                            </article>
-                            <?php endfor; ?>
+                                </article>
+                            <?php
+                                endfor;
+                            endif;
+                            ?>
                         </div>
                         <div class="tertiary-button">
                             <div class="tertiary-romance-text body-2-regular">Load More</div>

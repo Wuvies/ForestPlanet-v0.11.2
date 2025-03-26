@@ -350,8 +350,193 @@ function forestplanet_register_post_types() {
     ];
 
     register_taxonomy('story_category', ['story'], $tax_args);
+    
+    // Register Podcast custom post type
+    $podcast_labels = [
+        'name'                  => _x('Podcasts', 'Post type general name', 'forestplanet'),
+        'singular_name'         => _x('Podcast', 'Post type singular name', 'forestplanet'),
+        'menu_name'             => _x('Podcasts', 'Admin Menu text', 'forestplanet'),
+        'name_admin_bar'        => _x('Podcast', 'Add New on Toolbar', 'forestplanet'),
+        'add_new'               => __('Add New', 'forestplanet'),
+        'add_new_item'          => __('Add New Podcast', 'forestplanet'),
+        'new_item'              => __('New Podcast', 'forestplanet'),
+        'edit_item'             => __('Edit Podcast', 'forestplanet'),
+        'view_item'             => __('View Podcast', 'forestplanet'),
+        'all_items'             => __('All Podcasts', 'forestplanet'),
+        'search_items'          => __('Search Podcasts', 'forestplanet'),
+        'parent_item_colon'     => __('Parent Podcasts:', 'forestplanet'),
+        'not_found'             => __('No podcasts found.', 'forestplanet'),
+        'not_found_in_trash'    => __('No podcasts found in Trash.', 'forestplanet'),
+        'featured_image'        => _x('Podcast Cover Image', 'Overrides the "Featured Image" phrase', 'forestplanet'),
+        'set_featured_image'    => _x('Set cover image', 'Overrides the "Set featured image" phrase', 'forestplanet'),
+        'remove_featured_image' => _x('Remove cover image', 'Overrides the "Remove featured image" phrase', 'forestplanet'),
+        'use_featured_image'    => _x('Use as cover image', 'Overrides the "Use as featured image" phrase', 'forestplanet'),
+        'archives'              => _x('Podcast archives', 'The post type archive label used in nav menus', 'forestplanet'),
+        'insert_into_item'      => _x('Insert into podcast', 'Overrides the "Insert into post" phrase', 'forestplanet'),
+        'uploaded_to_this_item' => _x('Uploaded to this podcast', 'Overrides the "Uploaded to this post" phrase', 'forestplanet'),
+        'filter_items_list'     => _x('Filter podcasts list', 'Screen reader text for the filter links', 'forestplanet'),
+        'items_list_navigation' => _x('Podcasts list navigation', 'Screen reader text for the pagination', 'forestplanet'),
+        'items_list'            => _x('Podcasts list', 'Screen reader text for the items list', 'forestplanet'),
+    ];
+
+    $podcast_args = [
+        'labels'             => $podcast_labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => ['slug' => 'podcasts'],
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 6,
+        'menu_icon'          => 'dashicons-microphone',
+        'supports'           => ['title', 'editor', 'author', 'thumbnail', 'excerpt'],
+        'show_in_rest'       => true,
+    ];
+
+    register_post_type('podcast', $podcast_args);
+    
+    // Register Podcast Category taxonomy
+    $podcast_tax_labels = [
+        'name'                       => _x('Podcast Categories', 'taxonomy general name', 'forestplanet'),
+        'singular_name'              => _x('Podcast Category', 'taxonomy singular name', 'forestplanet'),
+        'search_items'               => __('Search Podcast Categories', 'forestplanet'),
+        'popular_items'              => __('Popular Podcast Categories', 'forestplanet'),
+        'all_items'                  => __('All Podcast Categories', 'forestplanet'),
+        'parent_item'                => __('Parent Podcast Category', 'forestplanet'),
+        'parent_item_colon'          => __('Parent Podcast Category:', 'forestplanet'),
+        'edit_item'                  => __('Edit Podcast Category', 'forestplanet'),
+        'update_item'                => __('Update Podcast Category', 'forestplanet'),
+        'add_new_item'               => __('Add New Podcast Category', 'forestplanet'),
+        'new_item_name'              => __('New Podcast Category Name', 'forestplanet'),
+        'separate_items_with_commas' => __('Separate podcast categories with commas', 'forestplanet'),
+        'add_or_remove_items'        => __('Add or remove podcast categories', 'forestplanet'),
+        'choose_from_most_used'      => __('Choose from the most used podcast categories', 'forestplanet'),
+        'not_found'                  => __('No podcast categories found.', 'forestplanet'),
+        'menu_name'                  => __('Podcast Categories', 'forestplanet'),
+    ];
+
+    $podcast_tax_args = [
+        'hierarchical'      => true,
+        'labels'            => $podcast_tax_labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => ['slug' => 'podcast-category'],
+        'show_in_rest'      => true,
+    ];
+
+    register_taxonomy('podcast_category', ['podcast'], $podcast_tax_args);
 }
 add_action('init', 'forestplanet_register_post_types');
+
+/**
+ * Register ACF fields for Podcast post type
+ */
+function forestplanet_register_podcast_acf_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_podcast_details',
+            'title' => 'Podcast Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_podcast_name',
+                    'label' => 'Podcast Name',
+                    'name' => 'podcast_name',
+                    'type' => 'text',
+                    'instructions' => 'Enter the name of the podcast show (not the episode title)',
+                    'required' => 1,
+                    'placeholder' => 'e.g. The Forest Planet Podcast',
+                ),
+                array(
+                    'key' => 'field_podcast_url',
+                    'label' => 'Listen URL',
+                    'name' => 'podcast_url',
+                    'type' => 'url',
+                    'instructions' => 'Enter the URL where this podcast episode can be listened to',
+                    'required' => 1,
+                    'placeholder' => 'https://...',
+                ),
+                array(
+                    'key' => 'field_podcast_episode_number',
+                    'label' => 'Episode Number',
+                    'name' => 'podcast_episode_number',
+                    'type' => 'text',
+                    'instructions' => 'Enter the episode number/code (e.g. S1E5, #42)',
+                    'required' => 0,
+                    'placeholder' => 'e.g. S2E3',
+                ),
+                array(
+                    'key' => 'field_podcast_duration',
+                    'label' => 'Duration',
+                    'name' => 'podcast_duration',
+                    'type' => 'text',
+                    'instructions' => 'Enter the duration of the podcast episode',
+                    'required' => 0,
+                    'placeholder' => 'e.g. 45 min',
+                ),
+                array(
+                    'key' => 'field_podcast_host',
+                    'label' => 'Host',
+                    'name' => 'podcast_host',
+                    'type' => 'text',
+                    'instructions' => 'Enter the name of the podcast host',
+                    'required' => 0,
+                    'placeholder' => 'e.g. John Smith',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'podcast',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 1,
+        ));
+    }
+}
+add_action('acf/init', 'forestplanet_register_podcast_acf_fields');
+
+/**
+ * Helper function to display a podcast card
+ *
+ * @param int|WP_Post $post_id Post ID or post object. Default is global $post.
+ * @param string $view View type ('desktop' or 'mobile'). Default is 'desktop'.
+ * @param bool $is_about_page Whether this is for the about page, which has different styling. Default is false.
+ * @return void
+ */
+function forestplanet_display_podcast_card($post_id = null, $view = 'desktop', $is_about_page = false) {
+    // If $post_id is not provided, use the current post
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+    
+    // Check if post exists and is a podcast
+    $post = get_post($post_id);
+    if (!$post || get_post_type($post) !== 'podcast') {
+        return;
+    }
+    
+    // Pass the arguments to the template part
+    get_template_part('template-parts/podcasts/card', null, array(
+        'post_id' => $post_id,
+        'view' => $view,
+        'is_about_page' => $is_about_page
+    ));
+}
 
 /**
  * AJAX handler for loading more stories
@@ -503,6 +688,29 @@ function forestplanet_create_default_categories() {
                 array(
                     'slug' => $slug,
                     'description' => 'Stories about ' . strtolower($name)
+                )
+            );
+        }
+    }
+    
+    // Define default podcast categories
+    $default_podcast_categories = array(
+        'interviews' => 'Interviews',
+        'events' => 'Events',
+        'educational' => 'Educational',
+        'partner-spotlights' => 'Partner Spotlights',
+        'news' => 'News Updates'
+    );
+    
+    // Loop through each podcast category and add it if it doesn't exist
+    foreach ($default_podcast_categories as $slug => $name) {
+        if (!term_exists($slug, 'podcast_category')) {
+            wp_insert_term(
+                $name,
+                'podcast_category',
+                array(
+                    'slug' => $slug,
+                    'description' => 'Podcasts featuring ' . strtolower($name)
                 )
             );
         }

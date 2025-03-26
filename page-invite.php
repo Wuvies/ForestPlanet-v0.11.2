@@ -202,62 +202,20 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                 <div class="frame-1-2 frame-1">
                     <div class="frame-183">
                         <?php
-                        // Query for podcasts (you might want to create a custom post type for podcasts)
+                        // Query for podcasts using the custom post type
                         $args = array(
-                            'post_type' => 'post', // Or 'podcast' if you have a custom post type
+                            'post_type' => 'podcast',
                             'posts_per_page' => 7,
-                            'category_name' => 'podcasts', // Adjust as needed
+                            'orderby' => 'date',
+                            'order' => 'DESC',
                         );
                         
                         $podcasts_query = new WP_Query($args);
                         
                         if ($podcasts_query->have_posts()) :
                             while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
-                                // Get post date
-                                $podcast_date = get_the_date('M d Y');
-                                
-                                // Get podcast image
-                                $podcast_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-                                if (!$podcast_image) {
-                                    $podcast_image = get_template_directory_uri() . '/img/rectangle-19-1@2x.png';
-                                }
-                                
-                                // Get podcast name (you might store this in a custom field)
-                                $podcast_name = get_post_meta(get_the_ID(), 'podcast_name', true);
-                                if (empty($podcast_name)) {
-                                    $podcast_name = 'Podcast name';
-                                }
-                                
-                                // Get podcast URL (you might store this in a custom field)
-                                $podcast_url = get_post_meta(get_the_ID(), 'podcast_url', true);
-                                if (empty($podcast_url)) {
-                                    $podcast_url = '#';
-                                }
-                        ?>
-                        <article class="frame-183-item">
-                            <div class="line-romance"></div>
-                            <div class="frame-117">
-                                <div class="frame-116-1">
-                                    <img class="rectangle-19-1" src="<?php echo esc_url($podcast_image); ?>" alt="<?php the_title_attribute(); ?>" />
-                                    <div class="frame-115">
-                                        <div class="frame-112-4">
-                                            <div class="frame-111">
-                                                <div class="feb-16-2025-3 feb-16-2025 subtitle-2"><?php echo esc_html($podcast_date); ?></div>
-                                                <p class="example-s2-e3-podcas-1 body-1-semibold">
-                                                    <?php the_title(); ?>
-                                                </p>
-                                            </div>
-                                            <div class="podcast-name-1 body-2-regular"><?php echo esc_html($podcast_name); ?></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="<?php echo esc_url($podcast_url); ?>" class="secondary-button-romance secondary-button">
-                                    <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/link-external.svg" alt="Link External" />
-                                </a>
-                            </div>
-                        </article>
-                        <?php
+                                // Use helper function to display podcast card
+                                forestplanet_display_podcast_card(get_the_ID(), 'desktop');
                             endwhile;
                             wp_reset_postdata();
                         else :
@@ -470,45 +428,8 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                         if ($podcasts_query->have_posts()) :
                             $podcasts_query->rewind_posts();
                             while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
-                                // Get post date
-                                $podcast_date = get_the_date('M d Y');
-                                
-                                // Get podcast image
-                                $podcast_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-                                if (!$podcast_image) {
-                                    $podcast_image = get_template_directory_uri() . '/img/rectangle-19@2x.png';
-                                }
-                                
-                                // Get podcast name (you might store this in a custom field)
-                                $podcast_name = get_post_meta(get_the_ID(), 'podcast_name', true);
-                                if (empty($podcast_name)) {
-                                    $podcast_name = 'Podcast name';
-                                }
-                                
-                                // Get podcast URL (you might store this in a custom field)
-                                $podcast_url = get_post_meta(get_the_ID(), 'podcast_url', true);
-                                if (empty($podcast_url)) {
-                                    $podcast_url = '#';
-                                }
-                        ?>
-                        <article class="podcast-card">
-                            <div class="line-romance"></div>
-                            <div class="frame-116">
-                                <img class="rectangle-19" src="<?php echo esc_url($podcast_image); ?>" alt="<?php the_title_attribute(); ?>" />
-                                <div class="frame-291">
-                                    <div class="frame-112">
-                                        <div class="feb-16-2025-1 subtitle-2"><?php echo esc_html($podcast_date); ?></div>
-                                        <p class="example-s2-e3-podcas body-1-semibold"><?php the_title(); ?></p>
-                                        <div class="podcast-name body-2-regular"><?php echo esc_html($podcast_name); ?></div>
-                                    </div>
-                                    <a href="<?php echo esc_url($podcast_url); ?>" class="secondary-button-romance secondary-button">
-                                        <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                                        <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/link-external.svg" alt="Link External" />
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                        <?php
+                                // Use helper function to display podcast card
+                                forestplanet_display_podcast_card(get_the_ID(), 'mobile');
                             endwhile;
                             wp_reset_postdata();
                         else :
