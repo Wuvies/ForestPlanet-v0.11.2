@@ -14,7 +14,7 @@ if (!isset($header_style)) {
 // Determine the correct logo class based on header style
 $logo_class = ($header_style === 'mirage' || $header_style === 'fuchsia-blue') ? '-White' : '';
 ?>
-<div class="mobile-overlay animate-appear">
+<div class="mobile-overlay" style="display:none; opacity:0; visibility:hidden;">
   <header class="property-mobile">
     <div class="mobile-nav">
       <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="Home">

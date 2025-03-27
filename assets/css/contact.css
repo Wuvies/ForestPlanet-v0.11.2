@@ -310,3 +310,17 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
     width: 100%;
   }
 }
+
+/* Initial state - ensure overlays are properly hidden by default */
+#overlay-contact-us,
+.mobile-overlay,
+#desktop-contact-container > div {
+  display: none !important;
+  opacity: 0;
+}
+
+/* Only when the JS animation classes are added, remove the !important */
+#overlay-contact-us.animate-appear {
+  display: flex !important;
+  animation: fadeInDesktop 0.25s forwards;
+}

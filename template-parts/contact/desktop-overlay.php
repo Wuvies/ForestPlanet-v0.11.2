@@ -5,7 +5,7 @@
  * @package ForestPlanet
  */
 ?>
-<div id="overlay-contact-us" class="animate-appear">
+<div id="overlay-contact-us" style="display:none; opacity:0; visibility:hidden;">
   <div class="contact-us">
     <div class="contact-us-1">
       <h1 class="title heading-2">Contact Us</h1>

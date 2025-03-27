@@ -1252,9 +1252,14 @@ add_action('init', 'forestplanet_process_contact_form_submission');
 function forestplanet_add_contact_form() {
     // Only add if not on a page that already includes it
     if (!is_page('contact')) {
-        // Add desktop contact form container with better visibility
-        echo '<div id="desktop-contact-container">';
+        // Add desktop contact form container with better visibility control
+        echo '<div id="desktop-contact-container" class="contact-overlay-hidden">';
         get_template_part('template-parts/contact/desktop-overlay');
+        echo '</div>';
+        
+        // Also add mobile contact form as a hidden element to prevent AJAX loading issues
+        echo '<div id="mobile-contact-container" class="contact-overlay-hidden">';
+        get_template_part('template-parts/contact/form-overlay');
         echo '</div>';
         
         // Add inline script to ensure desktop overlay is properly initialized
@@ -1264,11 +1269,40 @@ function forestplanet_add_contact_form() {
             const desktopOverlay = document.getElementById("overlay-contact-us");
             if (desktopOverlay) {
                 // Make sure it starts hidden but initialized
-                desktopOverlay.style.display = "none";
+                desktopOverlay.style.display = "none"; 
+                desktopOverlay.style.opacity = "0";
                 console.log("[ContactForm] Desktop overlay initialized in footer");
+            }
+            
+            // Ensure mobile overlay is properly initialized too
+            const mobileOverlay = document.querySelector(".mobile-overlay");
+            if (mobileOverlay) {
+                // Make sure it starts hidden but initialized
+                mobileOverlay.style.display = "none"; 
+                mobileOverlay.style.opacity = "0";
+                console.log("[ContactForm] Mobile overlay initialized in footer");
             }
         });
         </script>';
+        
+        // Also add some inline CSS to prevent flashing
+        echo '<style>
+        #overlay-contact-us, 
+        .mobile-overlay { 
+            display: none !important;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #overlay-contact-us.animate-appear,
+        .mobile-overlay.animate-appear {
+            display: flex !important;
+            opacity: 1;
+            visibility: visible;
+        }
+        .contact-overlay-hidden > div {
+            display: none !important;
+        }
+        </style>';
     }
 }
 add_action('wp_footer', 'forestplanet_add_contact_form');
@@ -1277,24 +1311,40 @@ add_action('wp_footer', 'forestplanet_add_contact_form');
  * Load contact form template via AJAX
  */
 function forestplanet_load_contact_form() {
+    // Debug information
+    error_log('Contact form AJAX request received: is_mobile=' . (isset($_POST['is_mobile']) ? $_POST['is_mobile'] : 'not set'));
+    
     // Verify nonce
     if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'forest_planet_contact_nonce')) {
+        error_log('Contact form AJAX security verification failed');
         wp_send_json_error(array('message' => 'Security verification failed'));
         wp_die();
     }
     
     $is_mobile = isset($_POST['is_mobile']) ? (bool)$_POST['is_mobile'] : false;
+    error_log('Loading ' . ($is_mobile ? 'mobile' : 'desktop') . ' contact form template');
     
     ob_start();
     if ($is_mobile) {
         // Load mobile template
+        $template_path = get_template_directory() . '/template-parts/contact/form-overlay.php';
+        error_log('Loading mobile template: ' . $template_path . ' (exists: ' . (file_exists($template_path) ? 'yes' : 'no') . ')');
         get_template_part('template-parts/contact/form-overlay');
     } else {
         // Load desktop template
+        $template_path = get_template_directory() . '/template-parts/contact/desktop-overlay.php';
+        error_log('Loading desktop template: ' . $template_path . ' (exists: ' . (file_exists($template_path) ? 'yes' : 'no') . ')');
         get_template_part('template-parts/contact/desktop-overlay');
     }
     $html = ob_get_clean();
     
+    if (empty($html)) {
+        error_log('Empty HTML generated for contact form');
+        wp_send_json_error(array('message' => 'Failed to generate contact form HTML'));
+        wp_die();
+    }
+    
+    error_log('Contact form template loaded successfully: ' . substr($html, 0, 50) . '...');
     wp_send_json_success(array('html' => $html));
     wp_die();
 }

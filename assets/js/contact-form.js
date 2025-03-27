@@ -229,6 +229,8 @@
         const desktopOverlay = document.getElementById('overlay-contact-us');
         if (desktopOverlay) {
             desktopOverlay.style.display = 'none';
+            desktopOverlay.style.visibility = 'hidden';
+            desktopOverlay.style.opacity = '0';
             desktopOverlay.classList.remove('animate-appear');
             desktopOverlay.classList.remove('animate-disappear');
         }
@@ -236,60 +238,167 @@
         // Lock scrolling
         window.lockScroll();
         
-        // Load the contact form via AJAX if it doesn't exist
-        if (!document.querySelector('.mobile-overlay')) {
-            debugLog('Loading mobile contact form via AJAX');
-            
-            $.ajax({
-                url: contactFormData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'forestplanet_load_contact_form',
-                    security: contactFormData.security,
-                    is_mobile: true
-                },
-                success: function(response) {
-                    if (response.success) {
-                        // Append the form to the body
-                        $('body').append(response.data.html);
-                        
-                        // Get the overlay
-                        const overlay = document.querySelector('.mobile-overlay');
-                        
-                        // Set data attribute if from menu
-                        if (fromMenu) {
-                            overlay.setAttribute('data-from-menu', 'true');
-                        }
-                        
-                        // Show the overlay
-                        overlay.style.display = 'flex';
-                        
-                        // Set up the form submission handler
-                        setupContactFormHandler();
-                    } else {
-                        debugLog('Error loading contact form: ' + response.data.message);
-                    }
-                },
-                error: function() {
-                    debugLog('AJAX error loading contact form');
-                }
-            });
-        } else {
-            // Show existing overlay
-            const overlay = document.querySelector('.mobile-overlay');
+        // First check if there's an existing hidden mobile overlay already in the page
+        let existingMobileOverlay = document.querySelector('.mobile-overlay');
+        
+        if (existingMobileOverlay) {
+            debugLog('Using existing mobile overlay that was found in the page');
             
             // Set data attribute if from menu
             if (fromMenu) {
-                overlay.setAttribute('data-from-menu', 'true');
+                existingMobileOverlay.setAttribute('data-from-menu', 'true');
             }
             
             // Reset animations
-            overlay.classList.remove('animate-disappear');
-            overlay.classList.add('animate-appear');
+            existingMobileOverlay.classList.remove('animate-disappear');
             
-            // Show the overlay
-            overlay.style.display = 'flex';
+            // Set up the form handler (in case it wasn't set up already)
+            setupContactFormHandler();
+            
+            // Show with proper sequencing
+            existingMobileOverlay.style.display = 'flex';
+            existingMobileOverlay.style.visibility = 'visible';
+            // Force a reflow before adding the appear animation
+            void existingMobileOverlay.offsetWidth;
+            existingMobileOverlay.classList.add('animate-appear');
+            debugLog('Existing mobile overlay should now be visible');
+            return;
         }
+        
+        // If we got here, there is no existing overlay, so we need to create one
+        debugLog('No existing mobile overlay found, will create one');
+        
+        // Check if the mobile overlay is in a hidden container
+        const mobileContainer = document.getElementById('mobile-contact-container');
+        if (mobileContainer) {
+            debugLog('Found mobile overlay in hidden container, extracting it');
+            // Extract the mobile overlay from the container
+            const mobileOverlayElement = mobileContainer.querySelector('.mobile-overlay');
+            if (mobileOverlayElement) {
+                // Remove it from the container
+                mobileContainer.removeChild(mobileOverlayElement);
+                // Add directly to body
+                document.body.appendChild(mobileOverlayElement);
+                
+                // Set data attribute if from menu
+                if (fromMenu) {
+                    mobileOverlayElement.setAttribute('data-from-menu', 'true');
+                }
+                
+                // Set up the form submission handler
+                setupContactFormHandler();
+                
+                // Show with proper sequencing
+                mobileOverlayElement.style.display = 'flex';
+                mobileOverlayElement.style.visibility = 'visible';
+                // Force a reflow before adding the appear animation
+                void mobileOverlayElement.offsetWidth;
+                mobileOverlayElement.classList.add('animate-appear');
+                debugLog('Mobile overlay extracted from container and now visible');
+                return;
+            }
+        }
+        
+        // Check for preloaded template as immediate fallback
+        const preloadedTemplate = document.getElementById('mobile-contact-template-holder');
+        if (preloadedTemplate && preloadedTemplate.innerHTML.includes('mobile-overlay')) {
+            debugLog('Using preloaded mobile template');
+            $('body').append(preloadedTemplate.innerHTML);
+            
+            const overlay = document.querySelector('.mobile-overlay');
+            if (overlay) {
+                // Set data attribute if from menu
+                if (fromMenu) {
+                    overlay.setAttribute('data-from-menu', 'true');
+                }
+                
+                // Set up the form submission handler
+                setupContactFormHandler();
+                
+                // Show the overlay with transition
+                setTimeout(function() {
+                    overlay.style.display = 'flex';
+                    overlay.style.visibility = 'visible';
+                    // Force a reflow before adding the appear animation
+                    void overlay.offsetWidth;
+                    overlay.classList.add('animate-appear');
+                    debugLog('Mobile overlay from preloaded template now visible');
+                }, 10);
+                
+                return; // Exit early, no need for AJAX call
+            }
+        }
+        
+        // Continue with AJAX if preloaded template wasn't available
+        $.ajax({
+            url: contactFormData.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'forestplanet_load_contact_form',
+                security: contactFormData.security,
+                is_mobile: true
+            },
+            beforeSend: function() {
+                debugLog('AJAX request sending with token: ' + contactFormData.security);
+            },
+            success: function(response) {
+                debugLog('AJAX Response received: ' + JSON.stringify(response));
+                if (response.success) {
+                    // Append the form to the body
+                    $('body').append(response.data.html);
+                    debugLog('Mobile form appended to body');
+                    
+                    // Get the overlay
+                    const overlay = document.querySelector('.mobile-overlay');
+                    
+                    // Set data attribute if from menu
+                    if (fromMenu) {
+                        overlay.setAttribute('data-from-menu', 'true');
+                    }
+                    
+                    // Set up the form submission handler
+                    setupContactFormHandler();
+                    
+                    // Show the overlay with transition
+                    setTimeout(function() {
+                        overlay.style.display = 'flex';
+                        overlay.style.visibility = 'visible';
+                        // Force a reflow before adding the appear animation
+                        void overlay.offsetWidth;
+                        overlay.classList.add('animate-appear');
+                        debugLog('Mobile overlay should now be visible');
+                    }, 10);
+                } else {
+                    debugLog('Error loading contact form: ' + (response.data ? response.data.message : 'Unknown error'));
+                }
+            },
+            error: function(xhr, status, error) {
+                debugLog('AJAX error loading contact form. Status: ' + status + ', Error: ' + error);
+                debugLog('Response text: ' + xhr.responseText);
+                
+                // Try to fallback to default loading method
+                try {
+                    debugLog('Attempting fallback loading method');
+                    $.get(contactFormData.templateUrl + '/template-parts/contact/form-overlay.php', function(html) {
+                        $('body').append(html);
+                        const overlay = document.querySelector('.mobile-overlay');
+                        if (overlay) {
+                            if (fromMenu) {
+                                overlay.setAttribute('data-from-menu', 'true');
+                            }
+                            setupContactFormHandler();
+                            overlay.style.display = 'flex';
+                            overlay.style.visibility = 'visible';
+                            void overlay.offsetWidth;
+                            overlay.classList.add('animate-appear');
+                            debugLog('Fallback loading worked');
+                        }
+                    });
+                } catch (e) {
+                    debugLog('Fallback also failed: ' + e.message);
+                }
+            }
+        });
     };
 
     // Show desktop contact form
@@ -300,6 +409,8 @@
         const mobileOverlay = document.querySelector('.mobile-overlay');
         if (mobileOverlay) {
             mobileOverlay.style.display = 'none';
+            mobileOverlay.style.visibility = 'hidden';
+            mobileOverlay.style.opacity = '0';
             mobileOverlay.classList.remove('animate-appear');
             mobileOverlay.classList.remove('animate-disappear');
         }
@@ -333,18 +444,23 @@
                         debugLog('New overlay found after AJAX: ' + (newOverlay ? 'YES' : 'NO'));
                         
                         if (newOverlay) {
-                            // Show the overlay with explicit styles
-                            newOverlay.style.display = 'flex';
-                            newOverlay.classList.add('animate-appear');
-                            
-                            // Force a reflow to ensure styles are applied
-                            void newOverlay.offsetWidth;
-                            
                             // Set up the form submission handler
                             setupContactFormHandler();
                             
                             // Add click outside to close
                             setupClickOutsideToClose();
+                            
+                            // Show the overlay with controlled sequence
+                            setTimeout(function() {
+                                // Show the overlay with explicit styles
+                                newOverlay.style.display = 'flex';
+                                newOverlay.style.visibility = 'visible';
+                                
+                                // Force a reflow to ensure styles are applied
+                                void newOverlay.offsetWidth;
+                                
+                                newOverlay.classList.add('animate-appear');
+                            }, 10);
                             
                             debugLog('Desktop overlay should now be visible');
                         } else {
@@ -360,22 +476,21 @@
             });
         } else {
             debugLog('Using existing desktop overlay');
-            // Ensure all classes and styles are properly set
-            overlay.style.opacity = '0';
-            overlay.style.display = 'flex';
+            
+            // Set up form handler first (before showing)
+            setupContactFormHandler();
+            
+            // Reset classes first
             overlay.classList.remove('animate-disappear');
             
+            // Show with proper sequencing
+            overlay.style.display = 'flex';
+            overlay.style.visibility = 'visible';
             // Force a reflow before adding the appear animation
             void overlay.offsetWidth;
-            
-            // Add appear animation
             overlay.classList.add('animate-appear');
-            overlay.style.opacity = '1';
             
             debugLog('Desktop overlay should now be visible');
-            
-            // Ensure form handler is attached
-            setupContactFormHandler();
         }
     };
     
@@ -555,6 +670,50 @@
     // Initialize everything when document is ready
     $(document).ready(function() {
         debugLog('Document ready, initializing contact form');
+        
+        // Immediately hide any existing overlays to prevent flashing
+        const existingMobileOverlay = document.querySelector('.mobile-overlay');
+        const existingDesktopOverlay = document.getElementById('overlay-contact-us');
+        
+        if (existingMobileOverlay) {
+            existingMobileOverlay.style.display = 'none';
+            existingMobileOverlay.style.visibility = 'hidden';
+            existingMobileOverlay.style.opacity = '0';
+            existingMobileOverlay.classList.remove('animate-appear');
+        }
+        
+        if (existingDesktopOverlay) {
+            existingDesktopOverlay.style.display = 'none';
+            existingDesktopOverlay.style.visibility = 'hidden';
+            existingDesktopOverlay.style.opacity = '0';
+            existingDesktopOverlay.classList.remove('animate-appear');
+        }
+        
+        // Preload the mobile overlay template inline if it doesn't exist yet
+        // This ensures it's available even if AJAX fails later
+        if (!existingMobileOverlay && contactFormData && contactFormData.templateUrl) {
+            debugLog('Preloading mobile contact form template');
+            const templateHolder = document.createElement('div');
+            templateHolder.id = 'mobile-contact-template-holder';
+            templateHolder.style.display = 'none';
+            document.body.appendChild(templateHolder);
+            
+            // Use fetch API for better compatibility
+            fetch(contactFormData.templateUrl + '/template-parts/contact/form-overlay.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    templateHolder.innerHTML = html;
+                    debugLog('Mobile template preloaded successfully');
+                })
+                .catch(error => {
+                    debugLog('Could not preload mobile template: ' + error.message);
+                });
+        }
         
         // More comprehensive handler for contact links
         $(document).on('click', '.contact-button, .contact-link, a[href="#contact"], a[onclick*="showContactForm"], a[onclick*="ShowOverlay(\'contact-us"], a[data-action="contact"]', function(e) {
