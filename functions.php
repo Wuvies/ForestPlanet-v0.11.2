@@ -77,6 +77,7 @@ function forestplanet_enqueue_styles() {
     if (is_page_template('page-stories.php')) {
         wp_enqueue_style('forestplanet-stories', get_template_directory_uri() . '/assets/css/stories.css', ['forestplanet-styleguide', 'forestplanet-main'], '1.0.0');
     }
+
 }
 add_action('wp_enqueue_scripts', 'forestplanet_enqueue_styles');
 
@@ -1089,3 +1090,241 @@ function forestplanet_display_partner_card($post_id = null) {
         'post_id' => $post_id
     ));
 }
+
+/**
+ * Enqueue contact form styles and scripts
+ */
+function forestplanet_enqueue_contact_assets() {
+    // Enqueue contact form styles
+    wp_enqueue_style(
+        'forestplanet-contact',
+        get_template_directory_uri() . '/assets/css/contact.css',
+        array('forestplanet-styleguide', 'forestplanet-main'),
+        wp_get_theme()->get('Version')
+    );
+    
+    // Register contact form scripts
+    wp_register_script(
+        'forestplanet-contact',
+        get_template_directory_uri() . '/assets/js/contact-form.js',
+        array('jquery'),
+        wp_get_theme()->get('Version'),
+        true
+    );
+    
+    // Add data for the contact script
+    wp_localize_script(
+        'forestplanet-contact',
+        'contactFormData',
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'security' => wp_create_nonce('forest_planet_contact_nonce'),
+            'homeUrl' => esc_url(home_url('/')),
+            'templateUrl' => esc_url(get_template_directory_uri())
+        )
+    );
+    
+    // Only enqueue on pages where it's needed (we'll load conditionally with wp_footer)
+    if (!wp_script_is('forestplanet-contact', 'enqueued')) {
+        wp_enqueue_script('forestplanet-contact');
+    }
+}
+add_action('wp_enqueue_scripts', 'forestplanet_enqueue_contact_assets');
+
+/**
+ * Process the contact form submission via AJAX
+ */
+function forestplanet_process_contact_form() {
+    // Verify nonce
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'forest_planet_contact_nonce')) {
+        wp_send_json_error(array('message' => 'Security verification failed'));
+        wp_die();
+    }
+    
+    // Get form data
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
+    $message = isset($_POST['message']) ? sanitize_textarea_field($_POST['message']) : '';
+    
+    // Validate data
+    if (empty($email) || !is_email($email)) {
+        wp_send_json_error(array('message' => 'Invalid email address'));
+        wp_die();
+    }
+    
+    if (empty($subject)) {
+        wp_send_json_error(array('message' => 'Subject is required'));
+        wp_die();
+    }
+    
+    if (empty($message)) {
+        wp_send_json_error(array('message' => 'Message is required'));
+        wp_die();
+    }
+    
+    // Process the form submission (send email)
+    $to = get_option('admin_email');
+    $email_subject = '[' . get_bloginfo('name') . ' Contact] ' . $subject;
+    $email_message = "From: $email\r\n\r\n";
+    $email_message .= "Message:\r\n$message";
+    
+    $headers = array();
+    $headers[] = "From: " . get_bloginfo('name') . " <" . $to . ">";
+    $headers[] = "Reply-To: $email";
+    $headers[] = "Content-Type: text/plain; charset=UTF-8";
+    
+    // Send the email
+    $sent = wp_mail($to, $email_subject, $email_message, $headers);
+    
+    if ($sent) {
+        wp_send_json_success(array('message' => 'Your message has been sent successfully!'));
+    } else {
+        wp_send_json_error(array('message' => 'There was a problem sending your message. Please try again.'));
+    }
+    
+    wp_die();
+}
+add_action('wp_ajax_forestplanet_contact', 'forestplanet_process_contact_form');
+add_action('wp_ajax_nopriv_forestplanet_contact', 'forestplanet_process_contact_form');
+
+/**
+ * Process the contact form submission via standard form submission
+ */
+function forestplanet_process_contact_form_submission() {
+    if (!isset($_POST['action']) || $_POST['action'] !== 'forest_planet_contact_form') {
+        return;
+    }
+    
+    // Verify nonce
+    if (!isset($_POST['contact_form_nonce']) || !wp_verify_nonce($_POST['contact_form_nonce'], 'forest_planet_contact_form')) {
+        wp_die('Security verification failed', 'Security Error', array('response' => 403));
+    }
+    
+    // Get form data
+    $email = isset($_POST['contact_email']) ? sanitize_email($_POST['contact_email']) : '';
+    $subject = isset($_POST['contact_subject']) ? sanitize_text_field($_POST['contact_subject']) : '';
+    $message = isset($_POST['contact_message']) ? sanitize_textarea_field($_POST['contact_message']) : '';
+    
+    // Validate data
+    if (empty($email) || !is_email($email)) {
+        wp_die('Invalid email address', 'Validation Error', array('response' => 400, 'back_link' => true));
+    }
+    
+    if (empty($subject)) {
+        wp_die('Subject is required', 'Validation Error', array('response' => 400, 'back_link' => true));
+    }
+    
+    if (empty($message)) {
+        wp_die('Message is required', 'Validation Error', array('response' => 400, 'back_link' => true));
+    }
+    
+    // Process the form submission (send email)
+    $to = get_option('admin_email');
+    $email_subject = '[' . get_bloginfo('name') . ' Contact] ' . $subject;
+    $email_message = "From: $email\r\n\r\n";
+    $email_message .= "Message:\r\n$message";
+    
+    $headers = array();
+    $headers[] = "From: " . get_bloginfo('name') . " <" . $to . ">";
+    $headers[] = "Reply-To: $email";
+    $headers[] = "Content-Type: text/plain; charset=UTF-8";
+    
+    // Send the email
+    $sent = wp_mail($to, $email_subject, $email_message, $headers);
+    
+    if ($sent) {
+        // Set a transient to display success message
+        set_transient('forest_planet_contact_success', true, 60);
+        wp_safe_redirect(add_query_arg('contact', 'success', wp_get_referer()));
+        exit;
+    } else {
+        // Set a transient to display error message
+        set_transient('forest_planet_contact_error', true, 60);
+        wp_safe_redirect(add_query_arg('contact', 'error', wp_get_referer()));
+        exit;
+    }
+}
+add_action('init', 'forestplanet_process_contact_form_submission');
+
+/**
+ * Add contact form to footer
+ */
+function forestplanet_add_contact_form() {
+    // Only add if not on a page that already includes it
+    if (!is_page('contact')) {
+        // Add desktop contact form container with better visibility
+        echo '<div id="desktop-contact-container">';
+        get_template_part('template-parts/contact/desktop-overlay');
+        echo '</div>';
+        
+        // Add inline script to ensure desktop overlay is properly initialized
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ensure desktop overlay is properly initialized
+            const desktopOverlay = document.getElementById("overlay-contact-us");
+            if (desktopOverlay) {
+                // Make sure it starts hidden but initialized
+                desktopOverlay.style.display = "none";
+                console.log("[ContactForm] Desktop overlay initialized in footer");
+            }
+        });
+        </script>';
+    }
+}
+add_action('wp_footer', 'forestplanet_add_contact_form');
+
+/**
+ * Load contact form template via AJAX
+ */
+function forestplanet_load_contact_form() {
+    // Verify nonce
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'forest_planet_contact_nonce')) {
+        wp_send_json_error(array('message' => 'Security verification failed'));
+        wp_die();
+    }
+    
+    $is_mobile = isset($_POST['is_mobile']) ? (bool)$_POST['is_mobile'] : false;
+    
+    ob_start();
+    if ($is_mobile) {
+        // Load mobile template
+        get_template_part('template-parts/contact/form-overlay');
+    } else {
+        // Load desktop template
+        get_template_part('template-parts/contact/desktop-overlay');
+    }
+    $html = ob_get_clean();
+    
+    wp_send_json_success(array('html' => $html));
+    wp_die();
+}
+add_action('wp_ajax_forestplanet_load_contact_form', 'forestplanet_load_contact_form');
+add_action('wp_ajax_nopriv_forestplanet_load_contact_form', 'forestplanet_load_contact_form');
+
+/**
+ * Load contact form confirmation template via AJAX
+ */
+function forestplanet_load_contact_confirmation() {
+    // Verify nonce
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'forest_planet_contact_nonce')) {
+        wp_send_json_error(array('message' => 'Security verification failed'));
+        wp_die();
+    }
+    
+    $is_mobile = isset($_POST['is_mobile']) ? (bool)$_POST['is_mobile'] : false;
+    $from_menu = isset($_POST['from_menu']) ? (bool)$_POST['from_menu'] : false;
+    
+    ob_start();
+    get_template_part('template-parts/contact/confirmation');
+    $html = ob_get_clean();
+    
+    // If from menu, add the data attribute to the html
+    if ($from_menu && $is_mobile) {
+        $html = str_replace('<div class="mobile-overlay', '<div class="mobile-overlay" data-from-menu="true"', $html);
+    }
+    
+    wp_send_json_success(array('html' => $html));
+    wp_die();
+}
+add_action('wp_ajax_forestplanet_load_contact_confirmation', 'forestplanet_load_contact_confirmation');
+add_action('wp_ajax_nopriv_forestplanet_load_contact_confirmation', 'forestplanet_load_contact_confirmation');

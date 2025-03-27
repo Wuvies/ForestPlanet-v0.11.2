@@ -127,13 +127,6 @@
   position: relative;
 }
 
-.partner-mobile .header {
-  align-self: stretch;
-  height: 80px;
-  position: relative;
-  width: 100%;
-}
-
 .partner-mobile .main-content {
   align-items: center;
   align-self: stretch;

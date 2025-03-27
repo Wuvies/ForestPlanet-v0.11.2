@@ -60,7 +60,7 @@ $header_style = apply_filters('forestplanet_header_style', $header_style);
                     <div class="tertiary-<?php echo $header_style === 'romance' ? 'mirage' : 'romance'; ?> body-2-regular">Stories</div>
                 </div>
             </a>
-            <a href="#" onclick="ShowOverlay('contact-us', 'animate-appear');">
+            <a href="#" onclick="showContactForm(); return false;">
                 <div class="tertiary-button">
                     <div class="tertiary-<?php echo $header_style === 'romance' ? 'mirage' : 'romance'; ?> body-2-regular">Contact</div>
                 </div>
@@ -99,10 +99,8 @@ $header_style = apply_filters('forestplanet_header_style', $header_style);
 </header>
 
 <?php
-/**
- * Mobile menu overlay will be loaded via JavaScript
- * We'll create the mobile menu template in a separate file
- */
+// Include the mobile menu template
+get_template_part('template-parts/header/mobile-menu');
 ?>
 
 <script>
@@ -112,16 +110,95 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuButton) {
         menuButton.addEventListener('click', function(e) {
             e.preventDefault();
-            // Ajax load mobile menu or toggle visibility of an existing menu
-            loadMobileMenuOverlay();
+            // Show mobile menu overlay
+            showMobileMenuOverlay();
         });
     }
-    
-    // Header scroll behavior has been removed to keep headers fixed at all times
 });
+
+// Function to show the mobile menu overlay
+function showMobileMenuOverlay() {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.classList.add('animate-appear');
+        
+        // Set background color directly based on current header style
+        <?php if ($header_style === 'mirage'): ?>
+        overlay.style.backgroundColor = 'var(--mirage)';
+        // Also set color for mobile menu
+        const menuMobile = overlay.querySelector('.menu-mobile');
+        if (menuMobile) {
+            menuMobile.style.backgroundColor = 'var(--mirage)';
+        }
+        // Set color for nav menu
+        const navMenu = overlay.querySelector('.nav-menu');
+        if (navMenu) {
+            navMenu.style.backgroundColor = 'var(--mirage)';
+        }
+        <?php elseif ($header_style === 'fuchsia-blue'): ?>
+        overlay.style.backgroundColor = 'var(--fuchsia-blue)';
+        // Also set color for mobile menu
+        const menuMobile = overlay.querySelector('.menu-mobile');
+        if (menuMobile) {
+            menuMobile.style.backgroundColor = 'var(--fuchsia-blue)';
+        }
+        // Set color for nav menu
+        const navMenu = overlay.querySelector('.nav-menu');
+        if (navMenu) {
+            navMenu.style.backgroundColor = 'var(--fuchsia-blue)';
+        }
+        <?php else: ?>
+        overlay.style.backgroundColor = 'var(--romance)';
+        <?php endif; ?>
+        
+        // Lock scrolling
+        if (window.lockScroll) {
+            window.lockScroll();
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+// Function to close the mobile menu overlay
+function closeMenuMobile() {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const menuElement = overlay.querySelector('.menu-mobile');
+    
+    if (menuElement) {
+        menuElement.classList.add('animate-disappear');
+    }
+    
+    // Unlock scrolling
+    if (window.unlockScroll) {
+        window.unlockScroll();
+    } else {
+        document.body.style.overflow = '';
+    }
+    
+    // Hide overlay after animation completes
+    setTimeout(function() {
+        if (overlay) {
+            overlay.style.display = 'none';
+            
+            if (menuElement) {
+                menuElement.classList.remove('animate-disappear');
+            }
+        }
+    }, 300);
+}
 
 // Function to show overlay based on ID
 function ShowOverlay(overlayId, animationClass) {
+    // If it's the contact form, use the dedicated function
+    if (overlayId === 'contact-us') {
+        console.log('Redirecting to showContactForm()');
+        showContactForm();
+        return;
+    }
+    
+    // For other overlays, proceed normally
     const overlay = document.getElementById(overlayId);
     if (overlay) {
         overlay.style.display = 'flex';
@@ -130,10 +207,27 @@ function ShowOverlay(overlayId, animationClass) {
     }
 }
 
-// This function will be implemented in a separate JS file
-function loadMobileMenuOverlay() {
-    // Implementation will be in js/mobile-menu-overlay.js
-    console.log('Mobile menu toggle clicked');
+// Function to show mobile contact form
+function ShowMobileContact() {
+    // Reduce opacity of menu to make it visible in background
+    const menuElement = document.querySelector('.menu-mobile');
+    if (menuElement) {
+        menuElement.style.opacity = '0.3';
+        menuElement.style.pointerEvents = 'none';
+    }
+    
+    // Show contact form overlay
+    setTimeout(function() {
+        ShowExternalOverlay('contact-us', 'animate-appear', 'contact-us.html', true);
+        
+        // Add custom data attribute to contact form
+        setTimeout(() => {
+            const contactForm = document.querySelector('.mobile-overlay');
+            if (contactForm) {
+                contactForm.setAttribute('data-from-menu', 'true');
+            }
+        }, 100);
+    }, 100);
 }
 </script>
 

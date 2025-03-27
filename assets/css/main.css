@@ -1184,9 +1184,6 @@ input:focus::placeholder {
   justify-content: center;
   padding: 24px 32px;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 999;
   width: 100%;
 }
@@ -1205,9 +1202,6 @@ input:focus::placeholder {
   justify-content: center;
   padding: 24px 32px;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 999;
   width: 100%;
 }
@@ -1222,13 +1216,8 @@ input:focus::placeholder {
   -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex: 0 0 auto;
-  gap: 362px;
   justify-content: center;
   padding: 24px 32px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 999;
   width: 100%;
 }
@@ -1247,19 +1236,6 @@ input:focus::placeholder {
   background-color: rgba(255, 255, 252, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
- 
-  /* Make header fixed and add transition */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* This class will slide the header out of view */
-.property-mobile.hidden {
-  transform: translateY(-100%);
 }
 
 .property-mobile .mobile-nav {
@@ -1300,19 +1276,6 @@ input:focus::placeholder {
   background-color: rgba(25, 25, 35, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
- 
-  /* Make header fixed and add transition */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* This class will slide the header out of view */
-.property-mobile-mirage .hidden {
-  transform: translateY(-100%);
 }
 
 .property-mobile-mirage .mobile-nav {
@@ -1354,19 +1317,6 @@ input:focus::placeholder {
   background-color: rgba(127, 85, 211, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
- 
-  /* Make header fixed and add transition */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* This class will slide the header out of view */
-.property-mobile-fuchsia-blue .hidden {
-  transform: translateY(-100%);
 }
 
 .property-mobile-fuchsia-blue .mobile-nav {

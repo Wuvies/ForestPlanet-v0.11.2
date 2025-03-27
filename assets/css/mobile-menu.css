@@ -1,13 +1,4 @@
-/*
- * Mobile Menu Overlay Styles for ForestPlanet Theme
- */
-
-/* Prevent scrolling when menu is open */
-body.mobile-menu-open {
-    overflow: hidden;
-}
-
-/* Base mobile menu overlay */
+/* Mobile Menu Styles */
 .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -16,167 +7,158 @@ body.mobile-menu-open {
     height: 100%;
     z-index: 1000;
     background-color: var(--romance);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    display: flex;
-    flex-direction: column;
     overflow-y: auto;
 }
 
-.mobile-menu-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Style variants based on header style */
-.mobile-menu-overlay-romance {
-    background-color: var(--romance);
-    color: var(--mirage);
-}
-
+/* Background color variations for different header styles */
 .mobile-menu-overlay-mirage {
-    background-color: var(--mirage);
+    background-color: var(--mirage) !important;
     color: var(--romance);
 }
 
 .mobile-menu-overlay-fuchsia-blue {
-    background-color: var(--fuchsia-blue);
+    background-color: var(--fuchsia-blue) !important;
     color: var(--romance);
 }
 
-/* Mobile menu content container */
-.mobile-menu-content {
+.menu-mobile {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1.5rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
 }
 
-/* Mobile menu header with logo and close button */
-.mobile-menu-header {
+/* Dark background for mirage and fuchsia-blue themed menus */
+.property-mobile-mirage,
+.property-mobile-fuchsia-blue {
+    background-color: inherit;
+}
+
+.property-mobile-mirage + .nav-menu,
+.property-mobile-fuchsia-blue + .nav-menu {
+    background-color: inherit;
+}
+
+.menu-mobile .property-mobile,
+.menu-mobile .property-mobile-mirage,
+.menu-mobile .property-mobile-fuchsia-blue {
+    width: 100%;
+    padding: 16px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.menu-mobile .property-mobile {
+    background-color: var(--romance);
+}
+
+.menu-mobile .property-mobile-mirage {
+    background-color: var(--mirage);
+}
+
+.menu-mobile .property-mobile-fuchsia-blue {
+    background-color: var(--fuchsia-blue);
+}
+
+/* Make the whole menu inherit the header style background */
+.property-mobile-mirage ~ *,
+.property-mobile-fuchsia-blue ~ * {
+    background-color: inherit;
+}
+
+/* Ensure all elements in dark themed menus have correct background */
+.mobile-menu-overlay-mirage .menu-mobile,
+.mobile-menu-overlay-fuchsia-blue .menu-mobile {
+    background-color: inherit !important;
+}
+
+.mobile-menu-overlay-mirage .nav-menu,
+.mobile-menu-overlay-fuchsia-blue .nav-menu {
+    background-color: inherit !important;
+}
+
+.menu-mobile .mobile-nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.mobile-menu-header .rgb-logo {
-    height: 2.5rem;
+.menu-mobile .rgb-logo {
+    height: 40px;
     width: auto;
 }
 
-#close-menu-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.close-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-/* Mobile menu navigation */
-.mobile-menu-nav {
+.menu-mobile .nav-menu {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.mobile-menu-item {
-    padding: 0.75rem 0;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.mobile-menu-overlay-mirage .mobile-menu-item,
-.mobile-menu-overlay-fuchsia-blue .mobile-menu-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-menu-item-text {
-    font-size: 1.25rem;
-    font-weight: 500;
-}
-
-.mobile-menu-overlay-romance .mobile-menu-item-text {
-    color: var(--mirage);
-}
-
-.mobile-menu-overlay-mirage .mobile-menu-item-text,
-.mobile-menu-overlay-fuchsia-blue .mobile-menu-item-text {
-    color: var(--romance);
-}
-
-/* Mobile menu buttons */
-.mobile-menu-buttons {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.mobile-menu-button {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50vh;
+    padding: 40px 20px;
 }
 
-/* Secondary button styling */
-.mobile-menu-button.secondary {
-    background-color: transparent;
-    border: 1px solid;
+.menu-mobile .tertiary-button,
+.menu-mobile .secondary-button-salem,
+.menu-mobile .primary-button-salem,
+.menu-mobile .secondary-button-romance,
+.menu-mobile .primary-button-romance {
+    align-self: center;
+    width: fit-content;
 }
 
-.mobile-menu-overlay-romance .mobile-menu-button.secondary {
-    border-color: var(--salem);
+.menu-mobile .logo-mark-1-1 {
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -50%;
 }
 
-.mobile-menu-overlay-mirage .mobile-menu-button.secondary {
-    border-color: var(--romance);
+/* Customize close button for dark backgrounds */
+.property-mobile-mirage .menu-button img,
+.property-mobile-fuchsia-blue .menu-button img,
+.mobile-menu-overlay-mirage .menu-button img,
+.mobile-menu-overlay-fuchsia-blue .menu-button img {
+    filter: invert(1);
 }
 
-.mobile-menu-overlay-fuchsia-blue .mobile-menu-button.secondary {
-    border-color: var(--romance);
+/* Animation classes */
+.animate-appear {
+    animation: fadeIn 0.3s ease-in-out forwards;
 }
 
-/* Primary button styling */
-.mobile-menu-button.primary {
-    background-color: var(--salem);
-    border: 1px solid var(--salem);
-    color: var(--romance);
+.animate-disappear {
+    animation: fadeOut 0.3s ease-in-out forwards;
 }
 
-.mobile-menu-overlay-mirage .mobile-menu-button.primary {
-    background-color: var(--romance);
-    border-color: var(--romance);
-    color: var(--mirage);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-.mobile-menu-overlay-fuchsia-blue .mobile-menu-button.primary {
-    background-color: var(--romance);
-    border-color: var(--romance);
-    color: var(--fuchsia-blue);
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
-/* Button text */
-.button-text {
-    font-size: 1rem;
-}
-
-.mobile-menu-overlay-romance .mobile-menu-button.secondary .button-text {
-    color: var(--salem);
-}
-
-.mobile-menu-overlay-mirage .mobile-menu-button.secondary .button-text,
-.mobile-menu-overlay-fuchsia-blue .mobile-menu-button.secondary .button-text {
-    color: var(--romance);
+/* Prevent scrolling when menu is open */
+body.no-scroll,
+html.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 } 

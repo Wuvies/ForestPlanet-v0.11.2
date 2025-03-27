@@ -19,12 +19,19 @@ if (isset($header_style) && !empty($header_style)) {
 
 // Logic for determining if we need dark text or light text
 $dark_style = in_array($footer_style, ['mirage', 'fuchsia-blue']);
+
+$bg_color = 'var(--romance)'; // Default
+if ($footer_style === 'mirage') {
+    $bg_color = 'var(--mirage)';
+} elseif ($footer_style === 'fuchsia-blue') {
+    $bg_color = 'var(--fuchsia-blue)';
+}
 ?>
 
 </div><!-- #content -->
 
 <!-- Desktop Footer -->
-<footer id="site-footer" class="footer footer-<?php echo esc_attr($footer_style); ?>">
+<footer id="site-footer" class="footer footer-<?php echo esc_attr($footer_style); ?>" style="position: relative; z-index: 2; background-color: <?php echo $bg_color; ?>; width: 100%; overflow: visible;">
     <div class="full-footer-frame footer-display">
         <div class="top-footer-frame footer-display">
             <img class="logo-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logos/FP-Logomark-RGB-<?php echo $dark_style ? 'White' : 'Black'; ?>.svg" alt="<?php bloginfo('name'); ?> logo" />
