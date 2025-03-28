@@ -70,6 +70,17 @@
   gap: 16px;
 }
 
+.about-desktop-all-breakpoints .frame-183-item {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 1110px;
+  position: relative;
+  width: 100%;
+}
+
 .about-desktop-all-breakpoints .who-are-we {
   color: var(--romance);
   font-weight: 700;

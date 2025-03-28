@@ -44,7 +44,7 @@ if ($footer_style === 'mirage') {
                     ?>
                 </p>
             </div>
-            <div class="social-media-icons<?php echo $dark_style ? '-romance' : ''; ?>">
+            <div class="social-media-icons">
                 <?php
                 // Social media links - can be managed through custom menu, ACF, or theme options
                 $social_icons = [
@@ -58,12 +58,12 @@ if ($footer_style === 'mirage') {
                     if (!empty($data['url']) && $data['url'] !== '#') :
                 ?>
                     <a href="<?php echo esc_url($data['url']); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr(ucfirst($network)); ?>">
-                        <img class="<?php echo esc_attr($network); ?>" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/' . $data['icon']); ?>" alt="<?php echo esc_attr(ucfirst($network)); ?>" />
+                        <img class="<?php echo esc_attr($network . ($dark_style ? '-romance' : '')); ?>" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/' . $data['icon']); ?>" alt="<?php echo esc_attr(ucfirst($network)); ?>" />
                     </a>
                 <?php
                     else :
                 ?>
-                    <img class="<?php echo esc_attr($network); ?>" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/' . $data['icon']); ?>" alt="<?php echo esc_attr(ucfirst($network)); ?>" />
+                    <img class="<?php echo esc_attr($network . ($dark_style ? '-romance' : '')); ?>" src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/' . $data['icon']); ?>" alt="<?php echo esc_attr(ucfirst($network)); ?>" />
                 <?php
                     endif;
                 endforeach;

@@ -45,8 +45,8 @@ if ($view === 'desktop') :
     // Special case for about page desktop view
     if ($is_about_page) :
     ?>
-    <article class="podcast-card-1">
-        <hr class="line-romance" />
+    <article class="frame-183-item">
+        <div class="line-romance"></div>
         <div class="frame-117">
             <div class="frame-116-1">
                 <img class="rectangle-19-1" src="<?php echo esc_url($podcast_image); ?>" alt="<?php the_title_attribute(); ?>" />

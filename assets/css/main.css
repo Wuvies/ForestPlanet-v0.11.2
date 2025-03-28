@@ -877,46 +877,6 @@ input:focus::placeholder {
   position: relative;
 }
 
-.ffacebook {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.llinkedin {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.bluesky-streamline-simple-icons-1 {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.iinstagram {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.yyoutube {
-  height: 24px;
-  position: relative;
-  width: 24px;
-}
-
-.cookies-preferences {
-  margin-top: -1.00px;
-}
-
-.footer-menu-3 {
-  display: flex;
-  flex: 0 0 auto;
-  position: relative;
-}
-
 .label-wrapper {
   align-items: center;
   align-self: stretch;
@@ -1737,30 +1697,55 @@ input:focus::placeholder {
   height: 24px;
   position: relative;
   width: 24px;
+  transition: filter 0.15s ease;
+}
+
+.facebook:hover {
+  filter: invert(23%) sepia(86%) saturate(1352%) hue-rotate(203deg) brightness(97%) contrast(87%); /* Facebook blue */
 }
 
 .linkedin {
   height: 24px;
   position: relative;
   width: 24px;
+  transition: filter 0.15s ease;
+}
+
+.linkedin:hover {
+  filter: invert(29%) sepia(94%) saturate(1642%) hue-rotate(173deg) brightness(96%) contrast(85%); /* LinkedIn blue */
 }
 
 .bluesky {
   height: 24px;
   position: relative;
   width: 24px;
+  transition: filter 0.15s ease;
+}
+
+.bluesky:hover {
+  filter: invert(56%) sepia(75%) saturate(1891%) hue-rotate(178deg) brightness(101%) contrast(96%); /* Bluesky blue */
 }
 
 .instagram {
   height: 24px;
   position: relative;
   width: 24px;
+  transition: filter 0.15s ease;
+}
+
+.instagram:hover {
+  filter: invert(24%) sepia(97%) saturate(2170%) hue-rotate(297deg) brightness(100%) contrast(93%); /* Instagram magenta */
 }
 
 .youtube {
   height: 24px;
   position: relative;
   width: 24px;
+  transition: filter 0.15s ease;
+}
+
+.youtube:hover {
+  filter: invert(15%) sepia(100%) saturate(6600%) hue-rotate(357deg) brightness(95%) contrast(115%); /* YouTube red */
 }
 
 .select {
@@ -2265,9 +2250,68 @@ input:focus::placeholder {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
   gap: 22px;
   position: relative;
+}
+
+.facebook-romance {
+  height: 24px;
+  position: relative;
+  width: 24px;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.15s ease;
+}
+
+.facebook-romance:hover {
+  filter: invert(23%) sepia(86%) saturate(1352%) hue-rotate(203deg) brightness(97%) contrast(87%); /* Facebook blue */
+}
+
+.linkedin-romance {
+  height: 24px;
+  position: relative;
+  width: 24px;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.15s ease;
+}
+
+.linkedin-romance:hover {
+  filter: invert(29%) sepia(94%) saturate(1642%) hue-rotate(173deg) brightness(96%) contrast(85%); /* LinkedIn blue */
+}
+
+.bluesky-romance {
+  height: 24px;
+  position: relative;
+  width: 24px;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.15s ease;
+}
+
+.bluesky-romance:hover {
+  filter: invert(56%) sepia(75%) saturate(1891%) hue-rotate(178deg) brightness(101%) contrast(96%); /* Bluesky blue */
+}
+
+.instagram-romance {
+  height: 24px;
+  position: relative;
+  width: 24px;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.15s ease;
+}
+
+.instagram-romance:hover {
+  filter: invert(24%) sepia(97%) saturate(2170%) hue-rotate(297deg) brightness(100%) contrast(93%); /* Instagram magenta */
+}
+
+.youtube-romance {
+  height: 24px;
+  position: relative;
+  width: 24px;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+  transition: filter 0.15s ease;
+}
+
+.youtube-romance:hover {
+  filter: invert(15%) sepia(100%) saturate(6600%) hue-rotate(357deg) brightness(95%) contrast(115%); /* YouTube red */
 }
 
 .footer-links {
@@ -2799,7 +2843,10 @@ textarea.content-romance::placeholder {
 }
 
 /* Hide original image when viewing in modal but keep its space */
-.story-image.modal-source {
+.story-image.modal-source,
+.rectangle-31.story-image.modal-source,
+.rectangle-31-1.story-image.modal-source,
+.rectangle.story-image.modal-source {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.1s linear;
@@ -2807,7 +2854,10 @@ textarea.content-romance::placeholder {
 }
 
 /* Class for initial immediate hiding without animation */
-.story-image.modal-source-immediate {
+.story-image.modal-source-immediate,
+.rectangle-31.story-image.modal-source-immediate,
+.rectangle-31-1.story-image.modal-source-immediate,
+.rectangle.story-image.modal-source-immediate {
   visibility: hidden;
   opacity: 0;
   transition: none !important;
@@ -2816,9 +2866,23 @@ textarea.content-romance::placeholder {
 
 /* Force original image to stay hidden */
 .modal-active .story-image.modal-source,
-.modal-active .story-image.modal-source-immediate {
+.modal-active .story-image.modal-source-immediate,
+.modal-active .rectangle-31.story-image.modal-source,
+.modal-active .rectangle-31.story-image.modal-source-immediate,
+.modal-active .rectangle-31-1.story-image.modal-source,
+.modal-active .rectangle-31-1.story-image.modal-source-immediate,
+.modal-active .rectangle.story-image.modal-source,
+.modal-active .rectangle.story-image.modal-source-immediate {
   visibility: hidden !important;
   opacity: 0 !important;
+}
+
+/* Timeline specific image cursor */
+.timeline .story-image,
+.about-mobile .story-image,
+.frame-216 .story-image,
+.frame-216-1 .story-image {
+  cursor: pointer !important;
 }
 
 .modal-content {

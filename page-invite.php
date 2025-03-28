@@ -220,7 +220,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                             wp_reset_postdata();
                         else :
                             // If no posts, show sample podcast entries
-                            for ($i = 0; $i < 7; $i++) :
+                            for ($i = 0; $i < 8; $i++) :
                         ?>
                         <article class="frame-183-item">
                             <div class="line-romance"></div>

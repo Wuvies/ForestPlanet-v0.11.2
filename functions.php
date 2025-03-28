@@ -202,6 +202,17 @@ function forestplanet_enqueue_story_styles() {
             array('forestplanet-styleguide', 'forestplanet-main'),
             wp_get_theme()->get('Version')
         );
+        
+        // Add image modal script for single story pages and about page
+        if (is_singular('story') || is_page_template('page-about.php') || is_page('about')) {
+            wp_enqueue_script(
+                'forestplanet-image-modal',
+                get_template_directory_uri() . '/assets/js/image-modal.js',
+                array('jquery'),
+                wp_get_theme()->get('Version'),
+                true
+            );
+        }
     }
 }
 add_action('wp_enqueue_scripts', 'forestplanet_enqueue_story_styles');

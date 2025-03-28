@@ -157,8 +157,8 @@ for ($i = 1; $i <= 6; $i++) {
                             <?php echo esc_html($timeline_item['content']); ?>
                         </p>
                         <?php if (!empty($timeline_item['image'])) : ?>
-                        <div class="frame-216">
-                            <img class="rectangle-31 rectangle" src="<?php echo esc_url($timeline_item['image']); ?>" alt="<?php echo esc_attr($timeline_item['caption']); ?>" />
+                        <div class="story-image-container">
+                            <img class="rectangle story-image" src="<?php echo esc_url($timeline_item['image']); ?>" alt="<?php echo esc_attr($timeline_item['caption']); ?>" />
                             <p class="planting-fig-trees-in-morocco body-2-regular"><?php echo esc_html($timeline_item['caption']); ?></p>
                         </div>
                         <?php endif; ?>
@@ -388,8 +388,8 @@ for ($i = 1; $i <= 6; $i++) {
                             <?php echo esc_html($timeline_item['content']); ?>
                         </p>
                         <?php if (!empty($timeline_item['image'])) : ?>
-                        <div class="frame-216-1">
-                            <img class="rectangle-31-1" src="<?php echo esc_url($timeline_item['image']); ?>" alt="<?php echo esc_attr($timeline_item['caption']); ?>" />
+                        <div class="story-image-container">
+                            <img class="story-image" src="<?php echo esc_url($timeline_item['image']); ?>" alt="<?php echo esc_attr($timeline_item['caption']); ?>" />
                             <p class="planting-fig-trees-in-morocco-1 body-2-regular"><?php echo esc_html($timeline_item['caption']); ?></p>
                         </div>
                         <?php endif; ?>
@@ -440,30 +440,30 @@ for ($i = 1; $i <= 6; $i++) {
                 <div class="frame-2">
                     <div class="frame-2"><div class="podcasts-1 heading-2"><?php echo esc_html($podcasts_title); ?></div></div>
                     <div class="frame-1-3 frame-1">
-                        <div class="podcast-cards-1">
-                            <?php
-                            // Query for podcasts using the custom post type
-                            $args = array(
-                                'post_type' => 'podcast',
-                                'posts_per_page' => 8,
-                                'orderby' => 'date',
-                                'order' => 'DESC',
-                            );
-                            
-                            $podcasts_query = new WP_Query($args);
-                            
-                            if ($podcasts_query->have_posts()) :
-                                while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
-                                    // Use helper function to display podcast card
-                                    forestplanet_display_podcast_card(get_the_ID(), 'desktop', true);
-                                endwhile;
-                                wp_reset_postdata();
+                    <div class="podcast-cards">
+                        <?php
+                        // Query for podcasts using the custom post type
+                        $args = array(
+                            'post_type' => 'podcast',
+                            'posts_per_page' => 7,
+                            'orderby' => 'date',
+                            'order' => 'DESC',
+                        );
+                        
+                        $podcasts_query = new WP_Query($args);
+                        
+                        if ($podcasts_query->have_posts()) :
+                            while ($podcasts_query->have_posts()) : $podcasts_query->the_post();
+                                // Use helper function to display podcast card
+                                forestplanet_display_podcast_card(get_the_ID(), 'desktop');
+                            endwhile;
+                            wp_reset_postdata();
                             else :
                                 // If no posts, show sample podcast entries
                                 for ($i = 0; $i < 8; $i++) :
                             ?>
-                                <article class="podcast-card-1">
-                                    <hr class="line-romance" />
+                                <article class="frame-183-item">
+                                    <div class="line-romance"></div>
                                     <div class="frame-117">
                                         <div class="frame-116-1">
                                             <img class="rectangle-19-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/rectangle-19-1@2x.png" alt="Rectangle 19" />
@@ -583,6 +583,32 @@ for ($i = 1; $i <= 6; $i++) {
             desktopHero.style.backgroundImage = 'url(<?php echo esc_url(forestplanet_get_field('about_hero_image', null, get_template_directory_uri() . '/assets/images/hero-about-low.webp')); ?>)';
         }
         
+        // Initialize image modal for timeline images
+        if (typeof window.initImageModal === 'function') {
+            window.initImageModal();
+        } else {
+            // Fallback initialization if the global function isn't available
+            const timelineImages = document.querySelectorAll('.story-image');
+            if (timelineImages.length > 0) {
+                // Make sure images have pointer cursor
+                timelineImages.forEach(img => {
+                    img.style.cursor = 'pointer';
+                    
+                    // Add click event to open image in a new tab as last resort fallback
+                    img.addEventListener('click', function() {
+                        // If modal script failed to load, at least make the image clickable
+                        if (typeof window.initImageModal !== 'function') {
+                            window.open(this.src, '_blank');
+                        }
+                    });
+                });
+                
+                console.log('Timeline images found:', timelineImages.length);
+            } else {
+                console.log('No timeline images found with story-image class');
+            }
+        }
+        
         // Story Cards Load More Functionality
         var currentVisibleRows = 1;
         function updateStoryCardsLayout() {
@@ -699,7 +725,7 @@ for ($i = 1; $i <= 6; $i++) {
             var container = document.querySelector('.podcast-cards-1');
             if (!container) return;
             
-            var cards = container.querySelectorAll('.podcast-card-1');
+            var cards = container.querySelectorAll('.frame-183-item');
             cards.forEach(function(card, index) {
                 card.style.display = index < currentVisiblePodcasts ? "flex" : "none";
             });
@@ -857,6 +883,82 @@ for ($i = 1; $i <= 6; $i++) {
             }
         });
     });
+</script>
+
+<!-- Ensure image modal script is loaded -->
+<script src="<?php echo esc_url(get_template_directory_uri() . '/assets/js/image-modal.js'); ?>"></script>
+
+<!-- Custom script to initialize timeline images -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Special handling for timeline images
+    function initTimelineImages() {
+        // Wait a moment to ensure the main image modal script has loaded
+        setTimeout(function() {
+            console.log("Initializing timeline images");
+            
+            // Get all timeline images
+            const timelineImages = document.querySelectorAll('.story-image, .story-image');
+            
+            if (timelineImages.length === 0) {
+                console.log("No timeline images found with specific selectors");
+                
+                // Try with more general selectors
+                const allStoryImages = document.querySelectorAll('.story-image');
+                console.log("Found", allStoryImages.length, "story images in total");
+                
+                // If images are found but not initialized, initialize them manually
+                if (allStoryImages.length > 0 && typeof window.initImageModal === 'function') {
+                    console.log("Manually initializing all story images");
+                    window.initImageModal();
+                }
+                
+                return;
+            }
+            
+            console.log("Found", timelineImages.length, "timeline images");
+            
+            // Ensure they have the pointer cursor and proper styling
+            timelineImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                
+                // Add a direct click handler that invokes the image modal
+                img.addEventListener('click', function(e) {
+                    console.log("Timeline image clicked:", this.src);
+                    
+                    // Fallback if the modal script didn't load
+                    if (typeof window.initImageModal !== 'function') {
+                        console.log("Modal script not found, opening in new tab");
+                        window.open(this.src, '_blank');
+                        return;
+                    }
+                    
+                    // If the modal exists but the click handler wasn't attached properly
+                    const modal = document.getElementById('imageModal');
+                    if (!modal) {
+                        console.log("Creating modal element");
+                        if (typeof createModalElement === 'function') {
+                            createModalElement();
+                        } else {
+                            console.log("createModalElement not found");
+                            window.open(this.src, '_blank');
+                            return;
+                        }
+                    }
+                    
+                    // Try to manually trigger the modal functionality
+                    e.stopPropagation();
+                });
+            });
+        }, 500); // Wait 500ms to ensure scripts are loaded
+    }
+    
+    // Run the function on page load
+    initTimelineImages();
+    
+    // Also run it on window load event
+    window.addEventListener('load', initTimelineImages);
+});
 </script>
 
 <?php
