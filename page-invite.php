@@ -200,7 +200,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
             <div class="frame">
                 <div class="frame"><div class="podcasts-1 heading-2">Podcasts</div></div>
                 <div class="frame-1-2 frame-1">
-                    <div class="frame-183">
+                    <div class="podcast-cards">
                         <?php
                         // Query for podcasts using the custom post type
                         $args = array(

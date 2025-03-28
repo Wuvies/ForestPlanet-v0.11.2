@@ -411,9 +411,10 @@
 
 .invite-us-mobile .rectangle-19 {
   height: 99px;
-  object-fit: cover;
-  position: relative;
   width: 99px;
+  object-fit: cover;
+  border-radius: var(--border-radius-20);
+  box-shadow: var(--box-shadow-small);
 }
 
 .invite-us-mobile .frame-112 {

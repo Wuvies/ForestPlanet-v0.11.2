@@ -384,28 +384,6 @@
   color: var(--mirage-2);
 }
 
-.about-desktop-all-breakpoints .podcast-cards-1 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 25px;
-  position: relative;
-  width: 100%;
-}
-
-.about-desktop-all-breakpoints .podcast-card-1 {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 25px;
-  max-width: 1110px;
-  position: relative;
-  width: 100%;
-}
-
 .about-desktop-all-breakpoints .line-1 {
   align-self: stretch;
   height: 2px;

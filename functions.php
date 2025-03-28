@@ -10,6 +10,9 @@
 require_once get_template_directory() . '/inc/class-forestplanet-menu-walker.php';
 // Theme Customizer options 
 require_once get_template_directory() . '/inc/theme-customizer.php';
+// ACF field loader - must be loaded first
+require_once get_template_directory() . '/inc/acf-loader.php';
+
 
 /**
  * Enqueue styles

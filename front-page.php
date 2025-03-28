@@ -19,11 +19,9 @@ get_header();
             <div class="frame-112">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/FP-Logomark-RGB.svg" class="rgb-logo-small" alt="Logo Mark 1">
                 <div class="frame-1">
-                    <h1 class="plant-a-tree-for-just-15 librebaskerville-normal-mirage-48px">Plant a Tree For Just 15¢</h1>
+                    <h1 class="plant-a-tree-for-just-15 librebaskerville-normal-mirage-48px"><?php echo esc_html(forestplanet_get_field('hero_title', null, 'Plant a Tree For Just 15¢')); ?></h1>
                     <p class="forest-pla body-2-regular">
-                        Welcome to ForestPlanet, a growing organization making low-cost reforestation accessible and impactful.
-                        We plant trees where they create the most benefit—restoring soil, revitalizing habitats, and uplifting
-                        communities.
+                        <?php echo esc_html(forestplanet_get_field('hero_description', null, 'Welcome to ForestPlanet, a growing organization making low-cost reforestation accessible and impactful. We plant trees where they create the most benefit—restoring soil, revitalizing habitats, and uplifting communities.')); ?>
                     </p>
                 </div>
                 <div class="frame-113">
@@ -35,27 +33,43 @@ get_header();
                     </a>
                 </div>
             </div>
-            <img class="hero-image" src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-image.webp" alt="hero-image" />
+            <?php 
+            // Use our helper function instead of direct get_field
+            echo forestplanet_get_image_field('hero_image', 'full', null, 'assets/images/hero-image.webp', [
+                'class' => 'hero-image',
+                'alt' => 'Hero image'
+            ]);
+            ?>
         </div>
         <div class="main-content-item">
             <div class="frame-274">
-                <div class="what-we-do subtitle-2">WHAT WE DO</div>
+                <div class="what-we-do subtitle-2"><?php echo esc_html(forestplanet_get_field('what_we_do_subtitle', null, 'WHAT WE DO')); ?></div>
                 <div class="plant-trees-plant-hope librebaskerville-normal-mirage-48px">
-                    <span class="span librebaskerville-normal-mirage-48px">Plant </span>
-                    <span class="span librebaskerville-normal-mirage-48px-2">Trees, </span>
-                    <span class="span librebaskerville-normal-mirage-48px">Plant </span>
-                    <span class="span librebaskerville-normal-mirage-48px-2">Hope</span>
+                    <?php 
+                    $what_we_do_title = forestplanet_get_field('what_we_do_title', null, 'Plant Trees, Plant Hope');
+                    $title_parts = explode(',', $what_we_do_title);
+                    ?>
+                    <span class="span librebaskerville-normal-mirage-48px"><?php echo esc_html($title_parts[0]); ?> </span>
+                    <?php if (isset($title_parts[1])): ?>
+                    <span class="span librebaskerville-normal-mirage-48px-2"><?php echo esc_html($title_parts[1]); ?> </span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="frame-275">
-                <img class="tanzania-fp-sign" src="<?php echo get_template_directory_uri(); ?>/assets/images/Tanzania FP Sign.png" alt="Tanzania FP Sign" />
+                <?php 
+                // Use our helper function instead of direct get_field
+                echo forestplanet_get_image_field('what_we_do_image', 'full', null, 'assets/images/Tanzania FP Sign.png', [
+                    'class' => 'tanzania-fp-sign',
+                    'alt' => 'Tanzania FP Sign'
+                ]);
+                ?>
                 <div class="frame">
                     <p class="we-channel-support-f body-2-regular">
-                        We channel support from businesses, individuals, and foundations to cost-effective tree-planting
-                        projects. These efforts restore habitats, improve soil, capture carbon, and uplift communities.<br /><br />Through
-                        reforestation, we help secure income, food, and hope for many. Trees enrich soil, preserve water, and
-                        foster biodiversity.<br /><br />We proudly partner with visionary organizations to create lasting
-                        impact. Join us in transforming lives and ecosystems through trees.
+                        <?php echo wp_kses_post(forestplanet_get_field('what_we_do_description', null, 'We channel support from businesses, individuals, and foundations to cost-effective tree-planting projects. These efforts restore habitats, improve soil, capture carbon, and uplift communities.
+
+Through reforestation, we help secure income, food, and hope for many. Trees enrich soil, preserve water, and foster biodiversity.
+
+We proudly partner with visionary organizations to create lasting impact. Join us in transforming lives and ecosystems through trees.')); ?>
                     </p>
                     <div class="frame-113">
                         <a href="<?php echo esc_url(home_url('/donate')); ?>" class="primary-button-salem primary-button">
@@ -69,15 +83,31 @@ get_header();
             </div>
         </div>
         <div class="impact-metrics impact">
-            <div class="our-impact subtitle-2">OUR IMPACT</div>
+            <div class="our-impact subtitle-2"><?php echo esc_html(forestplanet_get_field('impact_subtitle', null, 'OUR IMPACT')); ?></div>
             <div class="frame-119">
                 <?php
-                // Impact metrics
+                // Impact metrics from ACF
                 $impact_metrics = array(
-                    array('number' => '1.4m', 'label' => 'Trees', 'class' => 'x14m'),
-                    array('number' => '3', 'label' => 'Countries', 'class' => 'number-4'),
-                    array('number' => '10', 'label' => 'Partners', 'class' => 'number-4'),
-                    array('number' => '5', 'label' => 'Projects', 'class' => 'number-4')
+                    array(
+                        'number' => forestplanet_get_field('metric_1_number', null, '1.4m'),
+                        'label' => forestplanet_get_field('metric_1_label', null, 'Trees'),
+                        'class' => 'x14m'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_2_number', null, '3'),
+                        'label' => forestplanet_get_field('metric_2_label', null, 'Countries'),
+                        'class' => 'number-4'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_3_number', null, '10'),
+                        'label' => forestplanet_get_field('metric_3_label', null, 'Partners'),
+                        'class' => 'number-4'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_4_number', null, '5'),
+                        'label' => forestplanet_get_field('metric_4_label', null, 'Projects'),
+                        'class' => 'number-4'
+                    )
                 );
 
                 foreach ($impact_metrics as $metric) :
@@ -91,10 +121,20 @@ get_header();
         </div>
         <div class="map">
             <div class="frame-274">
-                <div class="where-weve-been where-weve subtitle-2">WHERE WE'VE BEEN</div>
+                <div class="where-weve-been where-weve subtitle-2"><?php echo esc_html(forestplanet_get_field('map_subtitle', null, 'WHERE WE\'VE BEEN')); ?></div>
                 <div class="where-weve-impacted where-weve librebaskerville-normal-mirage-48px">
-                    <span class="span librebaskerville-normal-mirage-48px">Where We've </span>
-                    <span class="span librebaskerville-normal-mirage-48px-2">Impacted</span>
+                    <?php 
+                    $map_title = forestplanet_get_field('map_title', null, 'Where We\'ve Impacted');
+                    $title_parts = explode(' ', $map_title, 3);
+                    if (count($title_parts) >= 2): 
+                    ?>
+                    <span class="span librebaskerville-normal-mirage-48px"><?php echo esc_html($title_parts[0] . ' ' . $title_parts[1]); ?> </span>
+                    <?php if (isset($title_parts[2])): ?>
+                    <span class="span librebaskerville-normal-mirage-48px-2"><?php echo esc_html($title_parts[2]); ?></span>
+                    <?php endif; ?>
+                    <?php else: ?>
+                    <span class="span librebaskerville-normal-mirage-48px"><?php echo esc_html($map_title); ?></span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div id="map-mobile"></div>
@@ -175,26 +215,69 @@ get_header();
         <div class="problem-solved">
             <div class="frame-87">
                 <div class="frame-2">
-                    <div class="see-the-difference subtitle-2">SEE THE DIFFERENCE</div>
+                    <div class="see-the-difference subtitle-2"><?php echo esc_html(forestplanet_get_field('problem_solved_subtitle', null, 'SEE THE DIFFERENCE')); ?></div>
                     <div class="problem-solved-1 librebaskerville-normal-romance-48px">
-                        <span class="span librebaskerville-normal-romance-48px">Problem? </span>
-                        <span class="span1">Solved.</span>
+                        <?php 
+                        $problem_solved_title = forestplanet_get_field('problem_solved_title', null, 'Problem? Solved.');
+                        $title_parts = explode('?', $problem_solved_title, 2);
+                        ?>
+                        <span class="span librebaskerville-normal-romance-48px"><?php echo esc_html($title_parts[0] . ($title_parts[1] ? '?' : '')); ?> </span>
+                        <?php if (isset($title_parts[1]) && !empty($title_parts[1])): ?>
+                        <span class="span1"><?php echo esc_html(trim($title_parts[1])); ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <p class="before-degraded-lan inter-bold-romance-18px">
+                    <?php 
+                    $problem_description = forestplanet_get_field('problem_description', null, 'Before: Degraded landscapes, barren soils, and disappearing wildlife.
+After: Flourishing forests, enriched soil, vibrant habitats, and cleaner air.
+
+Every tree planted turns desolation into life, combating climate change and creating a healthier, greener planet for future generations.');
+                    
+                    // Split the description into "Before" and "After" sections
+                    $has_before_after = (strpos($problem_description, 'Before:') !== false && strpos($problem_description, 'After:') !== false);
+                    
+                    if ($has_before_after):
+                        $parts = explode('After:', $problem_description, 2);
+                        $before_text = str_replace('Before:', '', $parts[0]);
+                        $after_text = isset($parts[1]) ? $parts[1] : '';
+                    ?>
                     <span class="inter-bold-romance-18px">Before:</span>
-                    <span class="span-2 body-2-regular"> Degraded landscapes, barren soils, and disappearing wildlife.</span>
+                    <span class="span-2 body-2-regular"><?php echo wp_kses_post(trim($before_text)); ?></span>
                     <span class="inter-bold-romance-18px">After:</span>
-                    <span class="span-2 body-2-regular">
-                        Flourishing forests, enriched soil, vibrant habitats, and cleaner air.<br /><br />Every tree planted
-                        turns desolation into life, combating climate change and creating a healthier, greener planet for future
-                        generations.
-                    </span>
+                    <span class="span-2 body-2-regular"><?php echo wp_kses_post(trim($after_text)); ?></span>
+                    <?php else: ?>
+                    <span class="span-2 body-2-regular"><?php echo wp_kses_post($problem_description); ?></span>
+                    <?php endif; ?>
                 </p>
             </div>
             <div class="before-after">
                 <div class="comparison" onmousemove="moveDivisor(event, this)">
                     <figure>
+                        <?php 
+                        // Use helper functions to get the before and after images
+                        $after_image_html = forestplanet_get_image_field('after_image', 'full', null, 'assets/images/after-image.jpg');
+                        $before_image_html = forestplanet_get_image_field('before_image', 'full', null, 'assets/images/before-image.jpg');
+                        
+                        // Extract URL from HTML using preg_match
+                        preg_match('/src=["\']([^"\']+)["\']/', $after_image_html, $after_matches);
+                        preg_match('/src=["\']([^"\']+)["\']/', $before_image_html, $before_matches);
+                        
+                        $after_image_url = isset($after_matches[1]) ? $after_matches[1] : get_template_directory_uri() . '/assets/images/after-image.jpg';
+                        $before_image_url = isset($before_matches[1]) ? $before_matches[1] : get_template_directory_uri() . '/assets/images/before-image.jpg';
+                        
+                        // Set background images via inline style
+                        $figure_style = "background-image: url('" . esc_url($after_image_url) . "');";
+                        $divisor_style = "background-image: url('" . esc_url($before_image_url) . "');";
+                        ?>
+                        <style>
+                            figure.comparison {
+                                background-image: url('<?php echo esc_url($after_image_url); ?>');
+                            }
+                            figure.comparison div.divisor {
+                                background-image: url('<?php echo esc_url($before_image_url); ?>');
+                            }
+                        </style>
                         <div class="divisor"></div>
                     </figure>
                 </div>
@@ -203,7 +286,7 @@ get_header();
         <div class="our-partners-section">
             <div class="partners-1">
                 <div class="frame-323">
-                    <div class="our-partners librebaskerville-normal-mirage-48px">Our Partners</div>
+                    <div class="our-partners librebaskerville-normal-mirage-48px"><?php echo esc_html(forestplanet_get_field('partners_title', null, 'Our Partners')); ?></div>
                 </div>
             </div>
             <section class="scrolling-cards-wrapper" aria-label="Scrolling Partner Logos">
@@ -319,40 +402,47 @@ get_header();
         <div class="support-drives-impact">
             <div class="frame-416">
                 <div class="our-1 librebaskerville-normal-mirage-48px">
-                    <span class="span librebaskerville-normal-mirage-48px">How Your </span>
-                    <span class="span librebaskerville-normal-mirage-48px-2">Support<br /></span>
-                    <span class="span librebaskerville-normal-mirage-48px">Drives Impact</span>
+                    <?php
+                    $impact_steps_title = forestplanet_get_field('impact_steps_title', null, 'How Your Support Drives Impact');
+                    $title_words = explode(' ', $impact_steps_title);
+                    $first_words = array_slice($title_words, 0, 3);
+                    $last_words = array_slice($title_words, 3);
+                    ?>
+                    <span class="span librebaskerville-normal-mirage-48px"><?php echo esc_html(implode(' ', $first_words)); ?> </span>
+                    <?php if (!empty($last_words)): ?>
+                    <span class="span librebaskerville-normal-mirage-48px-2"><?php echo esc_html(implode(' ', $last_words)); ?></span>
+                    <?php endif; ?>
                 </div>
                 <div class="impact-graphic impact">
                     <?php
-                    // Impact steps
+                    // Impact steps from ACF
                     $impact_steps = array(
                         array(
                             'number' => '1',
-                            'title' => 'Funding Tree Planting Projects',
-                            'description' => 'Your donations directly fund large-scale tree planting initiatives with proven success across the globe.',
-                            'image' => 'impact-img-1.jpg',
+                            'title' => forestplanet_get_field('step_1_title', null, 'Funding Tree Planting Projects'),
+                            'description' => forestplanet_get_field('step_1_description', null, 'Your donations directly fund large-scale tree planting initiatives with proven success across the globe.'),
+                            'image' => forestplanet_get_field('step_1_image', null, ''),
                             'img_class' => 'impact-img-1-1'
                         ),
                         array(
                             'number' => '2',
-                            'title' => 'Supporting Local Communities',
-                            'description' => 'Contributions create jobs, improve food security, and generate hope for communities living on the edge of poverty.',
-                            'image' => 'impact-img-2.jpg',
+                            'title' => forestplanet_get_field('step_2_title', null, 'Supporting Local Communities'),
+                            'description' => forestplanet_get_field('step_2_description', null, 'Contributions create jobs, improve food security, and generate hope for communities living on the edge of poverty.'),
+                            'image' => forestplanet_get_field('step_2_image', null, ''),
                             'img_class' => 'impact-img-2-1'
                         ),
                         array(
                             'number' => '3',
-                            'title' => 'Restoring Ecosystems',
-                            'description' => 'Each tree planted helps restore wildlife habitats, enrich soils, and combat climate change through carbon sequestration.',
-                            'image' => 'impact-img-3.jpg',
+                            'title' => forestplanet_get_field('step_3_title', null, 'Restoring Ecosystems'),
+                            'description' => forestplanet_get_field('step_3_description', null, 'Each tree planted helps restore wildlife habitats, enrich soils, and combat climate change through carbon sequestration.'),
+                            'image' => forestplanet_get_field('step_3_image', null, ''),
                             'img_class' => 'impact-img-3-1'
                         ),
                         array(
                             'number' => '4',
-                            'title' => 'Long-Term Sustainability',
-                            'description' => 'Your participation fuels ongoing projects that ensure long-lasting environmental and social benefits, making a lasting difference.',
-                            'image' => 'impact-img-4.jpg',
+                            'title' => forestplanet_get_field('step_4_title', null, 'Long-Term Sustainability'),
+                            'description' => forestplanet_get_field('step_4_description', null, 'Your participation fuels ongoing projects that ensure long-lasting environmental and social benefits, making a lasting difference.'),
+                            'image' => forestplanet_get_field('step_4_image', null, ''),
                             'img_class' => 'impact-img-4-1'
                         )
                     );
@@ -363,7 +453,15 @@ get_header();
                         endif;
                     ?>
                     <div class="frame-28">
-                        <img class="<?php echo esc_attr($step['img_class']); ?>" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($step['image']); ?>" alt="Rectangle 26" />
+                        <?php 
+                        $image_url = '';
+                        if (is_array($step['image']) && !empty($step['image']['url'])) {
+                            $image_url = $step['image']['url'];
+                        } else {
+                            $image_url = get_template_directory_uri() . '/assets/images/impact-img-' . $step['number'] . '.jpg';
+                        }
+                        ?>
+                        <img class="<?php echo esc_attr($step['img_class']); ?>" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($step['title']); ?>" />
                         <div class="frame-2-1 frame-2-3">
                             <div class="number heading-2"><?php echo esc_html($step['number']); ?></div>
                             <div class="frame-19">
@@ -388,20 +486,20 @@ get_header();
         </div>
         <div class="main-content-item-1">
             <div class="frame-127">
-                <div class="what-people-are-saying subtitle-2">WHAT PEOPLE ARE SAYING</div>
-                <div class="testimonials librebaskerville-normal-mirage-48px">Testimonials</div>
+                <div class="what-people-are-saying subtitle-2"><?php echo esc_html(forestplanet_get_field('testimonials_subtitle', null, 'WHAT PEOPLE ARE SAYING')); ?></div>
+                <div class="testimonials librebaskerville-normal-mirage-48px"><?php echo esc_html(forestplanet_get_field('testimonials_title', null, 'Testimonials')); ?></div>
             </div>
             <div class="frame-326">
                 <?php
-                // Testimonials
+                // Testimonials from ACF
                 $testimonials = array(
                     array(
-                        'name' => 'Person Name - Partner',
-                        'quote' => 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.'
+                        'name' => forestplanet_get_field('testimonial_1_name', null, 'Person Name - Partner'),
+                        'quote' => forestplanet_get_field('testimonial_1_quote', null, 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.')
                     ),
                     array(
-                        'name' => 'Person Name - Partner',
-                        'quote' => 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.'
+                        'name' => forestplanet_get_field('testimonial_2_name', null, 'Person Name - Partner'),
+                        'quote' => forestplanet_get_field('testimonial_2_quote', null, 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.')
                     )
                 );
 
@@ -426,15 +524,15 @@ get_header();
             </div>
         </div>
         <div class="get-involved">
-            <div class="get-involved-1 get-involved-3 librebaskerville-normal-romance-48px">Get Involved</div>
+            <div class="get-involved-1 get-involved-3 librebaskerville-normal-romance-48px"><?php echo esc_html(forestplanet_get_field('get_involved_title', null, 'Get Involved')); ?></div>
             <div class="frame-28-1">
                 <?php
-                // Get involved options
+                // Get involved options from ACF
                 $involvement_options = array(
                     array(
-                        'for' => 'FOR BUSINESSES',
-                        'title' => 'Partner',
-                        'description' => 'Show your commitment to sustainability by partnering with us. Together, we can drive environmental restoration and social change.',
+                        'for' => forestplanet_get_field('option_1_for', null, 'FOR BUSINESSES'),
+                        'title' => forestplanet_get_field('option_1_title', null, 'Partner'),
+                        'description' => forestplanet_get_field('option_1_description', null, 'Show your commitment to sustainability by partnering with us. Together, we can drive environmental restoration and social change.'),
                         'link' => 'partner',
                         'button_text' => 'Partner'
                     ),
@@ -480,7 +578,7 @@ get_header();
         </div>
         <div class="our-stories-section">
             <div class="our-stories">
-                <div class="our librebaskerville-normal-mirage-48px">Our Stories</div>
+                <div class="our librebaskerville-normal-mirage-48px"><?php echo esc_html(forestplanet_get_field('stories_title', null, 'Our Stories')); ?></div>
             </div>
             <div class="story-cards">
                 <?php
@@ -544,17 +642,20 @@ get_header();
         <div class="main-content-item">
             <div class="frame-35">
                 <div class="frame-34">
-                    <div class="act-now subtitle-2">ACT NOW</div>
+                    <div class="act-now subtitle-2"><?php echo esc_html(forestplanet_get_field('act_now_subtitle', null, 'ACT NOW')); ?></div>
                     <div class="frame-5">
                         <div class="be-the-change librebaskerville-normal-mirage-48px">
-                            <span class="span librebaskerville-normal-mirage-48px">Be The </span>
-                            <span class="span librebaskerville-normal-mirage-48px-2">Change</span>
+                            <?php
+                            $act_now_title = forestplanet_get_field('act_now_title', null, 'Be The Change');
+                            $title_parts = explode(' ', $act_now_title);
+                            $first_words = array_slice($title_parts, 0, count($title_parts) - 1);
+                            $last_word = end($title_parts);
+                            ?>
+                            <span class="span librebaskerville-normal-mirage-48px"><?php echo esc_html(implode(' ', $first_words)); ?> </span>
+                            <span class="span librebaskerville-normal-mirage-48px-2"><?php echo esc_html($last_word); ?></span>
                         </div>
                         <p class="your-support-is-the body-2-regular">
-                            Your support is the root of transformation. Every donation, every action, and every partnership helps
-                            us plant more trees, restore more ecosystems, and uplift more lives.<br />Donate today to make an
-                            immediate impact, or join us as a volunteer or partner to grow a greener, brighter future. Together,
-                            we can heal the planet—one tree at a time.
+                            <?php echo wp_kses_post(forestplanet_get_field('act_now_description', null, 'Your support is the root of transformation. Every donation, every action, and every partnership helps us plant more trees, restore more ecosystems, and create more sustainable communities.')); ?>
                         </p>
                     </div>
                 </div>
@@ -567,7 +668,11 @@ get_header();
                     </a>
                 </div>
             </div>
-            <img class="image-2" src="<?php echo get_template_directory_uri(); ?>/assets/images/be-the-change.png" alt="Be the change" />
+            <?php 
+            $act_now_image = get_field('act_now_image');
+            $act_now_image_url = $act_now_image ? $act_now_image['url'] : get_template_directory_uri() . '/assets/images/be-the-change.png';
+            ?>
+            <img class="image-2" src="<?php echo esc_url($act_now_image_url); ?>" alt="<?php echo esc_attr($act_now_image ? $act_now_image['alt'] : 'Be the change'); ?>" />
         </div>
     </div>
 </div>
@@ -580,13 +685,16 @@ get_header();
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/FP-Logomark-RGB.svg" class="rgb-logo-large" alt="Logo Mark 1">
                 <div class="frame-114">
                     <h1 class="plant-a-tree-for-just-15-1">
-                        <span class="span-3 librebaskerville-normal-mirage-64px">Plant a Tree For </span>
-                        <span class="span-3 librebaskerville-normal-mirage-64px-2">Just 15¢</span>
+                        <?php 
+                        $hero_title = forestplanet_get_field('hero_title', null, 'Plant a Tree For Just 15¢');
+                        $title_parts = explode(' ', $hero_title);
+                        $last_word = array_pop($title_parts);
+                        ?>
+                        <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html(implode(' ', $title_parts)); ?> </span>
+                        <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html($last_word); ?></span>
                     </h1>
                     <p class="welcome-to-forest-pla body-2-regular">
-                        Welcome to ForestPlanet, a growing organization making low-cost reforestation accessible and impactful.
-                        We plant trees where they create the most benefit—restoring soil, revitalizing habitats, and uplifting
-                        communities.
+                        <?php echo esc_html(forestplanet_get_field('hero_description', null, 'Welcome to ForestPlanet, a growing organization making low-cost reforestation accessible and impactful. We plant trees where they create the most benefit—restoring soil, revitalizing habitats, and uplifting communities.')); ?>
                     </p>
                 </div>
                 <div class="frame-113-2">
@@ -598,28 +706,51 @@ get_header();
                     </a>
                 </div>
             </div>
-            <img class="hero-image bp2-animate-enter" src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-image.webp" alt="hero image" />
+            <?php 
+            // Use our helper function for desktop hero image
+            echo forestplanet_get_image_field('hero_image', 'full', null, 'assets/images/hero-image.webp', [
+                'class' => 'hero-image bp2-animate-enter',
+                'alt' => 'Hero image'
+            ]);
+            ?>
         </div>
         
         <div class="plant-hope">
             <div class="frame-1-1">
-                <div class="what-we-do-1 subtitle-2">WHAT WE DO</div>
+                <div class="what-we-do-1 subtitle-2"><?php echo esc_html(forestplanet_get_field('what_we_do_subtitle', null, 'WHAT WE DO')); ?></div>
                 <div class="plant-trees-plant-hope-1 librebaskerville-normal-mirage-64px">
-                    <span class="span-3 librebaskerville-normal-mirage-64px">Plant </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px-2">Trees, </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px">Plant </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px-2">Hope</span>
+                    <?php 
+                    $what_we_do_title = forestplanet_get_field('what_we_do_title', null, 'Plant Trees, Plant Hope');
+                    $title_parts = explode(',', $what_we_do_title, 2);
+                    $first_part = isset($title_parts[0]) ? $title_parts[0] : 'Plant Trees';
+                    $second_part = isset($title_parts[1]) ? $title_parts[1] : 'Plant Hope';
+                    
+                    // Split first part into words to style separately
+                    $first_words = explode(' ', $first_part);
+                    // Split second part into words to style separately
+                    $second_words = explode(' ', trim($second_part));
+                    ?>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html($first_words[0]); ?> </span>
+                    <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html(isset($first_words[1]) ? $first_words[1] . ', ' : 'Trees, '); ?></span>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html(isset($second_words[0]) ? $second_words[0] : 'Plant'); ?> </span>
+                    <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html(isset($second_words[1]) ? $second_words[1] : 'Hope'); ?></span>
                 </div>
             </div>
             <div class="frame-123">
-                <img class="tanzania-fp-sign bp2-animate-enter1" show-on-scroll src="<?php echo get_template_directory_uri(); ?>/assets/images/Tanzania FP Sign.png" alt="Tanzania FP Sign" />
+                <?php 
+                // Use our helper function instead of direct get_field
+                echo forestplanet_get_image_field('what_we_do_image', 'full', null, 'assets/images/Tanzania FP Sign.png', [
+                    'class' => 'tanzania-fp-sign bp2-animate-enter1',
+                    'alt' => 'Tanzania FP Sign'
+                ]);
+                ?>
                 <div class="frame-122">
                     <p class="we-channel-support-f-1 body-2-regular">
-                        We channel support from businesses, individuals, and foundations to cost-effective tree-planting
-                        projects. These efforts restore habitats, improve soil, capture carbon, and uplift communities.<br /><br />Through
-                        reforestation, we help secure income, food, and hope for many. Trees enrich soil, preserve water, and
-                        foster biodiversity.<br /><br />We proudly partner with visionary organizations to create lasting
-                        impact. Join us in transforming lives and ecosystems through trees.
+                        <?php echo wp_kses_post(forestplanet_get_field('what_we_do_description', null, 'We channel support from businesses, individuals, and foundations to cost-effective tree-planting projects. These efforts restore habitats, improve soil, capture carbon, and uplift communities.
+
+Through reforestation, we help secure income, food, and hope for many. Trees enrich soil, preserve water, and foster biodiversity.
+
+We proudly partner with visionary organizations to create lasting impact. Join us in transforming lives and ecosystems through trees.')); ?>
                     </p>
                 <div class="frame-113-2">
                     <a href="<?php echo esc_url(home_url('/donate')); ?>" class="primary-button-salem primary-button">
@@ -634,9 +765,35 @@ get_header();
         </div>
         
         <div class="impact-metrics-1">
-            <div class="our-impact-1 subtitle-2">OUR IMPACT</div>
+            <div class="our-impact-1 subtitle-2"><?php echo esc_html(forestplanet_get_field('impact_subtitle', null, 'OUR IMPACT')); ?></div>
             <div class="metric-cards metric">
-                <?php foreach ($impact_metrics as $metric) : ?>
+                <?php
+                // Impact metrics from ACF
+                $impact_metrics = array(
+                    array(
+                        'number' => forestplanet_get_field('metric_1_number', null, '1.4m'),
+                        'label' => forestplanet_get_field('metric_1_label', null, 'Trees'),
+                        'class' => 'x14m'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_2_number', null, '3'),
+                        'label' => forestplanet_get_field('metric_2_label', null, 'Countries'),
+                        'class' => 'number-4'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_3_number', null, '10'),
+                        'label' => forestplanet_get_field('metric_3_label', null, 'Partners'),
+                        'class' => 'number-4'
+                    ),
+                    array(
+                        'number' => forestplanet_get_field('metric_4_number', null, '5'),
+                        'label' => forestplanet_get_field('metric_4_label', null, 'Projects'),
+                        'class' => 'number-4'
+                    )
+                );
+
+                foreach ($impact_metrics as $metric) :
+                ?>
                 <div class="metric-card metric">
                     <div class="<?php echo esc_attr($metric['class']); ?> heading-2"><?php echo esc_html($metric['number']); ?></div>
                     <div class="<?php echo esc_attr(strtolower($metric['label'])); ?>-1 body-2-regular"><?php echo esc_html($metric['label']); ?></div>
@@ -647,10 +804,21 @@ get_header();
         
         <div class="map-1">
             <div class="frame-121">
-                <div class="where-weve-been-1 subtitle-2">WHERE WE'VE BEEN</div>
+                <div class="where-weve-been-1 subtitle-2"><?php echo esc_html(forestplanet_get_field('map_subtitle', null, 'WHERE WE\'VE BEEN')); ?></div>
                 <div class="where-weve-impacted-1 librebaskerville-normal-mirage-64px">
-                    <span class="span-3 librebaskerville-normal-mirage-64px">Where We've </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px-2">Impacted</span>
+                    <?php 
+                    $map_title = forestplanet_get_field('map_title', null, 'Where We\'ve Impacted');
+                    $title_parts = explode(' ', $map_title, 3);
+                    
+                    if (count($title_parts) >= 2): 
+                    ?>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html($title_parts[0] . ' ' . $title_parts[1]); ?> </span>
+                    <?php if (isset($title_parts[2])): ?>
+                    <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html($title_parts[2]); ?></span>
+                    <?php endif; ?>
+                    <?php else: ?>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html($map_title); ?></span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div id="map-desktop"></div>
@@ -733,26 +901,71 @@ get_header();
         <div class="problem-solved-2">
             <div class="frame-87-1">
                 <div class="frame-1-1">
-                    <div class="see-the-difference-1 subtitle-2">SEE THE DIFFERENCE</div>
+                    <div class="see-the-difference-1 subtitle-2"><?php echo esc_html(forestplanet_get_field('problem_solved_subtitle', null, 'SEE THE DIFFERENCE')); ?></div>
                     <div class="problem-solved-3 problem-solved librebaskerville-normal-romance-64px">
-                        <span class="span-3 librebaskerville-normal-romance-64px">Problem? </span>
-                        <span class="span1-1">Solved.</span>
+                        <?php 
+                        $problem_solved_title = forestplanet_get_field('problem_solved_title', null, 'Problem? Solved.');
+                        $title_parts = explode('?', $problem_solved_title, 2);
+                        ?>
+                        <span class="span-3 librebaskerville-normal-romance-64px"><?php echo esc_html($title_parts[0] . (isset($title_parts[1]) ? '?' : '')); ?> </span>
+                        <?php if (isset($title_parts[1]) && !empty($title_parts[1])): ?>
+                        <span class="span1-1"><?php echo esc_html(trim($title_parts[1])); ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <p class="before-degraded-lan-1 inter-bold-romance-18px">
+                    <?php 
+                    $problem_description = forestplanet_get_field('problem_description', null, 'Before: Degraded landscapes, barren soils, and disappearing wildlife.
+After: Flourishing forests, enriched soil, vibrant habitats, and cleaner air.
+
+Every tree planted turns desolation into life, combating climate change and creating a healthier, greener planet for future generations.');
+                    
+                    // Split the description into "Before" and "After" sections
+                    $has_before_after = (strpos($problem_description, 'Before:') !== false && strpos($problem_description, 'After:') !== false);
+                    
+                    if ($has_before_after):
+                        $parts = explode('After:', $problem_description, 2);
+                        $before_text = str_replace('Before:', '', $parts[0]);
+                        $after_text = isset($parts[1]) ? $parts[1] : '';
+                    ?>
                     <span class="inter-bold-romance-18px">Before:</span>
-                    <span class="span-5 body-2-regular"> Degraded landscapes, barren soils, and disappearing wildlife.</span>
+                    <span class="span-5 body-2-regular"><?php echo wp_kses_post(trim($before_text)); ?></span>
                     <span class="inter-bold-romance-18px"><br>After:</span>
                     <span class="span-5 body-2-regular">
-                        Flourishing forests, enriched soil, vibrant habitats, and cleaner air.<br /><br />Every tree planted
-                        turns desolation into life, combating climate change and creating a healthier, greener planet for future
-                        generations.
+                        <?php echo wp_kses_post(trim($after_text)); ?>
                     </span>
+                    <?php else: ?>
+                    <span class="span-5 body-2-regular"><?php echo wp_kses_post($problem_description); ?></span>
+                    <?php endif; ?>
                 </p>
             </div>
             <div class="before-after-1">
                 <div class="comparison" onmousemove="moveDivisor(event, this)">
                     <figure>
+                        <?php 
+                        // Use helper functions to get the before and after images
+                        $after_image_html = forestplanet_get_image_field('after_image', 'full', null, 'assets/images/after-image.jpg');
+                        $before_image_html = forestplanet_get_image_field('before_image', 'full', null, 'assets/images/before-image.jpg');
+                        
+                        // Extract URL from HTML using preg_match
+                        preg_match('/src=["\']([^"\']+)["\']/', $after_image_html, $after_matches);
+                        preg_match('/src=["\']([^"\']+)["\']/', $before_image_html, $before_matches);
+                        
+                        $after_image_url = isset($after_matches[1]) ? $after_matches[1] : get_template_directory_uri() . '/assets/images/after-image.jpg';
+                        $before_image_url = isset($before_matches[1]) ? $before_matches[1] : get_template_directory_uri() . '/assets/images/before-image.jpg';
+                        
+                        // Set background images via inline style
+                        $figure_style = "background-image: url('" . esc_url($after_image_url) . "');";
+                        $divisor_style = "background-image: url('" . esc_url($before_image_url) . "');";
+                        ?>
+                        <style>
+                            figure.comparison {
+                                background-image: url('<?php echo esc_url($after_image_url); ?>');
+                            }
+                            figure.comparison div.divisor {
+                                background-image: url('<?php echo esc_url($before_image_url); ?>');
+                            }
+                        </style>
                         <div class="divisor"></div>
                     </figure>
                 </div>
@@ -762,7 +975,7 @@ get_header();
         <div class="our-partners-section-1">
             <div class="partners-2">
                 <div class="frame-456">
-                    <div class="our-partners-1 librebaskerville-normal-mirage-64px">Our Partners</div>
+                    <div class="our-partners-1 librebaskerville-normal-mirage-64px"><?php echo esc_html(forestplanet_get_field('partners_title', null, 'Our Partners')); ?></div>
                 </div>
             </div>
             <section class="scrolling-cards-wrapper" aria-label="Scrolling Partner Logos">
@@ -866,12 +1079,29 @@ get_header();
         <div class="support-drives-impact-1">
             <div class="frame-415">
                 <p class="how-your-support-drives-impact librebaskerville-normal-mirage-64px">
-                    <span class="span-3 librebaskerville-normal-mirage-64px">How Your </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px-2">Support </span>
-                    <span class="span-3 librebaskerville-normal-mirage-64px">Drives Impact</span>
+                    <?php
+                    $impact_steps_title = forestplanet_get_field('impact_steps_title', null, 'How Your Support Drives Impact');
+                    $title_words = explode(' ', $impact_steps_title);
+                    $first_words = implode(' ', array_slice($title_words, 0, 2)); // "How Your"
+                    $middle_word = isset($title_words[2]) ? $title_words[2] : 'Support'; // "Support"
+                    $last_words = implode(' ', array_slice($title_words, 3)); // "Drives Impact"
+                    ?>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html($first_words); ?> </span>
+                    <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html($middle_word); ?> </span>
+                    <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html($last_words); ?></span>
                 </p>
                 <div class="impact-graphic-1">
                     <?php foreach ($impact_steps as $index => $step) : ?>
+                        <?php 
+                        // Get image URL from ACF field with fallback
+                        $image_url = '';
+                        if (is_array($step['image']) && !empty($step['image']['url'])) {
+                            $image_url = $step['image']['url'];
+                        } else {
+                            $image_url = get_template_directory_uri() . '/assets/images/impact-img-' . $step['number'] . '.jpg';
+                        }
+                        ?>
+                        
                         <?php if ($index === 0) : ?>
                         <div class="frame-462">
                             <div class="frame-2-3 frame-2">
@@ -883,12 +1113,12 @@ get_header();
                                     </p>
                                 </div>
                             </div>
-                            <img class="impact-img-1" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($step['image']); ?>" alt="Rectangle 26" />
+                            <img class="impact-img-1" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($step['title']); ?>" />
                         </div>
                         <object class="vector-1" data="<?php echo get_template_directory_uri(); ?>/assets/images/impact-vector-desktop-1.svg" type="image/svg+xml" alt="Vector 2"></object>
                         <?php elseif ($index === 1) : ?>
                         <div class="frame-46-1 frame-46">
-                            <img class="impact-img-2" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($step['image']); ?>" alt="Rectangle 27" />
+                            <img class="impact-img-2" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($step['title']); ?>" />
                             <div class="frame-21">
                                 <div class="number-4 number heading-2"><?php echo esc_html($step['number']); ?></div>
                                 <div class="frame-19-1">
@@ -911,12 +1141,12 @@ get_header();
                                     </p>
                                 </div>
                             </div>
-                            <img class="impact-img-3" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($step['image']); ?>" alt="Rectangle 28" />
+                            <img class="impact-img-3" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($step['title']); ?>" />
                         </div>
                         <object class="vector-1" data="<?php echo get_template_directory_uri(); ?>/assets/images/impact-vector-desktop-3.svg" type="image/svg+xml" alt="Vector 4"></object>
                         <?php else : ?>
                         <div class="frame-46-1 frame-46">
-                            <img class="impact-img-4" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($step['image']); ?>" alt="Rectangle 29" />
+                            <img class="impact-img-4" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($step['title']); ?>" />
                             <div class="frame-2-3 frame-2">
                                 <div class="number-4 number heading-2"><?php echo esc_html($step['number']); ?></div>
                                 <div class="frame-19-1">
@@ -943,11 +1173,25 @@ get_header();
         
         <div class="testimonials-1">
             <div class="frame-127-2">
-                <div class="what-people-are-saying-1 subtitle-2">WHAT PEOPLE ARE SAYING</div>
-                <div class="testimonials-2 librebaskerville-normal-mirage-64px">Testimonials</div>
+                <div class="what-people-are-saying-1 subtitle-2"><?php echo esc_html(forestplanet_get_field('testimonials_subtitle', null, 'WHAT PEOPLE ARE SAYING')); ?></div>
+                <div class="testimonials-2 librebaskerville-normal-mirage-64px"><?php echo esc_html(forestplanet_get_field('testimonials_title', null, 'Testimonials')); ?></div>
             </div>
             <div class="frame-15">
-                <?php foreach ($testimonials as $index => $testimonial) : ?>
+                <?php
+                // Testimonials from ACF
+                $testimonials = array(
+                    array(
+                        'name' => forestplanet_get_field('testimonial_1_name', null, 'Person Name - Partner'),
+                        'quote' => forestplanet_get_field('testimonial_1_quote', null, 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.')
+                    ),
+                    array(
+                        'name' => forestplanet_get_field('testimonial_2_name', null, 'Person Name - Partner'),
+                        'quote' => forestplanet_get_field('testimonial_2_quote', null, 'Partnering with this initiative has been incredible. Every tree planted is not just a step toward a greener planet, but a step toward hope for countless communities. It\'s rewarding to see tangible change.')
+                    )
+                );
+
+                foreach ($testimonials as $index => $testimonial) :
+                ?>
                 <div class="frame-<?php echo $index === 0 ? '466' : '467'; ?>">
                     <div class="testimonial-card-1">
                         <div class="frame-128-1">
@@ -966,9 +1210,35 @@ get_header();
         </div>
         
         <div class="get-involved-3">
-            <div class="get-involved-4 librebaskerville-normal-romance-64px">Get Involved</div>
+            <div class="get-involved-4 librebaskerville-normal-romance-64px"><?php echo esc_html(forestplanet_get_field('get_involved_title', null, 'Get Involved')); ?></div>
             <div class="frame-28-2">
-                <?php foreach ($involvement_options as $index => $option) : 
+                <?php
+                // Get involved options from ACF
+                $involvement_options = array(
+                    array(
+                        'for' => forestplanet_get_field('option_1_for', null, 'FOR BUSINESSES'),
+                        'title' => forestplanet_get_field('option_1_title', null, 'Partner'),
+                        'description' => forestplanet_get_field('option_1_description', null, 'Show your commitment to sustainability by partnering with us. Together, we can drive environmental restoration and social change.'),
+                        'link' => 'partner',
+                        'button_text' => 'Partner'
+                    ),
+                    array(
+                        'for' => forestplanet_get_field('option_2_for', null, 'FOR INDIVIDUALS'),
+                        'title' => forestplanet_get_field('option_2_title', null, 'Donate'),
+                        'description' => forestplanet_get_field('option_2_description', null, 'Every dollar plants trees, restores ecosystems, and supports communities in need. Your contribution makes an immediate and lasting impact.'),
+                        'link' => 'donate',
+                        'button_text' => 'Donate'
+                    ),
+                    array(
+                        'for' => forestplanet_get_field('option_3_for', null, 'FOR BUSINESSES'),
+                        'title' => forestplanet_get_field('option_3_title', null, 'Invite Us'),
+                        'description' => forestplanet_get_field('option_3_description', null, 'Invite us to your event to share insights on how reforestation combats climate change and uplifts communities.'),
+                        'link' => 'invite-us',
+                        'button_text' => 'Invite'
+                    )
+                );
+
+                foreach ($involvement_options as $index => $option) : 
                     if ($index > 0) : ?>
                     <hr class="line-romance-vertical" aria-hidden="true" />
                 <?php endif; ?>
@@ -993,7 +1263,7 @@ get_header();
         
         <div class="our-stories-section">
             <div class="our-stories">
-                <div class="our-2 librebaskerville-normal-mirage-64px">Our Stories</div>
+                <div class="our-2 librebaskerville-normal-mirage-64px"><?php echo esc_html(forestplanet_get_field('stories_title', null, 'Our Stories')); ?></div>
             </div>
             <div class="story-cards">
                 <?php
@@ -1061,17 +1331,20 @@ get_header();
         <div class="act-now-1 act-now">
             <div class="frame-35-1">
                 <div class="frame-34-1">
-                    <div class="act-now-2 subtitle-2">ACT NOW</div>
+                    <div class="act-now-2 subtitle-2"><?php echo esc_html(forestplanet_get_field('act_now_subtitle', null, 'ACT NOW')); ?></div>
                     <div class="frame-5-2 frame-5">
                         <div class="be-the-change-1 librebaskerville-normal-mirage-64px">
-                            <span class="span-3 librebaskerville-normal-mirage-64px">Be The </span>
-                            <span class="span-3 librebaskerville-normal-mirage-64px-2">Change</span>
+                            <?php
+                            $act_now_title = forestplanet_get_field('act_now_title', null, 'Be The Change');
+                            $title_parts = explode(' ', $act_now_title);
+                            $first_words = array_slice($title_parts, 0, count($title_parts) - 1);
+                            $last_word = end($title_parts);
+                            ?>
+                            <span class="span-3 librebaskerville-normal-mirage-64px"><?php echo esc_html(implode(' ', $first_words)); ?> </span>
+                            <span class="span-3 librebaskerville-normal-mirage-64px-2"><?php echo esc_html($last_word); ?></span>
                         </div>
                         <p class="your-support-is-the-1 body-2-regular">
-                            Your support is the root of transformation. Every donation, every action, and every partnership helps
-                            us plant more trees, restore more ecosystems, and uplift more lives.<br />Donate today to make an
-                            immediate impact, or join us as a volunteer or partner to grow a greener, brighter future. Together,
-                            we can heal the planet—one tree at a time.
+                            <?php echo wp_kses_post(forestplanet_get_field('act_now_description', null, 'Your support is the root of transformation. Every donation, every action, and every partnership helps us plant more trees, restore more ecosystems, and create more sustainable communities.')); ?>
                         </p>
                     </div>
                 </div>
@@ -1084,7 +1357,13 @@ get_header();
                     </a>
                 </div>
             </div>
-            <img class="image-5" src="<?php echo get_template_directory_uri(); ?>/assets/images/be-the-change.png" alt="image" />
+            <?php 
+            // Use our helper function for the act now image
+            echo forestplanet_get_image_field('act_now_image', 'full', null, 'assets/images/be-the-change.png', [
+                'class' => 'image-5',
+                'alt' => 'Be the change'
+            ]);
+            ?>
         </div>
     </div>
 </div>
@@ -1094,6 +1373,7 @@ get_header();
 <script src="<?php echo get_template_directory_uri(); ?>/assets/js/mobile-menu-overlay.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/assets/js/image-comparison.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/assets/js/google-maps.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/assets/js/comparison-slider.js"></script>
 <style>
     /* Basic styling for each map container */
     #map-mobile, #map-desktop {
@@ -1111,72 +1391,18 @@ get_header();
         width: 100%;
     }
 </style>
-<script>
-// Initialize map when Google Maps API is loaded
-function initMap() {
-    // Define locations where ForestPlanet has projects
-    const locations = [
-        { name: "Khenifra, Morocco", lat: 32.9394, lng: -5.6693 },
-        { name: "Pangani Basin, Tanzania", lat: -5.4265, lng: 37.9745 },
-        { name: "Mozambique Channel, Madagascar", lat: -20.0000, lng: 45.3000 }
-    ];
-
-    // Get theme color for markers (or use a default)
-    const markerColor = getComputedStyle(document.documentElement).getPropertyValue('--fuchsia-blue').trim() || '#765BA7';
-    
-    // Initialize mobile map if element exists
-    const mapMobileElement = document.getElementById("map-mobile");
-    if (mapMobileElement) {
-        const mapMobile = new google.maps.Map(mapMobileElement, {
-            center: { lat: 0.0, lng: 20.0 },
-            zoom: 2,
-            mapId: "7b7c12e6a0a72324"
-        });
-        
-        // Add markers to mobile map
-        locations.forEach(location => {
-            new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
-                map: mapMobile,
-                title: location.name,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: markerColor,
-                    fillOpacity: 1,
-                    strokeWeight: 0,
-                    scale: 8
-                }
-            });
-        });
-    }
-
-    // Initialize desktop map if element exists
-    const mapDesktopElement = document.getElementById("map-desktop");
-    if (mapDesktopElement) {
-        const mapDesktop = new google.maps.Map(mapDesktopElement, {
-            center: { lat: 0.0, lng: 20.0 },
-            zoom: 2,
-            mapId: "7b7c12e6a0a72324"
-        });
-        
-        // Add markers to desktop map
-        locations.forEach(location => {
-            new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
-                map: mapDesktop,
-                title: location.name,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: markerColor,
-                    fillOpacity: 1,
-                    strokeWeight: 0,
-                    scale: 8
-                }
-            });
-        });
-    }
-}
-</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSmeebBc_qKg-lMWboxtSLB9qYFVi2Fc4&callback=initMap" async defer></script>
 
+<script>
+// Add page initialization to ensure ACF fields are visible
+document.addEventListener('DOMContentLoaded', function() {
+    // If we're on the admin editing screen for the front page, add a class to help with styling
+    if (document.body.classList.contains('post-type-page') && document.querySelector('body.page')) {
+        document.body.classList.add('front-page-editor');
+    }
+
+    // Initialize image comparison sliders
+    initializeImageComparison();
+});
+</script>
 <?php get_footer(); ?> 

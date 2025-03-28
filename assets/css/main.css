@@ -1180,7 +1180,6 @@ input:focus::placeholder {
   -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex: 0 0 auto;
-  gap: 362px;
   justify-content: center;
   padding: 24px 32px;
   position: fixed;
@@ -1198,7 +1197,6 @@ input:focus::placeholder {
   -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex: 0 0 auto;
-  gap: 362px;
   justify-content: center;
   padding: 24px 32px;
   position: fixed;
