@@ -252,9 +252,6 @@
             // Reset animations
             existingMobileOverlay.classList.remove('animate-disappear');
             
-            // Set up the form handler (in case it wasn't set up already)
-            setupContactFormHandler();
-            
             // Show with proper sequencing
             existingMobileOverlay.style.display = 'flex';
             existingMobileOverlay.style.visibility = 'visible';
@@ -285,9 +282,6 @@
                     mobileOverlayElement.setAttribute('data-from-menu', 'true');
                 }
                 
-                // Set up the form submission handler
-                setupContactFormHandler();
-                
                 // Show with proper sequencing
                 mobileOverlayElement.style.display = 'flex';
                 mobileOverlayElement.style.visibility = 'visible';
@@ -311,9 +305,6 @@
                 if (fromMenu) {
                     overlay.setAttribute('data-from-menu', 'true');
                 }
-                
-                // Set up the form submission handler
-                setupContactFormHandler();
                 
                 // Show the overlay with transition
                 setTimeout(function() {
@@ -356,9 +347,6 @@
                         overlay.setAttribute('data-from-menu', 'true');
                     }
                     
-                    // Set up the form submission handler
-                    setupContactFormHandler();
-                    
                     // Show the overlay with transition
                     setTimeout(function() {
                         overlay.style.display = 'flex';
@@ -386,7 +374,6 @@
                             if (fromMenu) {
                                 overlay.setAttribute('data-from-menu', 'true');
                             }
-                            setupContactFormHandler();
                             overlay.style.display = 'flex';
                             overlay.style.visibility = 'visible';
                             void overlay.offsetWidth;
@@ -444,9 +431,6 @@
                         debugLog('New overlay found after AJAX: ' + (newOverlay ? 'YES' : 'NO'));
                         
                         if (newOverlay) {
-                            // Set up the form submission handler
-                            setupContactFormHandler();
-                            
                             // Add click outside to close
                             setupClickOutsideToClose();
                             
@@ -476,9 +460,6 @@
             });
         } else {
             debugLog('Using existing desktop overlay');
-            
-            // Set up form handler first (before showing)
-            setupContactFormHandler();
             
             // Reset classes first
             overlay.classList.remove('animate-disappear');
@@ -510,127 +491,6 @@
                 // If we clicked outside the form
                 if (formContainer.length && !formContainer[0].contains(e.target)) {
                     window.cancelContactForm();
-                }
-            });
-        }
-    }
-
-    // Set up contact form submission handler
-    function setupContactFormHandler() {
-        // Handle the form submission via AJAX
-        $('.contact-us form').off('submit').on('submit', function(e) {
-            e.preventDefault();
-            
-            const $form = $(this);
-            const $submitBtn = $form.find('button[type="submit"]');
-            
-            // Disable submit button to prevent multiple submissions
-            $submitBtn.prop('disabled', true);
-            
-            // Get form data
-            const email = $form.find('input[name="contact_email"]').val();
-            const subject = $form.find('input[name="contact_subject"]').val();
-            const message = $form.find('textarea[name="contact_message"]').val();
-            
-            $.ajax({
-                url: contactFormData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'forestplanet_contact',
-                    security: contactFormData.security,
-                    email: email,
-                    subject: subject,
-                    message: message
-                },
-                success: function(response) {
-                    // Re-enable submit button
-                    $submitBtn.prop('disabled', false);
-                    
-                    if (response.success) {
-                        // Show success message
-                        showContactConfirmation();
-                    } else {
-                        // Show error message
-                        alert(response.data.message);
-                    }
-                },
-                error: function() {
-                    // Re-enable submit button
-                    $submitBtn.prop('disabled', false);
-                    alert('There was an error sending your message. Please try again.');
-                }
-            });
-        });
-    }
-
-    // Show contact confirmation message
-    function showContactConfirmation() {
-        debugLog('Show contact confirmation');
-        
-        // Check if mobile or desktop
-        if (isMobileDevice()) {
-            // Get the mobile overlay
-            const mobileOverlay = document.querySelector('.mobile-overlay');
-            
-            // Remember if this was from menu
-            const fromMenu = mobileOverlay.getAttribute('data-from-menu') === 'true';
-            
-            // Load the confirmation template via AJAX
-            $.ajax({
-                url: contactFormData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'forestplanet_load_contact_confirmation',
-                    security: contactFormData.security,
-                    is_mobile: true,
-                    from_menu: fromMenu
-                },
-                success: function(response) {
-                    if (response.success) {
-                        // Replace the current overlay with the confirmation
-                        $(mobileOverlay).replaceWith(response.data.html);
-                        
-                        // Get the new overlay
-                        const newOverlay = document.querySelector('.mobile-overlay');
-                        
-                        // Set data attribute if from menu
-                        if (fromMenu) {
-                            newOverlay.setAttribute('data-from-menu', 'true');
-                        }
-                        
-                        // Show the overlay
-                        newOverlay.style.display = 'flex';
-                    } else {
-                        debugLog('Error loading confirmation: ' + response.data.message);
-                    }
-                },
-                error: function() {
-                    debugLog('AJAX error loading confirmation');
-                }
-            });
-        } else {
-            // Get the desktop overlay
-            const desktopOverlay = document.getElementById('overlay-contact-us');
-            
-            // Load the confirmation template via AJAX
-            $.ajax({
-                url: contactFormData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'forestplanet_load_contact_confirmation',
-                    security: contactFormData.security,
-                    is_mobile: false
-                },
-                success: function(response) {
-                    if (response.success) {
-                        // Replace the current content with confirmation
-                        $(desktopOverlay).find('.contact-us').html($(response.data.html).find('.contact-us').html());
-                    } else {
-                        debugLog('Error loading confirmation: ' + response.data.message);
-                    }
-                },
-                error: function() {
-                    debugLog('AJAX error loading confirmation');
                 }
             });
         }
@@ -739,19 +599,56 @@
             return false;
         });
         
-        // If contact success query parameter is present, show confirmation
-        if (window.location.search.includes('contact=success')) {
-            debugLog('Contact success parameter detected');
-            showContactConfirmation();
-        }
-        
-        // Set up contact form handlers for any existing forms
-        setupContactFormHandler();
-        
         // Set up click outside to close for desktop
         if (!isMobileDevice()) {
             setupClickOutsideToClose();
         }
+        
+        // Listen for Contact Form 7 submission events
+        $(document).on('wpcf7mailsent', function(event) {
+            debugLog('Contact Form 7 mail sent event detected');
+            // Get the current overlay
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            const desktopOverlay = document.getElementById('overlay-contact-us');
+            
+            if (mobileOverlay && (getComputedStyle(mobileOverlay).display !== 'none')) {
+                // For mobile
+                // Get confirmation template
+                $.ajax({
+                    url: contactFormData.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'forestplanet_load_contact_confirmation',
+                        security: contactFormData.security,
+                        is_mobile: true,
+                        from_menu: mobileOverlay.getAttribute('data-from-menu') === 'true'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Replace the current overlay with the confirmation
+                            $(mobileOverlay).replaceWith(response.data.html);
+                        }
+                    }
+                });
+            } else if (desktopOverlay && (getComputedStyle(desktopOverlay).display !== 'none')) {
+                // For desktop
+                $.ajax({
+                    url: contactFormData.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'forestplanet_load_contact_confirmation',
+                        security: contactFormData.security,
+                        is_mobile: false
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Replace the current content with confirmation
+                            $(desktopOverlay).find('.contact-us').html($(response.data.html).find('.contact-us').html());
+                        }
+                    }
+                });
+            }
+        });
     });
 
 })(jQuery); 

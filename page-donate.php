@@ -48,7 +48,7 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <a href="<?php echo esc_url(get_permalink(get_page_by_path('donate-checkout'))); ?>" id="continueLinkMobile">
+                <a href="<?php echo esc_url(get_permalink(get_page_by_path('donate-billing'))); ?>" id="continueLinkMobile">
                     <div class="primary-button-salem button-width">
                         <div class="primary-button-romance-text body-2-regular">Continue</div>
                         <img class="chevron-right" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/chevron-right-romance.svg" alt="Chevron Right" />
@@ -92,7 +92,7 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <a href="<?php echo esc_url(get_permalink(get_page_by_path('donate-checkout'))); ?>" id="continueLink">
+                <a href="<?php echo esc_url(get_permalink(get_page_by_path('donate-billing'))); ?>" id="continueLink">
                     <div class="primary-button-salem button-width">
                         <div class="primary-button-romance-text body-2-regular">Continue</div>
                         <img class="chevron-right-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/chevron-right-romance.svg" alt="Chevron Right" />
@@ -180,7 +180,7 @@ jQuery(document).ready(function($) {
     
     function updateContinueLink(amount) {
         // WordPress checkout page URL
-        const checkoutPage = '<?php echo esc_url(get_permalink(get_page_by_path('donate-checkout'))); ?>';
+        const checkoutPage = '<?php echo esc_url(get_permalink(get_page_by_path('donate-billing'))); ?>';
         
         // Update both desktop and mobile continue links
         const continueLink = document.getElementById('continueLink');

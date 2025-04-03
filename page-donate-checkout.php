@@ -12,10 +12,73 @@ add_filter('forestplanet_header_style', function($style) {
     return 'romance';
 });
 
+// Enqueue Stripe JS
+function enqueue_stripe_scripts() {
+    // Only enqueue if Stripe is configured
+    if (function_exists('forestplanet_is_stripe_configured') && forestplanet_is_stripe_configured()) {
+        // Enqueue Stripe JS from CDN
+        wp_enqueue_script('stripe-js', 'https://js.stripe.com/v3/', array(), null, true);
+        
+        // Enqueue Google Pay API
+        wp_enqueue_script('google-pay-api', 'https://pay.google.com/gp/p/js/pay.js', array(), null, true);
+        
+        // Enqueue our custom Stripe integration JS
+        wp_enqueue_script(
+            'forestplanet-stripe-checkout', 
+            get_template_directory_uri() . '/assets/js/stripe-checkout.js', 
+            array('jquery', 'stripe-js', 'google-pay-api'), 
+            '1.0.0', 
+            true
+        );
+        
+        // Pass data to our script
+        wp_localize_script(
+            'forestplanet-stripe-checkout', 
+            'forestplanetStripeParams', 
+            array(
+                'publishableKey' => forestplanet_get_stripe_publishable_key(),
+                'confirmationUrl' => esc_url(get_permalink(get_page_by_path('donate-confirmation'))),
+                'failedUrl' => esc_url(get_permalink(get_page_by_path('donate-failed'))),
+                'mode' => forestplanet_get_stripe_mode(),
+                'enablePayPal' => forestplanet_is_paypal_enabled(),
+                'enableGooglePay' => forestplanet_is_google_pay_enabled(),
+                'enableApplePay' => forestplanet_is_apple_pay_enabled(),
+                'applePayDomain' => forestplanet_get_apple_pay_domain(),
+            )
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_stripe_scripts');
+
+// Create or get stripe payment intent
+$amount = isset($_GET['amount']) ? floatval($_GET['amount']) : 0;
+$payment_intent = null;
+$client_secret = '';
+
+if (function_exists('forestplanet_create_payment_intent') && $amount > 0) {
+    // Get metadata from URL params
+    $metadata = array();
+    
+    // Add fields that we want to save with the payment
+    foreach ($_GET as $key => $value) {
+        if (in_array($key, array('email', 'phone', 'street_address', 'city', 'state', 'zip_code', 'country'))) {
+            $metadata[$key] = sanitize_text_field($value);
+        }
+    }
+    
+    // Create payment intent
+    $payment_intent_data = forestplanet_create_payment_intent($amount, $metadata);
+    
+    // Check if we got a valid payment intent
+    if (!is_wp_error($payment_intent_data) && isset($payment_intent_data['client_secret'])) {
+        $client_secret = $payment_intent_data['client_secret'];
+    }
+}
+
 get_header();
 ?>
 
-<form class="donate-checkout-mobile screen" name="checkout_form_mobile" method="post">
+<form class="donate-checkout-mobile screen" name="checkout_form_mobile" method="post" id="payment-form-mobile">
     <div class="main-content">
         <div class="frame-362">
             <h1 class="title heading-2-mobile">
@@ -35,6 +98,7 @@ get_header();
                                     <input
                                         class="content inter-normal-mirage-18px"
                                         name="card_name"
+                                        id="card-name-mobile"
                                         placeholder="Full Name"
                                         type="text"
                                         required
@@ -43,6 +107,8 @@ get_header();
                             </div>
                         </div>
                     </article>
+                    
+                    <!-- Card Number Field -->
                     <article class="payment-input">
                         <div class="label-wrapper">
                             <div class="label inter-normal-salem-16px">Card Number</div>
@@ -54,6 +120,7 @@ get_header();
                                     <input
                                         class="content inter-normal-mirage-18px"
                                         name="card_number"
+                                        id="card-number-mobile"
                                         placeholder="0000-0000-0000-0000"
                                         type="text"
                                         inputmode="numeric"
@@ -65,6 +132,8 @@ get_header();
                             </div>
                         </div>
                     </article>
+                    
+                    <!-- CVV Field -->
                     <article class="payment-input">
                         <div class="label-wrapper">
                             <div class="label inter-normal-salem-16px">CVV</div>
@@ -76,6 +145,7 @@ get_header();
                                     <input
                                         class="content inter-normal-mirage-18px"
                                         name="cvv"
+                                        id="cvv-mobile"
                                         placeholder="123"
                                         type="text"
                                         inputmode="numeric"
@@ -87,6 +157,8 @@ get_header();
                             </div>
                         </div>
                     </article>
+                    
+                    <!-- Expiration Date Field -->
                     <article class="payment-input">
                         <div class="label-wrapper">
                             <div class="label inter-normal-salem-16px">Expiration Date</div>
@@ -98,6 +170,7 @@ get_header();
                                     <input
                                         class="content inter-normal-mirage-18px"
                                         name="exp_date"
+                                        id="exp-date-mobile"
                                         placeholder="MM/YY"
                                         type="text"
                                         inputmode="numeric"
@@ -109,6 +182,11 @@ get_header();
                             </div>
                         </div>
                     </article>
+                    
+                    <!-- Hidden Stripe Card Element (for Stripe processing) -->
+                    <div id="card-element-mobile" class="stripe-card-element hidden"></div>
+                    <div id="card-errors-mobile" class="stripe-error" role="alert"></div>
+                    
                     <article class="payment-input">
                         <div class="label-wrapper">
                             <div class="label inter-normal-salem-16px">Zip Code</div>
@@ -164,16 +242,25 @@ get_header();
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="primary-button-salem button-width">
-                    <div class="primary-button-romance-text body-2-regular">Complete Donation</div>
+                
+                <!-- Hidden field for payment intent client secret -->
+                <input type="hidden" id="payment-intent-id-mobile" name="payment_intent_id" value="<?php echo esc_attr($client_secret); ?>">
+                
+                <button type="submit" class="primary-button-salem button-width" id="submit-payment-mobile">
+                    <div class="primary-button-romance-text body-2-regular"><?php echo esc_html(forestplanet_get_donation_button_text()); ?></div>
                     <img class="chevron-right-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/chevron-right-romance.svg" alt="Chevron Right" />
                 </button>
+                
+                <div id="payment-processing-mobile" class="payment-processing hidden">
+                    <div class="spinner"></div>
+                    <p><?php echo esc_html(forestplanet_get_donation_processing_text()); ?></p>
+                </div>
             </div>
         </div>
     </div>
 </form>
 
-<form class="donate-checkout-desktop-all-breakpoints screen" name="checkout_form_desktop" method="post">
+<form class="donate-checkout-desktop-all-breakpoints screen" name="checkout_form_desktop" method="post" id="payment-form-desktop">
     <div class="main-content-1">
         <div class="frame-353">
             <h1 class="title-1 heading-2">
@@ -194,6 +281,7 @@ get_header();
                                         <input
                                             class="content"
                                             name="card_name"
+                                            id="card-name-desktop"
                                             placeholder="Full name"
                                             type="text"
                                             required
@@ -202,6 +290,8 @@ get_header();
                                 </div>
                             </div>
                         </article>
+                        
+                        <!-- Card Number Field -->
                         <article class="payment-input">
                             <div class="label-wrapper-1">
                                 <div class="label-1 inter-normal-salem-16px">Card Number</div>
@@ -213,6 +303,7 @@ get_header();
                                         <input
                                             class="content"
                                             name="card_number"
+                                            id="card-number-desktop"
                                             placeholder="0000-0000-0000-0000"
                                             type="text"
                                             inputmode="numeric"
@@ -224,6 +315,8 @@ get_header();
                                 </div>
                             </div>
                         </article>
+                        
+                        <!-- CVV Field -->
                         <article class="payment-input">
                             <div class="label-wrapper-1">
                                 <div class="label-1 inter-normal-salem-16px">CVV</div>
@@ -235,6 +328,7 @@ get_header();
                                         <input
                                             class="content"
                                             name="cvv"
+                                            id="cvv-desktop"
                                             placeholder="123"
                                             type="text"
                                             inputmode="numeric"
@@ -246,6 +340,8 @@ get_header();
                                 </div>
                             </div>
                         </article>
+                        
+                        <!-- Expiration Date Field -->
                         <article class="payment-input">
                             <div class="label-wrapper-1">
                                 <div class="label-1 inter-normal-salem-16px">Expiration Date</div>
@@ -257,6 +353,7 @@ get_header();
                                         <input
                                             class="content"
                                             name="exp_date"
+                                            id="exp-date-desktop"
                                             placeholder="MM/YY"
                                             type="text"
                                             inputmode="numeric"
@@ -268,6 +365,11 @@ get_header();
                                 </div>
                             </div>
                         </article>
+                        
+                        <!-- Hidden Stripe Card Element (for Stripe processing) -->
+                        <div id="card-element-desktop" class="stripe-card-element hidden"></div>
+                        <div id="card-errors-desktop" class="stripe-error" role="alert"></div>
+                        
                         <article class="payment-input">
                             <div class="label-wrapper-1">
                                 <div class="label-1 inter-normal-salem-16px">Zip Code</div>
@@ -324,14 +426,61 @@ get_header();
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="primary-button-salem button-width">
-                    <div class="primary-button-romance-text body-2-regular">Complete Donation</div>
+                
+                <!-- Hidden field for payment intent client secret -->
+                <input type="hidden" id="payment-intent-id-desktop" name="payment_intent_id" value="<?php echo esc_attr($client_secret); ?>">
+                
+                <button type="submit" class="primary-button-salem button-width" id="submit-payment-desktop">
+                    <div class="primary-button-romance-text body-2-regular"><?php echo esc_html(forestplanet_get_donation_button_text()); ?></div>
                     <img class="chevron-right-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/chevron-right-romance.svg" alt="Chevron Right" />
                 </button>
+                
+                <div id="payment-processing-desktop" class="payment-processing hidden">
+                    <div class="spinner"></div>
+                    <p><?php echo esc_html(forestplanet_get_donation_processing_text()); ?></p>
+                </div>
             </div>
         </div>
     </div>
 </form>
+
+<style>
+.stripe-card-element {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.stripe-error {
+    color: #fa755a;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.payment-processing {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.payment-processing .spinner {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(0, 158, 96, 0.3);
+    border-radius: 50%;
+    border-top-color: #009e60;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+</style>
 
 <script>
 jQuery(document).ready(function($) {
@@ -354,8 +503,10 @@ jQuery(document).ready(function($) {
         });
     });
     
-    // Get the donation amount from URL parameter
+    // Get parameters from URL
     const urlParams = new URLSearchParams(window.location.search);
+    
+    // Get the donation amount
     let amount = urlParams.get('amount');
     
     // Format the amount with dollar sign and handle default
@@ -382,23 +533,32 @@ jQuery(document).ready(function($) {
             mobileAmountSpan.textContent = '$' + amount + ' ';
         }
     }
+    
+    // Pre-fill zip code from billing information if available
+    if (urlParams.has('zip_code')) {
+        const zipCode = urlParams.get('zip_code');
+        const zipInputs = document.querySelectorAll('input[name="zip_code"]');
+        zipInputs.forEach(input => {
+            input.value = zipCode;
+        });
+    }
 
     // Add input formatting for card number fields
-    const cardNumberInputs = document.querySelectorAll('input[placeholder="0000-0000-0000-0000"]');
+    const cardNumberInputs = document.querySelectorAll('input[name="card_number"]');
     cardNumberInputs.forEach(input => {
         input.addEventListener('input', formatCardNumber);
         input.addEventListener('keydown', handleCardNumberBackspace);
     });
 
     // Add input formatting for expiration date fields
-    const expirationDateInputs = document.querySelectorAll('input[placeholder="MM/YY"]');
+    const expirationDateInputs = document.querySelectorAll('input[name="exp_date"]');
     expirationDateInputs.forEach(input => {
         input.addEventListener('input', formatExpirationDate);
         input.addEventListener('keydown', handleExpirationDateBackspace);
     });
 
     // Add input formatting for CVV fields to limit to 3-4 digits
-    const cvvInputs = document.querySelectorAll('input[placeholder="123"]');
+    const cvvInputs = document.querySelectorAll('input[name="cvv"]');
     cvvInputs.forEach(input => {
         input.addEventListener('input', function() {
             // Remove any non-digit characters
@@ -411,7 +571,7 @@ jQuery(document).ready(function($) {
     });
 
     // Add input formatting for zip code fields
-    const zipInputs = document.querySelectorAll('input[placeholder="00000"]');
+    const zipInputs = document.querySelectorAll('input[name="zip_code"]');
     zipInputs.forEach(input => {
         input.addEventListener('input', function() {
             // Remove any non-digit characters
@@ -422,7 +582,7 @@ jQuery(document).ready(function($) {
             }
         });
     });
-
+    
     function getCardType(cardNumber) {
         // Remove all non-digit characters
         const cleanNumber = cardNumber.replace(/\D/g, '');
@@ -549,20 +709,6 @@ jQuery(document).ready(function($) {
             }
         }
     }
-
-    // Prevent the default form submission - In production, this would be replaced with actual payment processing
-    $('form[name="checkout_form_desktop"], form[name="checkout_form_mobile"]').on('submit', function(e) {
-        e.preventDefault();
-        
-        if (this.checkValidity()) {
-            alert('Thank you for your donation! In a real implementation, this would process the payment.');
-            // Redirect to a thank you page
-            window.location.href = '<?php echo esc_url(home_url('/')); ?>';
-        } else {
-            // Form validation will highlight the required fields
-            this.reportValidity();
-        }
-    });
 });
 </script>
 

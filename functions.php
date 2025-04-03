@@ -13,6 +13,10 @@ require_once get_template_directory() . '/inc/theme-customizer.php';
 // ACF field loader - must be loaded first
 require_once get_template_directory() . '/inc/acf-loader.php';
 
+// Stripe integration files
+require_once get_template_directory() . '/inc/stripe-settings.php';
+require_once get_template_directory() . '/inc/stripe-api.php';
+require_once get_template_directory() . '/inc/donations-admin.php';
 
 /**
  * Enqueue styles
@@ -1144,121 +1148,6 @@ function forestplanet_enqueue_contact_assets() {
     }
 }
 add_action('wp_enqueue_scripts', 'forestplanet_enqueue_contact_assets');
-
-/**
- * Process the contact form submission via AJAX
- */
-function forestplanet_process_contact_form() {
-    // Verify nonce
-    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'forest_planet_contact_nonce')) {
-        wp_send_json_error(array('message' => 'Security verification failed'));
-        wp_die();
-    }
-    
-    // Get form data
-    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-    $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
-    $message = isset($_POST['message']) ? sanitize_textarea_field($_POST['message']) : '';
-    
-    // Validate data
-    if (empty($email) || !is_email($email)) {
-        wp_send_json_error(array('message' => 'Invalid email address'));
-        wp_die();
-    }
-    
-    if (empty($subject)) {
-        wp_send_json_error(array('message' => 'Subject is required'));
-        wp_die();
-    }
-    
-    if (empty($message)) {
-        wp_send_json_error(array('message' => 'Message is required'));
-        wp_die();
-    }
-    
-    // Process the form submission (send email)
-    $to = get_option('admin_email');
-    $email_subject = '[' . get_bloginfo('name') . ' Contact] ' . $subject;
-    $email_message = "From: $email\r\n\r\n";
-    $email_message .= "Message:\r\n$message";
-    
-    $headers = array();
-    $headers[] = "From: " . get_bloginfo('name') . " <" . $to . ">";
-    $headers[] = "Reply-To: $email";
-    $headers[] = "Content-Type: text/plain; charset=UTF-8";
-    
-    // Send the email
-    $sent = wp_mail($to, $email_subject, $email_message, $headers);
-    
-    if ($sent) {
-        wp_send_json_success(array('message' => 'Your message has been sent successfully!'));
-    } else {
-        wp_send_json_error(array('message' => 'There was a problem sending your message. Please try again.'));
-    }
-    
-    wp_die();
-}
-add_action('wp_ajax_forestplanet_contact', 'forestplanet_process_contact_form');
-add_action('wp_ajax_nopriv_forestplanet_contact', 'forestplanet_process_contact_form');
-
-/**
- * Process the contact form submission via standard form submission
- */
-function forestplanet_process_contact_form_submission() {
-    if (!isset($_POST['action']) || $_POST['action'] !== 'forest_planet_contact_form') {
-        return;
-    }
-    
-    // Verify nonce
-    if (!isset($_POST['contact_form_nonce']) || !wp_verify_nonce($_POST['contact_form_nonce'], 'forest_planet_contact_form')) {
-        wp_die('Security verification failed', 'Security Error', array('response' => 403));
-    }
-    
-    // Get form data
-    $email = isset($_POST['contact_email']) ? sanitize_email($_POST['contact_email']) : '';
-    $subject = isset($_POST['contact_subject']) ? sanitize_text_field($_POST['contact_subject']) : '';
-    $message = isset($_POST['contact_message']) ? sanitize_textarea_field($_POST['contact_message']) : '';
-    
-    // Validate data
-    if (empty($email) || !is_email($email)) {
-        wp_die('Invalid email address', 'Validation Error', array('response' => 400, 'back_link' => true));
-    }
-    
-    if (empty($subject)) {
-        wp_die('Subject is required', 'Validation Error', array('response' => 400, 'back_link' => true));
-    }
-    
-    if (empty($message)) {
-        wp_die('Message is required', 'Validation Error', array('response' => 400, 'back_link' => true));
-    }
-    
-    // Process the form submission (send email)
-    $to = get_option('admin_email');
-    $email_subject = '[' . get_bloginfo('name') . ' Contact] ' . $subject;
-    $email_message = "From: $email\r\n\r\n";
-    $email_message .= "Message:\r\n$message";
-    
-    $headers = array();
-    $headers[] = "From: " . get_bloginfo('name') . " <" . $to . ">";
-    $headers[] = "Reply-To: $email";
-    $headers[] = "Content-Type: text/plain; charset=UTF-8";
-    
-    // Send the email
-    $sent = wp_mail($to, $email_subject, $email_message, $headers);
-    
-    if ($sent) {
-        // Set a transient to display success message
-        set_transient('forest_planet_contact_success', true, 60);
-        wp_safe_redirect(add_query_arg('contact', 'success', wp_get_referer()));
-        exit;
-    } else {
-        // Set a transient to display error message
-        set_transient('forest_planet_contact_error', true, 60);
-        wp_safe_redirect(add_query_arg('contact', 'error', wp_get_referer()));
-        exit;
-    }
-}
-add_action('init', 'forestplanet_process_contact_form_submission');
 
 /**
  * Add contact form to footer
