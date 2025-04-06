@@ -38,6 +38,7 @@ ForestPlanet is a custom WordPress theme designed for the forestplanet.org websi
 *   **Custom Post Types & Taxonomies:**
     *   `partner`: Manages partner information.
     *   `story`: Manages stories, likely with categories (`story_category`).
+    *   `podcast`: Manages podcast information
 *   **Advanced Custom Fields (ACF):** Utilizes ACF (free version) for managing custom fields (configuration loaded from `inc/acf-loader.php` and field groups likely in `inc/acf-fields/`).
 *   **Custom Page Templates:** Specific templates for various pages like About, Invite, Partner application, Donation flow, etc.
 *   **Theme Customizer Options:** Basic text and image customization options available via the WordPress Customizer (see `inc/theme-customizer.php`).

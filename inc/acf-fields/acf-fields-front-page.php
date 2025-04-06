@@ -21,9 +21,19 @@ if (!function_exists('acf_add_local_field_group')) {
  * Register ACF fields for Front Page
  */
 acf_add_local_field_group(array(
-    'key' => 'group_front_page_hero',
-    'title' => 'Front Page - Hero Section',
+    'key' => 'group_front_page',
+    'title' => 'Front Page Content',
     'fields' => array(
+        // Hero Section
+        array(
+            'key' => 'field_hero_section_tab',
+            'label' => 'Hero Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
+        ),
         array(
             'key' => 'field_hero_title',
             'label' => 'Hero Title',
@@ -56,38 +66,17 @@ acf_add_local_field_group(array(
             'library' => 'all',
             'mime_types' => 'jpg,jpeg,png,webp',
         ),
-    ),
-    'location' => array(
+        
+        // What We Do Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_what_we_do_section_tab',
+            'label' => 'What We Do Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-        array(
-            array(
-                'param' => 'page',
-                'operator' => '==',
-                'value' => get_option('page_on_front'),
-            ),
-        ),
-    ),
-    'menu_order' => 0,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_what_we_do',
-    'title' => 'Front Page - What We Do Section',
-    'fields' => array(
         array(
             'key' => 'field_what_we_do_subtitle',
             'label' => 'What We Do Subtitle',
@@ -149,31 +138,17 @@ We proudly partner with visionary organizations to create lasting impact. Join u
             'max_size' => '',
             'mime_types' => 'jpg,jpeg,png,webp',
         ),
-    ),
-    'location' => array(
+        
+        // Impact Metrics Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_impact_metrics_section_tab',
+            'label' => 'Impact Metrics Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 10,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_impact_metrics',
-    'title' => 'Front Page - Impact Metrics',
-    'fields' => array(
         array(
             'key' => 'field_impact_subtitle',
             'label' => 'Impact Section Subtitle',
@@ -295,31 +270,17 @@ acf_add_local_field_group(array(
             'append' => '',
             'maxlength' => '',
         ),
-    ),
-    'location' => array(
+        
+        // Map Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_map_section_tab',
+            'label' => 'Map Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 20,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_map',
-    'title' => 'Front Page - Map Section',
-    'fields' => array(
         array(
             'key' => 'field_map_subtitle',
             'label' => 'Map Section Subtitle',
@@ -346,31 +307,17 @@ acf_add_local_field_group(array(
             'append' => '',
             'maxlength' => '',
         ),
-    ),
-    'location' => array(
+        
+        // Problem Solved Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_problem_solved_section_tab',
+            'label' => 'Problem Solved Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 30,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_problem_solved',
-    'title' => 'Front Page - Problem Solved Section',
-    'fields' => array(
         array(
             'key' => 'field_problem_solved_subtitle',
             'label' => 'Problem Solved Subtitle',
@@ -449,31 +396,17 @@ Every tree planted turns desolation into life, combating climate change and crea
             'max_size' => '',
             'mime_types' => 'jpg,jpeg,png,webp',
         ),
-    ),
-    'location' => array(
+        
+        // Partners Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_partners_section_tab',
+            'label' => 'Partners Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 40,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_partners',
-    'title' => 'Front Page - Partners Section',
-    'fields' => array(
         array(
             'key' => 'field_partners_title',
             'label' => 'Partners Section Title',
@@ -487,31 +420,17 @@ acf_add_local_field_group(array(
             'append' => '',
             'maxlength' => '',
         ),
-    ),
-    'location' => array(
+        
+        // Impact Steps Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_impact_steps_section_tab',
+            'label' => 'Impact Steps Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 50,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_impact_steps',
-    'title' => 'Front Page - Impact Steps Section',
-    'fields' => array(
         array(
             'key' => 'field_impact_steps_title',
             'label' => 'Impact Steps Title',
@@ -705,31 +624,17 @@ acf_add_local_field_group(array(
             'max_size' => '',
             'mime_types' => 'jpg,jpeg,png,webp',
         ),
-    ),
-    'location' => array(
+        
+        // Testimonials Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_testimonials_section_tab',
+            'label' => 'Testimonials Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 60,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_testimonials',
-    'title' => 'Front Page - Testimonials Section',
-    'fields' => array(
         array(
             'key' => 'field_testimonials_subtitle',
             'label' => 'Testimonials Subtitle',
@@ -810,31 +715,17 @@ acf_add_local_field_group(array(
             'rows' => 5,
             'new_lines' => 'br',
         ),
-    ),
-    'location' => array(
+        
+        // Get Involved Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_get_involved_section_tab',
+            'label' => 'Get Involved Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 70,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_get_involved',
-    'title' => 'Front Page - Get Involved Section',
-    'fields' => array(
         array(
             'key' => 'field_get_involved_title',
             'label' => 'Get Involved Title',
@@ -968,31 +859,17 @@ acf_add_local_field_group(array(
             'rows' => 3,
             'new_lines' => 'br',
         ),
-    ),
-    'location' => array(
+        
+        // Stories Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_stories_section_tab',
+            'label' => 'Stories Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 80,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_stories',
-    'title' => 'Front Page - Stories Section',
-    'fields' => array(
         array(
             'key' => 'field_stories_title',
             'label' => 'Stories Section Title',
@@ -1006,31 +883,17 @@ acf_add_local_field_group(array(
             'append' => '',
             'maxlength' => '',
         ),
-    ),
-    'location' => array(
+        
+        // Act Now Section
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_act_now_section_tab',
+            'label' => 'Act Now Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 90,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_act_now',
-    'title' => 'Front Page - Act Now Section',
-    'fields' => array(
         array(
             'key' => 'field_act_now_subtitle',
             'label' => 'Act Now Subtitle',
@@ -1089,32 +952,17 @@ Donate today to make an immediate impact, or join us as a volunteer or partner t
             'max_size' => '',
             'mime_types' => 'jpg,jpeg,png,webp',
         ),
-    ),
-    'location' => array(
+        
+        // Test Section (for troubleshooting)
         array(
-            array(
-                'param' => 'page_type',
-                'operator' => '==',
-                'value' => 'front_page',
-            ),
+            'key' => 'field_test_section_tab',
+            'label' => 'Test Section',
+            'name' => '',
+            'type' => 'tab',
+            'instructions' => '',
+            'required' => 0,
+            'placement' => 'top',
         ),
-    ),
-    'menu_order' => 100,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => true,
-    'description' => '',
-    'show_in_rest' => 0,
-));
-
-// Simple test group (for troubleshooting)
-acf_add_local_field_group(array(
-    'key' => 'group_front_page_test',
-    'title' => 'Front Page - Test Field Group',
-    'fields' => array(
         array(
             'key' => 'field_test_text',
             'label' => 'Test Text Field',
@@ -1134,10 +982,13 @@ acf_add_local_field_group(array(
             ),
         ),
     ),
-    'menu_order' => 999,
+    'menu_order' => 0,
     'position' => 'normal',
     'style' => 'default',
     'label_placement' => 'top',
     'instruction_placement' => 'label',
+    'hide_on_screen' => '',
     'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
 )); 
