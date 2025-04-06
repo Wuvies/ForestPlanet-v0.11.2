@@ -20,7 +20,7 @@ function initMap() {
         const mapMobile = new google.maps.Map(mapMobileElement, {
             center: { lat: 0.0, lng: 20.0 },
             zoom: 2,
-            mapId: "7b7c12e6a0a72324"
+            mapId: "YOUR_MAP_ID"
         });
         
         // Add markers to mobile map
@@ -46,7 +46,7 @@ function initMap() {
         const mapDesktop = new google.maps.Map(mapDesktopElement, {
             center: { lat: 0.0, lng: 20.0 },
             zoom: 2,
-            mapId: "7b7c12e6a0a72324"
+            mapId: "YOUR_MAP_ID"
         });
         
         // Add markers to desktop map

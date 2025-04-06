@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00fd2f6df7dd6d9505a5b69d9341378c",
+    "content-hash": "CONTENT_HASH_PLACEHOLDER",
     "packages": [
         {
             "name": "stripe/stripe-php",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "d6de0a536f00b5c5c74f36b8f4d0d93b035499ff"
+                "reference": "REFERENCE_HASH_PLACEHOLDER"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/d6de0a536f00b5c5c74f36b8f4d0d93b035499ff",
-                "reference": "d6de0a536f00b5c5c74f36b8f4d0d93b035499ff",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ZIPBALL_REFERENCE_PLACEHOLDER",
+                "reference": "REFERENCE_HASH_PLACEHOLDER",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "issues": "https://github.com/stripe/stripe-php/issues",
                 "source": "https://github.com/stripe/stripe-php/tree/v16.6.0"
             },
-            "time": "2025-02-24T22:35:29+00:00"
+            "time": "YYYY-MM-DD:HH:MM:SS+00:00"
         }
     ],
     "packages-dev": [],
