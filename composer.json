@@ -5,7 +5,8 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=7.2",
-        "stripe/stripe-php": "^16.6"
+        "stripe/stripe-php": "^16.6",
+        "mailchimp/marketing": "^3.0"
     },
     "autoload": {
         "psr-4": {

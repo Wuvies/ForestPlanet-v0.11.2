@@ -40,95 +40,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                 <?php else : ?>
                 
                 <div class="frame-197-1">
-                    <form class="frame-1-1 frame-1" method="post" action="">
-                        <div class="input-field">
-                            <div class="label-wrapper-1">
-                                <div class="label inter-normal-romance-16px">Name</div>
-                                <div class="required-wrapper-1">
-                                    <div class="text-1 text-small">*</div>
-                                </div>
-                            </div>
-                            <div class="input">
-                                <div class="content-wrapper-romance">
-                                    <div class="wrapper">
-                                        <div class="content-wrapper-1">
-                                            <input class="content-romance" name="name" placeholder="First and Last" type="text" required />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="input-field">
-                            <div class="label-wrapper-1">
-                                <div class="label inter-normal-romance-16px">Email</div>
-                                <div class="required-wrapper-1">
-                                    <div class="text-1 text-small">*</div>
-                                </div>
-                            </div>
-                            <div class="input">
-                                <div class="content-wrapper-romance">
-                                    <div class="wrapper">
-                                        <div class="content-wrapper-1">
-                                            <input class="content-romance" name="email" placeholder="Enter your email" type="email" required />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="select-1">
-                            <div class="label-wrapper-1">
-                                <div class="label inter-normal-romance-16px">Where Are We Speaking?</div>
-                                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-                            </div>
-                            <div class="input-field">
-                                <div class="content-wrapper-romance">
-                                    <div class="wrapper custom-select-wrapper">
-                                        <select class="content-romance" name="speaking_location" required>
-                                            <option value="Local DMV Area">Local DMV Area</option>
-                                            <option value="Online">Online</option>
-                                        </select>
-                                        <img class="arrow-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/down-arrow.svg" alt="arrow" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="input-field">
-                            <div class="label-wrapper-1">
-                                <div class="details-1 inter-normal-romance-16px">Details</div>
-                                <div class="required-wrapper-1"><div class="text-1 text-small">*</div></div>
-                            </div>
-                            <div class="input">
-                                <div class="content-wrapper-romance textarea-wrapper">
-                                    <div class="wrapper">
-                                        <div class="content-wrapper-1">
-                                            <textarea
-                                                class="content-romance"
-                                                name="details"
-                                                placeholder="Type your message"
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="frame-19-2">
-                            <label class="radio-label">
-                                <input type="checkbox" class="radio-input" name="receive_updates" value="yes">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/radio-button-romance-false.svg" alt="Unchecked" class="radio-icon radio-false">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/radio-button-romance-true.svg" alt="Checked" class="radio-icon radio-true hidden">
-                                <p class="i-want-to-receive-up-1 body-2-regular">I want to receive updates from ForestPlanet.</p>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" name="submit_invite" class="primary-button-romance primary-button-2">
-                            <div class="primary-button-fuchsia-blue-text body-2-regular">Send Inquiry</div>
-                        </button>
-                    </form>
+                    <?php echo do_shortcode('[contact-form-7 id="a902f35" title="Invite"]'); ?>
                 </div>
                 
                 <?php endif; ?>
@@ -158,7 +70,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                                 // Get featured image
                                 $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                                 if (!$thumbnail) {
-                                    $thumbnail = get_template_directory_uri() . '/img/rectangle-18-2@2x.png';
+                                    $thumbnail = get_template_directory_uri() . '/assets/images/rectangle-18-2@2x.png';
                                 }
                         ?>
                         <article class="story-card">
@@ -179,7 +91,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                             for ($i = 0; $i < 6; $i++) :
                         ?>
                         <article class="story-card">
-                            <img class="story-card-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/rectangle-18-2@2x.png" alt="Rectangle 18" />
+                            <img class="story-card-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/rectangle-18-2@2x.png" alt="Rectangle 18" />
                             <div class="story-card-content">
                                 <div class="story-card-date subtitle-2">FEB 16 2025</div>
                                 <p class="story-card-title body-1-semibold">Title For Story Card Template</p>
@@ -226,7 +138,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                             <div class="line-romance"></div>
                             <div class="frame-117">
                                 <div class="frame-116-1">
-                                    <img class="rectangle-19-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/rectangle-19-1@2x.png" alt="Rectangle 19" />
+                                    <img class="rectangle-19-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/rectangle-19-1@2x.png" alt="Rectangle 19" />
                                     <div class="frame-115">
                                         <div class="frame-112-4">
                                             <div class="frame-111">
@@ -241,7 +153,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                                 </div>
                                 <div class="secondary-button-romance secondary-button">
                                     <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/link-external.svg" alt="Link External" />
+                                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/link-external.svg" alt="Link External" />
                                 </div>
                             </div>
                         </article>
@@ -270,95 +182,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
             <?php else : ?>
             
             <div class="frame-197">
-                <form class="frame-1" method="post" action="">
-                    <div class="input-field">
-                        <div class="label-wrapper">
-                            <div class="label inter-normal-romance-16px">Name</div>
-                            <div class="required-wrapper">
-                                <div class="text-1 text-small">*</div>
-                            </div>
-                        </div>
-                        <div class="input">
-                            <div class="content-wrapper-romance">
-                                <div class="wrapper">
-                                    <div class="content-wrapper-1">
-                                        <input class="content-romance" name="name" placeholder="First and Last" type="text" required />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-field">
-                        <div class="label-wrapper">
-                            <div class="label inter-normal-romance-16px">Email</div>
-                            <div class="required-wrapper">
-                                <div class="text-1 text-small">*</div>
-                            </div>
-                        </div>
-                        <div class="input">
-                            <div class="content-wrapper-romance">
-                                <div class="wrapper">
-                                    <div class="content-wrapper-1">
-                                        <input class="content-romance" name="email" placeholder="Enter your email" type="email" required />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="select-1">
-                        <div class="label-wrapper">
-                            <div class="label inter-normal-romance-16px">Where Are We Speaking?</div>
-                            <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
-                        </div>
-                        <div class="input-field">
-                            <div class="content-wrapper-romance">
-                                <div class="wrapper custom-select-wrapper">
-                                    <select class="content-romance" name="speaking_location" required>
-                                        <option value="Local DMV Area">Local DMV Area</option>
-                                        <option value="Online">Online</option>
-                                    </select>
-                                    <img class="arrow-1" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/down-arrow.svg" alt="arrow" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-field">
-                        <div class="label-wrapper">
-                            <div class="details-1 inter-normal-romance-16px">Details</div>
-                            <div class="required-wrapper"><div class="text-1 text-small">*</div></div>
-                        </div>
-                        <div class="input">
-                            <div class="content-wrapper-romance textarea-wrapper">
-                                <div class="wrapper">
-                                    <div class="content-wrapper-1">
-                                        <textarea
-                                            class="content-romance"
-                                            name="details"
-                                            placeholder="Type your message"
-                                            required
-                                        ></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="frame-19-1">
-                        <label class="radio-label">
-                            <input type="checkbox" class="radio-input" name="receive_updates" value="yes">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/radio-button-romance-false.svg" alt="Unchecked" class="radio-icon radio-false">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/radio-button-romance-true.svg" alt="Checked" class="radio-icon radio-true hidden">
-                            <p class="i-want-to-receive-up body-2-regular">I want to receive updates from ForestPlanet.</p>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" name="submit_invite" class="primary-button-romance primary-button-2">
-                        <div class="primary-button-fuchsia-blue-text body-2-regular">Send Inquiry</div>
-                    </button>
-                </form>
+                <?php echo do_shortcode('[contact-form-7 id="a902f35" title="Invite"]'); ?>
             </div>
             
             <?php endif; ?>
@@ -380,7 +204,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                                 // Get featured image
                                 $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                                 if (!$thumbnail) {
-                                    $thumbnail = get_template_directory_uri() . '/img/rectangle-18-1@2x.png';
+                                    $thumbnail = get_template_directory_uri() . '/assets/images/rectangle-18-1@2x.png';
                                 }
                         ?>
                         <article class="story-card">
@@ -401,7 +225,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                             for ($i = 0; $i < 4; $i++) :
                         ?>
                         <article class="story-card">
-                            <img class="rectangle-18" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/rectangle-18-1@2x.png" alt="Rectangle 18" />
+                            <img class="rectangle-18" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/rectangle-18-1@2x.png" alt="Rectangle 18" />
                             <div class="story-card-content">
                                 <div class="story-card-date subtitle-2">FEB 16 2025</div>
                                 <p class="story-card-title body-1-semibold">Title For Story Card Template</p>
@@ -439,7 +263,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                         <article class="podcast-card">
                             <div class="line-romance"></div>
                             <div class="frame-116">
-                                <img class="rectangle-19" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/rectangle-19@2x.png" alt="Rectangle 19" />
+                                <img class="rectangle-19" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/rectangle-19@2x.png" alt="Rectangle 19" />
                                 <div class="frame-291">
                                     <div class="frame-112">
                                         <div class="feb-16-2025-1 subtitle-2">FEB 16 2025</div>
@@ -450,7 +274,7 @@ $show_confirmation = isset($_GET['submitted']) && $_GET['submitted'] == '1';
                                     </div>
                                     <div class="secondary-button-romance secondary-button">
                                         <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                                        <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/link-external.svg" alt="Link External" />
+                                        <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/link-external.svg" alt="Link External" />
                                     </div>
                                 </div>
                             </div>

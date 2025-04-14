@@ -54,7 +54,7 @@
 }
 
 .invite-us-desktop-all-breakpoints .frame-197-1 {
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
@@ -260,7 +260,7 @@
 }
 
 .invite-us-mobile .frame-197 {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -291,7 +291,7 @@
   width: 100%;
 }
 
-.invite-us-mobile .i-want-to-receive-up {
+.invite-us-mobile .i-want-to-receive-up-1 {
   color: var(--romance-2);
   flex: 1;
   font-weight: 500;
@@ -466,4 +466,50 @@
   .screen.invite-us-mobile { 
     display: none;
    }
+}
+
+
+
+.wpcf7-select {
+  width: 100%;
+}
+
+.wpcf7-form .primary-button-romance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.wpcf7-form .primary-button-romance input.wpcf7-submit {
+    background: transparent;
+    border: none;
+    color: var(--fuchsia-blue);
+    font-family: var(--font-family-inter);
+    align-self: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: block;
+}
+
+
+.wpcf7-response-output {
+  color: var(--romance);
+}
+
+.wrapper.custom-select-wrapper p {
+  display: flex;
+  align-items: center;
+}
+
+img.arrow-1 {
+  margin-left: 10px;
+}
+
+.primary-button-romance p {
+  width: 100%;
+  flex-grow: 1;
 }

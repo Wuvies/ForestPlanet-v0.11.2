@@ -18,6 +18,9 @@ require_once get_template_directory() . '/inc/stripe-settings.php';
 require_once get_template_directory() . '/inc/stripe-api.php';
 require_once get_template_directory() . '/inc/donations-admin.php';
 
+// Mailchimp integration
+require_once get_template_directory() . '/inc/class-forestplanet-mailchimp.php';
+
 /**
  * Enqueue styles
  */
@@ -286,6 +289,19 @@ function forestplanet_theme_setup() {
     ]);
 }
 add_action('after_setup_theme', 'forestplanet_theme_setup');
+
+/**
+ * Register site_url shortcode
+ */
+function site_url_shortcode() {
+    return get_site_url();
+}
+add_shortcode('site_url', 'site_url_shortcode');
+
+function cf7_process_shortcodes( $content ) {
+    return do_shortcode( $content );
+}
+add_filter( 'wpcf7_form_elements', 'cf7_process_shortcodes' );
 
 /**
  * Register custom post types
@@ -1281,3 +1297,36 @@ function forestplanet_load_contact_confirmation() {
 }
 add_action('wp_ajax_forestplanet_load_contact_confirmation', 'forestplanet_load_contact_confirmation');
 add_action('wp_ajax_nopriv_forestplanet_load_contact_confirmation', 'forestplanet_load_contact_confirmation');
+
+/**
+ * Handle newsletter subscription via AJAX
+ */
+function forestplanet_newsletter_subscribe() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'forestplanet_newsletter_nonce')) {
+        wp_send_json_error(array('message' => 'Security verification failed'));
+        wp_die();
+    }
+    
+    // Get email from form submission
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    
+    if (empty($email)) {
+        wp_send_json_error(array('message' => 'Please provide a valid email address.'));
+        wp_die();
+    }
+    
+    // Use our Mailchimp class to subscribe the user
+    $mailchimp = new \ForestPlanet\Mailchimp();
+    $result = $mailchimp->subscribe($email);
+    
+    if ($result) {
+        wp_send_json_success(array('message' => 'Thank you for subscribing to our newsletter!'));
+    } else {
+        wp_send_json_error(array('message' => 'Unable to subscribe at this time. Please try again later.'));
+    }
+    
+    wp_die();
+}
+add_action('wp_ajax_forestplanet_newsletter_subscribe', 'forestplanet_newsletter_subscribe');
+add_action('wp_ajax_nopriv_forestplanet_newsletter_subscribe', 'forestplanet_newsletter_subscribe');

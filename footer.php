@@ -144,7 +144,8 @@ if ($footer_style === 'mirage') {
         <div class="newsletter">
             <div class="join-our-newsletter heading-3">Join Our Newsletter</div>
             <div class="newsletter-input-frame footer-display">
-                <form name="newsletter-signup" action="<?php echo esc_url(home_url('/newsletter-confirmation')); ?>" method="post">
+                <form name="newsletter-signup" id="footer-newsletter-form" method="post">
+                    <?php wp_nonce_field('forestplanet_newsletter_nonce', 'newsletter_nonce'); ?>
                     <div class="input">
                         <div class="content-wrapper">
                             <div class="wrapper">
@@ -164,6 +165,7 @@ if ($footer_style === 'mirage') {
                         <div class="secondary-button-fuchsia-blue-text body-2-regular">Subscribe</div>
                     </button>
                 </form>
+                <div id="newsletter-response" class="newsletter-response" style="display: none;"></div>
             </div>
         </div>
         
@@ -174,6 +176,59 @@ if ($footer_style === 'mirage') {
 </footer>
 
 <!-- Mobile Footer appears only on mobile devices via CSS media queries -->
+
+<script>
+jQuery(document).ready(function($) {
+    $('#footer-newsletter-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        var emailInput = $(this).find('input[name="email"]');
+        var responseDiv = $('#newsletter-response');
+        
+        responseDiv.removeClass('success error').hide();
+        
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            data: {
+                action: 'forestplanet_newsletter_subscribe',
+                email: emailInput.val(),
+                nonce: $('input[name="newsletter_nonce"]').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                    responseDiv.html('<p>' + response.data.message + '</p>').addClass('success').show();
+                    emailInput.val('');
+                } else {
+                    responseDiv.html('<p>' + response.data.message + '</p>').addClass('error').show();
+                }
+            },
+            error: function() {
+                responseDiv.html('<p>An error occurred. Please try again later.</p>').addClass('error').show();
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.newsletter-response {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.newsletter-response.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2E7D32;
+    border: 1px solid #2E7D32;
+}
+.newsletter-response.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #D32F2F;
+    border: 1px solid #D32F2F;
+}
+</style>
 
 <?php wp_footer(); ?>
 

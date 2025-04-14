@@ -24,7 +24,7 @@ ForestPlanet is a custom WordPress theme designed for the forestplanet.org websi
     cd wp-content/themes/ForestPlanet
     composer install
     ```
-    This will install the required PHP dependencies (like the Stripe PHP library).
+    This will install the required PHP dependencies (like the Stripe and Mailchimp PHP library).
 
 3.  **Activate the Theme:**
     Log in to your WordPress admin dashboard, go to `Appearance -> Themes`, find the "ForestPlanet" theme, and click "Activate".
@@ -65,6 +65,7 @@ ForestPlanet is a custom WordPress theme designed for the forestplanet.org websi
 
 *   **PHP:**
     *   `stripe/stripe-php`: Required for Stripe integration (managed via Composer).
+    *   `mailchimp/marketing`: Required for Mailchimp integration (managed via Composer).
 *   **WordPress Plugins (Assumed):**
     *   **Advanced Custom Fields (ACF):** Required for custom field management. Ensure this plugin is installed and active.
     *   **Contact Form 7 (CF7):** Required for contact form functionality. Ensure this plugin is installed and active.

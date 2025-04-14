@@ -425,6 +425,11 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
   position: relative;
 }
 
+.primary-button-salem p {
+  width: 100%;
+  flex-grow: 1;
+}
+
 /* Add animation for the loading state */
 .wpcf7.submitting .primary-button-salem {
   opacity: 0.8;
@@ -447,6 +452,7 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
 }
 
 .wpcf7-response-output {
+  color: var(--mirage);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -545,10 +551,6 @@ body:not(:has(.mobile-overlay.animate-appear)) .menu-mobile {
   .wpcf7-not-valid-tip {
     font-size: 13px;
     bottom: -28px;
-  }
-  
-  .wpcf7-form .input-field {
-    margin-bottom: 22px !important;
   }
 }
 

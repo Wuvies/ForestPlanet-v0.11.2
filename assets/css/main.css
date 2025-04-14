@@ -2571,7 +2571,7 @@ input:focus::placeholder {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 select.content-romance {
@@ -2657,7 +2657,7 @@ textarea.content-romance::placeholder {
 .radio-label {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
 }
 
