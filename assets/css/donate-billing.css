@@ -1,0 +1,266 @@
+.donate-checkout-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.donate-checkout-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+
+.donate-checkout-desktop-all-breakpoints .frame-353 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.donate-checkout-desktop-all-breakpoints .title-1 {
+  align-self: stretch;
+  color: transparent;
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.donate-checkout-desktop-all-breakpoints .span-2 {
+  color: var(--mirage);
+}
+
+.donate-checkout-desktop-all-breakpoints .span1-2 {
+  color: var(--salem);
+}
+
+.donate-checkout-desktop-all-breakpoints .pyament-form {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 540px;
+  position: relative;
+  width: 100%;
+}
+
+.donate-checkout-desktop-all-breakpoints .frame-160-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.donate-checkout-desktop-all-breakpoints .frame-157-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  position: relative;
+  width: 100%;
+}
+
+/* Styling for input fields */
+.donate-checkout-desktop-all-breakpoints .payment-input {
+  flex: 1 1 0;
+  min-width: 242px;
+}
+
+/* Make email and street address take full width */
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(1),
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(3) {
+  flex: 2 1 100%;
+}
+
+/* Make phone number take half width */
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(2) {
+  flex: 1 1 48%;
+}
+
+/* Make city and state take equal space */
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(4),
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(5) {
+  flex: 1 1 48%;
+}
+
+/* Make zip code and country take equal space */
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(6),
+.donate-checkout-desktop-all-breakpoints .payment-input:nth-child(7) {
+  flex: 1 1 48%;
+}
+
+.donate-checkout-desktop-all-breakpoints .button-width {
+  width: 100%;
+}
+
+/* Mobile styles */
+.donate-checkout-mobile {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  min-width: 393px;
+  position: relative;
+}
+
+.donate-checkout-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 209px;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+
+.donate-checkout-mobile .frame-362 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.donate-checkout-mobile .title {
+  align-self: stretch;
+  color: transparent;
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.donate-checkout-mobile .span {
+  color: var(--mirage);
+}
+
+.donate-checkout-mobile .span1 {
+  color: var(--salem);
+}
+
+.donate-checkout-mobile .payment-form {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.donate-checkout-mobile .frame-157 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  position: relative;
+  width: 100%;
+}
+
+/* Mobile input field styling */
+.donate-checkout-mobile .payment-input {
+  flex: 1 1 0;
+  min-width: 242px;
+}
+
+/* Make email and street address take full width */
+.donate-checkout-mobile .payment-input:nth-child(1),
+.donate-checkout-mobile .payment-input:nth-child(3) {
+  flex: 2 1 100%;
+}
+
+/* Make phone take full width on mobile */
+.donate-checkout-mobile .payment-input:nth-child(2) {
+  flex: 2 1 100%;
+}
+
+/* Make city and state take full width on small screens */
+.donate-checkout-mobile .payment-input:nth-child(4),
+.donate-checkout-mobile .payment-input:nth-child(5) {
+  flex: 2 1 100%;
+}
+
+/* Make zip code and country take equal space when screen allows */
+.donate-checkout-mobile .payment-input:nth-child(6),
+.donate-checkout-mobile .payment-input:nth-child(7) {
+  flex: 1 1 0;
+  min-width: 100px;
+}
+
+.donate-checkout-mobile .button-width {
+  width: 100%;
+}
+
+/* Label styling */
+.label-wrapper, .label-wrapper-1 {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.label, .label-1 {
+  color: var(--salem);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+/* Media queries to show the appropriate version based on screen size */
+@media screen and (max-width: 901px) {
+  .screen.donate-checkout-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.donate-checkout-mobile { 
+    display: none;
+   }
+}
+
+/* Responsive button styling */
+.primary-button-salem.button-width {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Input field focus effects */
+.content-wrapper:focus-within {
+  border-color: var(--salem);
+  box-shadow: 0 0 0 1px var(--salem);
+}
+
+.content:focus {
+  outline: none;
+} 

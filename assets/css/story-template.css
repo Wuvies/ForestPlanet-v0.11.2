@@ -1,0 +1,432 @@
+/**
+ * ForestPlanet - Story Template Styles
+ * 
+ * This file contains styles for story pages in the ForestPlanet WordPress theme.
+ * It's organized to be responsive and work across different screen sizes.
+ */
+
+/* Common styles for all story pages */
+.fp-story {
+  background-color: var(--romance);
+  position: relative;
+  width: 100%;
+}
+
+/* Hero Section */
+.fp-story-hero {
+  align-items: center;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.fp-story-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 72.17%);
+  pointer-events: none;
+}
+
+.fp-story-hero-content {
+  max-width: 790px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.fp-story-title {
+  color: var(--romance);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: -1px;
+  text-align: center;
+}
+
+.fp-story-subtitle {
+  color: var(--romance);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+}
+
+.fp-story-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.fp-story-date {
+  color: var(--romance);
+}
+
+.fp-story-categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fp-story-category {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: var(--romance);
+  padding: 4px 12px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.fp-story-category:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Story Content Area */
+.fp-story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+.fp-story-text {
+  color: var(--mirage);
+  line-height: 1.6;
+  align-self: stretch;
+  position: relative;
+}
+
+.fp-story-text p {
+  margin-bottom: 1.5em;
+}
+
+.fp-story-text p:first-of-type {
+  font-weight: 500;
+}
+
+.fp-story-text p:not(:first-of-type) {
+  font-weight: 400;
+}
+
+.fp-story-text strong,
+.fp-story-text b {
+  font-weight: 700;
+}
+
+.fp-story-text a {
+  font-weight: 500;
+  text-decoration: underline;
+  color: var(--mirage);
+}
+
+.fp-story-text a:hover {
+  color: var(--salem);
+}
+
+.fp-story-text h2,
+.fp-story-text h3,
+.fp-story-text h4 {
+  font-weight: 700;
+  color: var(--mirage);
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* Story Image Container - Styled like in the example HTML */
+.story-image-container {
+  display: flex;
+  flex: 1 1 auto;
+  align-self: stretch;
+  align-items: center;
+  padding: 16px;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.story-image {
+  border-radius: var(--border-radius-40);
+  box-shadow: var(--box-shadow-large);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  align-self: center;
+  height: auto;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out;
+}
+
+.fp-story-image:hover {
+  transform: scale(0.99);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.fp-story-image:active {
+  transform: scale(0.98);
+  box-shadow: var(--box-shadow-small);
+}
+
+.fp-story-image-caption {
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Story Footer Section */
+.story-footer {
+  background-color: var(--romance);
+  padding: 40px 20px;
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+/* Share Section */
+.story-share {
+  margin-bottom: 40px;
+  position: relative;
+  text-align: center;
+}
+
+.story-share .secondary-button img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(28%) sepia(97%) saturate(1329%) hue-rotate(127deg) brightness(93%) contrast(106%);
+}
+
+/* Share Modal */
+.share-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.share-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.share-modal-content {
+  background-color: var(--white);
+  border-radius: var(--border-radius-20);
+  max-width: 480px;
+  width: 90%;
+  box-shadow: var(--box-shadow-large);
+}
+
+.share-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--mirage-05);
+}
+
+.share-modal-header h3 {
+  margin: 0;
+}
+
+.share-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--mirage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.share-modal-close:hover {
+  background-color: var(--mirage-05);
+}
+
+.share-modal-body {
+  padding: 20px;
+}
+
+.share-modal-body p {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--mirage);
+}
+
+.share-link-container {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+#shareLink {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--mirage-1);
+  border-radius: var(--border-radius-10) 0 0 var(--border-radius-10);
+  background-color: var(--romance);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--mirage);
+}
+
+.copy-link-button {
+  background-color: var(--salem);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 0 var(--border-radius-10) var(--border-radius-10) 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.copy-link-button:hover {
+  background-color: var(--salem-dark, #1e5c21);
+}
+
+.share-copy-message {
+  color: var(--salem);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop specific styles */
+@media screen and (min-width: 902px) {
+  .fp-story-hero {
+    height: 60vh;
+    padding: 24px 20%;
+  }
+  
+  .fp-story-content {
+    max-width: 790px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    gap: 54px;
+  }
+  
+  .fp-story-text {
+    font-size: 18px;
+    line-height: 40px;
+  }
+  
+  .fp-story-text p:first-of-type {
+    line-height: 40px;
+  }
+  
+  .story-image {
+    max-width: 790px;
+  }
+  
+  .story-image-caption,
+  .fp-story-image-caption {
+    max-width: 476px;
+    color: var(--mirage-2);
+    font-weight: 500;
+    line-height: 26px;
+    text-align: center;
+  }
+  
+  .story-footer {
+    padding: 60px 20px;
+  }
+}
+
+/* Mobile specific styles */
+@media screen and (max-width: 901px) {
+  .fp-story-hero {
+    height: 75vh;
+    padding: 24px 30px;
+  }
+  
+  .fp-story-content {
+    padding: 40px 30px;
+  }
+  
+  .fp-story-text {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  
+  .fp-story-text p:first-of-type {
+    line-height: 26px;
+  }
+  
+  .story-image-caption,
+  .fp-story-image-caption {
+    max-width: 282px;
+    color: var(--mirage-2);
+    font-weight: 500;
+    line-height: 26px;
+    text-align: center;
+  }
+  
+  .story-image,
+  .fp-story-image {
+    border-radius: var(--border-radius-20);
+  }
+  
+  .share-modal-content {
+    width: 95%;
+    max-width: 350px;
+  }
+  
+  .share-link-container {
+    flex-direction: column;
+  }
+  
+  #shareLink {
+    border-radius: var(--border-radius-10);
+    margin-bottom: 8px;
+  }
+  
+  .copy-link-button {
+    border-radius: var(--border-radius-10);
+  }
+}
+
+/* Additional mobile version with smaller border radius */
+@media screen and (max-width: 768px) {
+  .fp-story-image {
+    border-radius: var(--border-radius-20);
+  }
+}
+
+/* iOS Fix for Hero Background */
+/* iOS doesn't support background-attachment: fixed properly */
+@supports (-webkit-touch-callout: none) {
+  .fp-story-hero {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+} 

@@ -1,0 +1,678 @@
+.stories-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .hero-1 {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  max-width: 1110px;
+  gap: 100px;
+  position: relative;
+  width: 100%;
+  padding-top: 200px;
+}
+
+.stories-desktop-all-breakpoints .frame-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .title-1 {
+  align-self: stretch;
+  color: var(--black);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxxl);
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: 72px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .catagories-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  padding: 8px 165px;
+  margin-left: -165px;
+  margin-right: -165px;
+  width: calc(100% + 330px);
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.stories-desktop-all-breakpoints .latest-story {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 30px 30px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-211-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 16px;
+  min-width: 400px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .frame-210-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .feb-16-2025-1 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .some-sort-of-story-t-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 48px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .ransome-lorem-ipsum-1 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .story-cards-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 132px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame-17 {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 30px;
+  max-width: 1110px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Card grid for mixed content */
+.stories-desktop-all-breakpoints .card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1110px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* General story card styles for responsive display */
+.stories-desktop-all-breakpoints .story-card {
+  max-width: 350px;
+  min-width: 334px;
+  width: 100%;
+  flex: 1 1 334px;
+}
+
+.stories-desktop-all-breakpoints .rectangle-18-1 {
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+  width: 350px;
+}
+
+.stories-desktop-all-breakpoints .quote-1 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 928px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .the-best-time-to-pla-1 {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .african-proverb-1 {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .frame-215 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1110px;
+  width: 100%;
+}
+
+.stories-desktop-all-breakpoints .frame {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+/* Quote card styles for desktop */
+.stories-desktop-all-breakpoints .quote-card {
+  align-items: center;
+  background-color: var(--romance);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  max-width: 350px;
+  min-width: 334px;
+  width: 100%;
+  height: 395px;
+  flex: 1 1 334px;
+  box-shadow: var(--box-shadow-small);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stories-desktop-all-breakpoints .quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.stories-desktop-all-breakpoints .quote-card-content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.stories-desktop-all-breakpoints .quote-text {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 48px;
+  font-size: 32px;
+  position: relative;
+}
+
+.stories-desktop-all-breakpoints .quote-attribution {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+/* Quote card color themes for desktop */
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia {
+  background: linear-gradient(135deg, var(--fuchsia-blue) 0%, #6045a8 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia .quote-text,
+.stories-desktop-all-breakpoints .quote-card.theme-fuchsia .quote-attribution {
+  color: var(--white);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-salem {
+  background: linear-gradient(135deg, var(--salem) 0%, #007035 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-salem .quote-text,
+.stories-desktop-all-breakpoints .quote-card.theme-salem .quote-attribution {
+  color: var(--white);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-harp {
+  background: linear-gradient(135deg, var(--harp) 0%, #d8e7d6 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-harp .quote-attribution {
+  color: var(--salem);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-purple {
+  background: linear-gradient(135deg, #f0e6ff 0%, #e2d6f5 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-purple .quote-attribution {
+  color: var(--fuchsia-blue);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-green {
+  background: linear-gradient(135deg, #e8f5e6 0%, #d5ebd2 100%);
+}
+
+.stories-desktop-all-breakpoints .quote-card.theme-soft-green .quote-attribution {
+  color: var(--salem);
+}
+
+/* screen - stories-mobile */
+
+.stories-mobile {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  min-width: 393px;
+  position: relative;
+}
+
+.stories-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 80px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .heading {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  padding: 0px 30px;
+  min-width: 393px;
+  width: 100%;
+}
+
+.stories-mobile .hero {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 56px;
+  position: relative;
+  width: 100%;
+  margin-top: 150px;
+}
+
+.stories-mobile .rectangle-30 {
+  height: 234px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  border-radius: var(--border-radius-20);
+  box-shadow: var(--box-shadow-large);
+}
+
+.stories-mobile .frame-301 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .title {
+  align-self: stretch;
+  color: var(--black);
+  font-family: var(--font-family-libre_baskerville);
+  font-size: var(--font-size-xxl);
+  font-weight: 400;
+  letter-spacing: -0.96px;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .catagories {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  padding: 2px 30px;
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.stories-mobile .frame-211 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .latest-story-1 {
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  padding: 30px 30px;
+  gap: 30px 30px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .lastest-story {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .frame-210 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .feb-16-2025 {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 700;
+  line-height: 28px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .some-sort-of-story-t {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 48px;
+  position: relative;
+}
+
+.stories-mobile .ransome-lorem-ipsum {
+  align-self: stretch;
+  color: var(--mirage-2);
+  font-weight: 500;
+  line-height: 26px;
+  position: relative;
+}
+
+.stories-mobile .story-cards {
+  align-self: stretch;
+  flex: 0 0 auto;
+  gap: 64px;
+  padding: 0px 30px;
+  width: 100%;
+}
+
+.stories-mobile .frame {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+.stories-mobile .rectangle-18 {
+  align-self: stretch;
+  height: 174px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.stories-mobile .rectangle {
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .story {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.stories-mobile .quote {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+  min-width: 333px;
+  position: relative;
+  width: 100%;
+}
+
+.stories-mobile .the-best-time-to-pla {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.stories-mobile .african-proverb {
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.stories-mobile .frame-304 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+/* Quote card styles for mobile */
+.stories-mobile .quote-card {
+  align-items: center;
+  background: var(--romance);
+  border-radius: 30px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 333px;
+  height: 369px;
+  box-shadow: var(--box-shadow-small);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.stories-mobile .quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.stories-mobile .quote-card-content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.stories-mobile .quote-text {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 48px;
+  font-size: 32px;
+  position: relative;
+}
+
+.stories-mobile .quote-attribution {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+/* Quote card color themes for mobile */
+.stories-mobile .quote-card.theme-fuchsia {
+  background: linear-gradient(135deg, var(--fuchsia-blue) 0%, #6045a8 100%);
+}
+
+.stories-mobile .quote-card.theme-fuchsia .quote-text,
+.stories-mobile .quote-card.theme-fuchsia .quote-attribution {
+  color: var(--white);
+}
+
+.stories-mobile .quote-card.theme-salem {
+  background: linear-gradient(135deg, var(--salem) 0%, #007035 100%);
+}
+
+.stories-mobile .quote-card.theme-salem .quote-text,
+.stories-mobile .quote-card.theme-salem .quote-attribution {
+  color: var(--white);
+}
+
+.stories-mobile .quote-card.theme-harp {
+  background: linear-gradient(135deg, var(--harp) 0%, #d8e7d6 100%);
+}
+
+.stories-mobile .quote-card.theme-harp .quote-attribution {
+  color: var(--salem);
+}
+
+.stories-mobile .quote-card.theme-soft-purple {
+  background: linear-gradient(135deg, #f0e6ff 0%, #e2d6f5 100%);
+}
+
+.stories-mobile .quote-card.theme-soft-purple .quote-attribution {
+  color: var(--fuchsia-blue);
+}
+
+.stories-mobile .quote-card.theme-soft-green {
+  background: linear-gradient(135deg, #e8f5e6 0%, #d5ebd2 100%);
+}
+
+.stories-mobile .quote-card.theme-soft-green .quote-attribution {
+  color: var(--salem);
+}
+
+/* Mobile card grid for mixed content */
+.stories-mobile .card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  padding: 0 30px;
+}
+
+@media screen and (max-width: 901px) {
+  .screen.stories-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.stories-mobile { 
+    display: none;
+   }
+}

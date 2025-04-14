@@ -1,0 +1,102 @@
+.donate-confirmation-desktop-all-breakpoints {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  min-width: 902px;
+  position: relative;
+}
+
+.donate-confirmation-desktop-all-breakpoints .main-content-1 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 165px;
+  position: relative;
+  width: 100%;
+}
+
+.donate-confirmation-desktop-all-breakpoints .thank-you-message {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 64px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.donate-confirmation-desktop-all-breakpoints .confirmation-text {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 28px;
+  max-width: 560px;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Mobile styles */
+.donate-confirmation-mobile {
+  align-items: center;
+  background-color: var(--romance);
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  min-width: 393px;
+  position: relative;
+}
+
+.donate-confirmation-mobile .main-content {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 30px;
+  position: relative;
+  width: 100%;
+}
+
+.donate-confirmation-mobile .thank-you-message {
+  align-self: stretch;
+  color: var(--mirage);
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.donate-confirmation-mobile .confirmation-text {
+  align-self: stretch;
+  color: var(--fuchsia-blue);
+  font-weight: 500;
+  line-height: 28px;
+  position: relative;
+  text-align: center;
+  padding: 0 10px;
+}
+
+
+/* Media queries to show the appropriate version based on screen size */
+@media screen and (max-width: 901px) {
+  .screen.donate-confirmation-desktop-all-breakpoints { 
+    display: none;
+   }
+}
+@media screen and (min-width: 902px) {
+  .screen.donate-confirmation-mobile { 
+    display: none;
+   }
+} 

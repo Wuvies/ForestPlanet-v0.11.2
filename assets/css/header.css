@@ -1,0 +1,261 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ |               Header Styles               |
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.nav-bar {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  position: relative;
+}
+
+
+/* ------------ Romance Header Desktop ------------ */
+
+.header-romance {
+  align-items: center;
+  align-self: stretch;
+  background-color: rgba(255, 255, 252, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+/* ------------ Mirage Header Desktop ------------ */
+
+.header-mirage {
+  align-items: center;
+  align-self: stretch;
+  background-color: rgba(25, 25, 35, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+/* ------------ Fuchsia Blue Header Desktop ------------ */
+
+.header-fuchsia-blue {
+  align-items: center;
+  align-self: stretch;
+  background-color: rgba(127, 85, 211, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex: 0 0 auto;
+  gap: 362px;
+  justify-content: center;
+  padding: 24px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+
+/* ------------ Romance Header Mobile ------------ */
+
+.property-mobile {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.875rem;
+  background-color: var(--romance);
+  background-color: rgba(255, 255, 252, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+} 
+
+.property-mobile .mobile-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.property-mobile .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.property-mobile .menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.property-mobile .menu {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ------------ Mirage Header Mobile ------------ */
+
+.property-mobile-mirage {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.875rem;
+  background-color: var(--mirage);
+  background-color: rgba(25, 25, 35, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.property-mobile-mirage .mobile-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.property-mobile-mirage .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.property-mobile-mirage .menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.property-mobile-mirage .menu {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+}
+
+/* ------------ Fuchsia Blue Header Mobile ------------ */
+
+.property-mobile-fuchsia-blue {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.875rem;
+  background-color: var(--fuchsia-blue);
+  background-color: rgba(127, 85, 211, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.property-mobile-fuchsia-blue .mobile-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.property-mobile-fuchsia-blue .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.property-mobile-fuchsia-blue .menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.property-mobile-fuchsia-blue .menu {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(101%);
+}
+
+.logo {
+  height: 27.45px;
+  position: relative;
+  width: 201px;
+}
+
+/* Media Queries for responsive headers */
+@media screen and (max-width: 901px) {
+  /* Hide desktop header on mobile */
+  .header-romance,
+  .header-mirage,
+  .header-fuchsia-blue {
+    display: none;
+  }
+  
+  /* Show mobile headers on mobile */
+  .property-mobile,
+  .property-mobile-mirage,
+  .property-mobile-fuchsia-blue {
+    display: flex;
+    position: fixed;
+    z-index: 999;
+  }
+}
+
+@media screen and (min-width: 902px) {
+  /* Hide mobile headers on desktop */
+  .property-mobile,
+  .property-mobile-mirage,
+  .property-mobile-fuchsia-blue {
+    display: none;
+  }
+  
+  /* Show desktop headers on desktop */
+  .header-romance,
+  .header-mirage,
+  .header-fuchsia-blue {
+    display: flex;
+  }
+}
+
+/* Add transition for smooth header appearance/disappearance */
+.header-romance,
+.header-mirage,
+.header-fuchsia-blue,
+.property-mobile,
+.property-mobile-mirage,
+.property-mobile-fuchsia-blue {
+  transition: transform 0.3s ease;
+}

@@ -1,0 +1,164 @@
+/* Mobile Menu Styles */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: var(--romance);
+    overflow-y: auto;
+}
+
+/* Background color variations for different header styles */
+.mobile-menu-overlay-mirage {
+    background-color: var(--mirage) !important;
+    color: var(--romance);
+}
+
+.mobile-menu-overlay-fuchsia-blue {
+    background-color: var(--fuchsia-blue) !important;
+    color: var(--romance);
+}
+
+.menu-mobile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+}
+
+/* Dark background for mirage and fuchsia-blue themed menus */
+.property-mobile-mirage,
+.property-mobile-fuchsia-blue {
+    background-color: inherit;
+}
+
+.property-mobile-mirage + .nav-menu,
+.property-mobile-fuchsia-blue + .nav-menu {
+    background-color: inherit;
+}
+
+.menu-mobile .property-mobile,
+.menu-mobile .property-mobile-mirage,
+.menu-mobile .property-mobile-fuchsia-blue {
+    width: 100%;
+    padding: 16px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.menu-mobile .property-mobile {
+    background-color: var(--romance);
+}
+
+.menu-mobile .property-mobile-mirage {
+    background-color: var(--mirage);
+}
+
+.menu-mobile .property-mobile-fuchsia-blue {
+    background-color: var(--fuchsia-blue);
+}
+
+/* Make the whole menu inherit the header style background */
+.property-mobile-mirage ~ *,
+.property-mobile-fuchsia-blue ~ * {
+    background-color: inherit;
+}
+
+/* Ensure all elements in dark themed menus have correct background */
+.mobile-menu-overlay-mirage .menu-mobile,
+.mobile-menu-overlay-fuchsia-blue .menu-mobile {
+    background-color: inherit !important;
+}
+
+.mobile-menu-overlay-mirage .nav-menu,
+.mobile-menu-overlay-fuchsia-blue .nav-menu {
+    background-color: inherit !important;
+}
+
+.menu-mobile .mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.menu-mobile .rgb-logo {
+    height: 40px;
+    width: auto;
+}
+
+.menu-mobile .nav-menu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50vh;
+    padding: 40px 20px;
+}
+
+.menu-mobile .tertiary-button,
+.menu-mobile .secondary-button-salem,
+.menu-mobile .primary-button-salem,
+.menu-mobile .secondary-button-romance,
+.menu-mobile .primary-button-romance {
+    align-self: center;
+    width: fit-content;
+}
+
+.menu-mobile .logo-mark-1-1 {
+    width: 100%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -50%;
+}
+
+/* Customize close button for dark backgrounds */
+.property-mobile-mirage .menu-button img,
+.property-mobile-fuchsia-blue .menu-button img,
+.mobile-menu-overlay-mirage .menu-button img,
+.mobile-menu-overlay-fuchsia-blue .menu-button img {
+    filter: invert(1);
+}
+
+/* Animation classes */
+.animate-appear {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.animate-disappear {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Prevent scrolling when menu is open */
+body.no-scroll,
+html.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+} 
