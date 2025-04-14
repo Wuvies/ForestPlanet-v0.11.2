@@ -308,6 +308,8 @@ class Mailchimp {
             // Add your newsletter form IDs here, for example:
             'newsletter-signup',   // Form ID
             4,                     // Form post ID
+            '5a07999',             // Partner form ID
+            'invite-form',         // Invite form ID
         ];
 
         if (in_array($form_id, $newsletter_form_ids)) {
@@ -319,6 +321,8 @@ class Mailchimp {
         $newsletter_form_titles = [
             'Newsletter Signup',
             'Subscribe Newsletter',
+            'Partner',             // Partner form title
+            'Invite Us Form',      // Invite form title
             // Add more newsletter form titles as needed
         ];
         

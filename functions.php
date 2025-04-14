@@ -1330,3 +1330,173 @@ function forestplanet_newsletter_subscribe() {
 }
 add_action('wp_ajax_forestplanet_newsletter_subscribe', 'forestplanet_newsletter_subscribe');
 add_action('wp_ajax_nopriv_forestplanet_newsletter_subscribe', 'forestplanet_newsletter_subscribe');
+
+/**
+ * Register Map Locations custom post type
+ */
+function forestplanet_register_map_locations() {
+    $labels = array(
+        'name'                  => 'Map Locations',
+        'singular_name'         => 'Map Location',
+        'menu_name'             => 'Map Locations',
+        'add_new'               => 'Add New Location',
+        'add_new_item'          => 'Add New Location',
+        'edit_item'             => 'Edit Location',
+        'view_item'             => 'View Location',
+        'all_items'             => 'All Locations',
+        'search_items'          => 'Search Locations',
+        'not_found'             => 'No locations found',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => false,
+        'publicly_queryable' => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'menu_icon'          => 'dashicons-location-alt',
+        'capability_type'    => 'post',
+        'hierarchical'       => false,
+        'supports'           => array('title'),
+    );
+
+    register_post_type('map_location', $args);
+}
+add_action('init', 'forestplanet_register_map_locations');
+
+/**
+ * Add meta boxes for map locations
+ */
+function forestplanet_map_location_meta_boxes() {
+    add_meta_box(
+        'map_location_coordinates',
+        'Location Coordinates',
+        'forestplanet_location_coordinates_callback',
+        'map_location',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'forestplanet_map_location_meta_boxes');
+
+/**
+ * Coordinates meta box callback
+ */
+function forestplanet_location_coordinates_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('forestplanet_location_coordinates', 'location_coordinates_nonce');
+    
+    // Get saved values
+    $latitude = get_post_meta($post->ID, '_location_latitude', true);
+    $longitude = get_post_meta($post->ID, '_location_longitude', true);
+    ?>
+    <p>
+        <label for="location_latitude">Latitude:</label><br>
+        <input type="number" step="any" id="location_latitude" name="location_latitude" 
+               value="<?php echo esc_attr($latitude); ?>" style="width: 100%" min="-90" max="90" required />
+        <small>Enter latitude value (between -90 and 90)</small>
+    </p>
+    <p>
+        <label for="location_longitude">Longitude:</label><br>
+        <input type="number" step="any" id="location_longitude" name="location_longitude" 
+               value="<?php echo esc_attr($longitude); ?>" style="width: 100%" min="-180" max="180" required />
+        <small>Enter longitude value (between -180 and 180)</small>
+    </p>
+    <div style="margin-top: 20px; padding: 10px; background: #f8f8f8; border-left: 4px solid #46b450;">
+        <strong>How to find coordinates:</strong>
+        <ol style="margin-top: 5px; margin-left: 15px;">
+            <li>Go to Google Maps (maps.google.com)</li>
+            <li>Right-click on your desired location</li>
+            <li>Select "What's here?" from the menu</li>
+            <li>A small card will appear showing the coordinates</li>
+            <li>The first number is latitude, the second is longitude</li>
+        </ol>
+    </div>
+    <?php
+}
+
+/**
+ * Save location coordinates
+ */
+function forestplanet_save_location_coordinates($post_id) {
+    // Check if nonce is set and verify it
+    if (!isset($_POST['location_coordinates_nonce']) || 
+        !wp_verify_nonce($_POST['location_coordinates_nonce'], 'forestplanet_location_coordinates')) {
+        return;
+    }
+    
+    // Check if this is an autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    // Check user permissions
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    // Save latitude
+    if (isset($_POST['location_latitude'])) {
+        $latitude = floatval($_POST['location_latitude']);
+        if ($latitude >= -90 && $latitude <= 90) {
+            update_post_meta($post_id, '_location_latitude', $latitude);
+        }
+    }
+    
+    // Save longitude
+    if (isset($_POST['location_longitude'])) {
+        $longitude = floatval($_POST['location_longitude']);
+        if ($longitude >= -180 && $longitude <= 180) {
+            update_post_meta($post_id, '_location_longitude', $longitude);
+        }
+    }
+}
+add_action('save_post_map_location', 'forestplanet_save_location_coordinates');
+
+/**
+ * Pass map locations to JavaScript
+ */
+function forestplanet_localize_map_locations() {
+    if (is_front_page()) {
+        $locations = array();
+        
+        $args = array(
+            'post_type' => 'map_location',
+            'posts_per_page' => -1,
+            'post_status' => 'publish'
+        );
+        
+        $query = new WP_Query($args);
+        
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                $latitude = get_post_meta(get_the_ID(), '_location_latitude', true);
+                $longitude = get_post_meta(get_the_ID(), '_location_longitude', true);
+                
+                if (!empty($latitude) && !empty($longitude)) {
+                    $locations[] = array(
+                        'name' => get_the_title(),
+                        'lat' => floatval($latitude),
+                        'lng' => floatval($longitude)
+                    );
+                }
+            }
+            wp_reset_postdata();
+        }
+        
+        // If no locations found, use defaults
+        if (empty($locations)) {
+            $locations = array(
+                array('name' => 'Khenifra, Morocco', 'lat' => 32.9394, 'lng' => -5.6693),
+                array('name' => 'Pangani Basin, Tanzania', 'lat' => -5.4265, 'lng' => 37.9745),
+                array('name' => 'Mozambique Channel, Madagascar', 'lat' => -20.0000, 'lng' => 45.3000)
+            );
+        }
+        
+        wp_localize_script('forestplanet-google-maps', 'forestPlanetMapData', array(
+            'locations' => $locations
+        ));
+    }
+}
+add_action('wp_enqueue_scripts', 'forestplanet_localize_map_locations', 20);

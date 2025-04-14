@@ -4,9 +4,8 @@
  */
 
 function initMap() {
-    // Define locations where ForestPlanet has projects
-    const locations = [
-        { name: "Khenifra, Morocco", lat: 32.9394, lng: -5.6693 },
+    // Get locations from WordPress or use defaults
+    const locations = window.forestPlanetMapData?.locations || [
         { name: "Pangani Basin, Tanzania", lat: -5.4265, lng: 37.9745 },
         { name: "Mozambique Channel, Madagascar", lat: -20.0000, lng: 45.3000 }
     ];

@@ -173,7 +173,7 @@ for ($i = 1; $i <= 6; $i++) {
                 <p class="invite-us-to-your-po body-2-regular">
                     <?php echo wp_kses_post($invite_content); ?>
                 </p>
-                <a href="<?php echo esc_url(home_url('/invite-us')); ?>">
+                <a href="<?php echo esc_url(home_url('/invite')); ?>">
                     <div class="primary-button-romance">
                         <div class="primary-button-fuchsia-blue-text body-2-regular">Invite Us</div>
                     </div>
@@ -405,7 +405,7 @@ for ($i = 1; $i <= 6; $i++) {
                 <p class="invite-us-to-your-po-1 body-2-regular">
                     <?php echo wp_kses_post($invite_content); ?>
                 </p>
-                <a href="<?php echo esc_url(home_url('/invite-us')); ?>">
+                <a href="<?php echo esc_url(home_url('/invite')); ?>">
                     <div class="primary-button-romance">
                         <div class="primary-button-fuchsia-blue-text body-2-regular">Invite Us</div>
                     </div>

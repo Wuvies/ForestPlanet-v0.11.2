@@ -846,10 +846,6 @@ to{opacity: 1;
   padding: 15px;
 }
 
-.landing-desktop-all-breakpoints .number-4 {
-  color: var(--salem);
-}
-
 .landing-desktop-all-breakpoints .frame-19-1 {
   align-items: flex-start;
   display: flex;

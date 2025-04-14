@@ -65,7 +65,7 @@ if ($view === 'desktop') :
             <div class="secondary-button-romance secondary-button">
                 <a href="<?php echo esc_url($podcast_url); ?>" target="_blank" class="button-link">
                     <div class="listen body-2-regular">Listen</div>
-                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/<?php echo $is_about_page ? 'assets/images' : 'img'; ?>/link-external.svg" alt="Link External" />
+                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/link-external.svg" alt="Link External" />
                 </a>
             </div>
         </div>
@@ -94,7 +94,7 @@ if ($view === 'desktop') :
             <div class="secondary-button-romance secondary-button">
                 <a href="<?php echo esc_url($podcast_url); ?>" target="_blank" class="button-link">
                     <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/<?php echo $is_about_page ? 'assets/images' : 'img'; ?>/link-external.svg" alt="Link External" />
+                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/link-external.svg" alt="Link External" />
                 </a>
             </div>
         </div>
@@ -117,7 +117,7 @@ else :
             <div class="secondary-button-romance secondary-button">
                 <a href="<?php echo esc_url($podcast_url); ?>" target="_blank" class="button-link">
                     <div class="secondary-button-romance-text body-2-regular">Listen</div>
-                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/<?php echo $is_about_page ? 'assets/images' : 'img'; ?>/link-external.svg" alt="Link External" />
+                    <img class="link-external" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/link-external.svg" alt="Link External" />
                 </a>
             </div>
         </div>
